@@ -1,0 +1,199 @@
+//EVENTO LOGIN USUARIO
+$("#usuario").on('blur', function () {
+    $.ajax({
+        url: 'http://' + readConfig() + '/consulta/verUsuarios/',
+        type: 'POST',
+        dataType: "json",
+        contentType: 'application/json',
+        data: JSON.stringify({
+            correo:"-",
+            login:$(this).val
+        })
+    }).always(function (data) {
+        if (data) {
+            $("#AddUsuario").prop('disabled', true);
+            toastr.error("Usuario asociado a una cuenta existente, por favor cambie el valor");
+        } else {
+            $("#AddUsuario").prop('disabled', false);
+        }
+    });
+});
+
+//EVENTO EMAIL USUARIO
+$("#emailUsuario").on('blur', function () {
+    $.ajax({
+        url: 'http://' + readConfig() + '/consulta/verUsuarios/',
+        type: 'POST',
+        dataType: "json",
+        contentType: 'application/json',
+        data: JSON.stringify({
+            correo:$(this).val,
+            login:"-"
+        })
+    }).always(function (data) {
+        if (data) {
+            $("#AddUsuario").prop('disabled', true);
+            toastr.error("Email asociado a una cuenta existente, por favor cambie el valor");
+        } else {
+            $("#AddUsuario").prop('disabled', false);
+        }
+    });
+});
+
+//INSERTAR USUARIO
+$("#AddUsuario").on('click', function () {
+    var nombre = $("#nombreUsuario").val();
+    var usuario = $("#usuario").val();
+    var email = $("#emailUsuario").val();
+    var seUsuario = $("#seUsuario").val();
+    var contraseña = $("#contraseña").val();
+    var valContraseña = $("#valContraseña").val();
+    if (nombre.length === 0 || usuario.length === 0 || email.length === 0) {
+        toastr.error("Campos Vacios");
+    } else if (contraseña.length === 0 || valContraseña.length === 0) {
+        toastr.error("Contraseñas vacias");
+    } else if (contraseña !== valContraseña) {
+        toastr.error("Contraseñas Diferentes");
+    } else {
+        $.ajax({
+            url: 'http://' + readConfig() + '/client/crearUsuario/',
+            type: 'POST',
+            dataType: "json",
+            contentType: 'application/json',
+            data: JSON.stringify({
+                nombres: nombre,
+                login: usuario,
+                password: contraseña,
+                password_salt: valContraseña,
+                correo: email,
+                sistemaExternoId: seUsuario,
+                usuCrea: "56"
+            })
+        }).always(function (data) {
+            if (data > 0) {
+                toastr.success("Usuario creado correctamente");
+                $("#Contenido").load("../../views/Usuarios/VerUsuario.jsp");
+            } else {
+                toastr.error("Error, intente nuevamente");
+            }
+        });
+    }
+});
+
+//CARGAR USUARIOS
+$.ajax({
+    url: 'http://' + readConfig() + '/consulta/verUsuarios/',
+    type: 'GET',
+    dataType: "json"
+}).always(function (data) {
+    //CARGAR TABLA
+    $("#loadUsers").html(tablePrincipal(tbodyTable(data)));
+    //EVENTOS EDITAR USUARIO
+    $("a[rel='edit']").on('click', function () {
+        $.ajax({
+            url: 'http://' + readConfig() + '/consulta/verUsuarios/' + $(this).attr("idUser"),
+            type: 'GET',
+            dataType: "json"
+        }).always(function (data) {
+            $.each(data, function (key, val) {
+                $("#idUser").val(val.ID);
+                $("#nombreUsuarioEdit").val(val.Nombres);
+                $("#usuarioEdit").val(val.Login).prop('disabled', true);
+                $("#emailUsuarioEdit").val(val.Correo).prop('disabled', true);
+                $("#estadoUsuarioEdit").val(val.States_ID);
+                //ACTUALIZAR USUARIO
+                $("#UpdUsers").on('click', function () {
+                    var id = $("#idtm").val().trim();
+                    var contraseña = $("#contraseñaEdit").val().trim();
+                    var valContraseña = $("#valContraseñaEdit").val().trim();
+                    var nombre = $("#nombreUsuarioEdit").val();
+                    var usuario = $("#usuarioEdit").val();
+                    var email = $("#emailUsuarioEdit").val();
+                    var estadoUsuario = $("#estadoUsuarioEdit").val();
+
+                    if (nombre.length === 0 || usuario.length === 0 || email.length === 0 || id.length === 0) {
+                        toastr.error("Campos Vacios");
+                    } else if (contraseña.length === 0 || valContraseña.length === 0) {
+                        toastr.error("Contraseñas vacias");
+                    } else if (contraseña !== valContraseña) {
+                        toastr.error("Contraseñas Diferentes");
+                    } else {
+                        $.ajax({
+                            url: 'http://' + readConfig() + '/modificacion/modificarUsuario/' + id,
+                            type: 'PUT',
+                            dataType: "json",
+                            contentType: 'application/json',
+                            data: JSON.stringify({
+                                id: id,
+                                nombres: nombre,
+                                login: usuario,
+                                password: contraseña,
+                                password_salt: valContraseña,
+                                correo: email,
+                                sistemaExternoId: "10",
+                                estadoId: estadoUsuario,
+                                usuModifica: "56"
+                            })
+                        }).always(function (data) {
+                            if (data > 0) {
+                                toastr.success("Usuario modificado correctamente");
+                                $("#loading").load("../../views/Usuarios/verUsuario.jsp");
+                            } else {
+                                toastr.error("Error, intente nuevamente");
+                            }
+                        });
+                    }
+                });
+            });
+        });
+    });
+});
+
+//FUNCIONES
+function tablePrincipal(data) {
+    return "<script src='../../models/Configs/app.configs.table.js'></script> \n\
+            <table class='table table-sm table-striped text-center' id='tableGeneral'>" +
+            "<thead class='thead-dark'>" +
+            "<tr>" +
+            "<th>Nombre</th>" +
+            "<th>Usuario</th>" +
+            "<th>E-mail</th>" +
+            "<th></th>" +
+            "<th></th>" +
+            "</tr>" +
+            " </thead>" +
+            "<tbody>" + data + "</tbody>" +
+            "</table>";
+}
+function tbodyTable(data) {
+    var res = "";
+    $.each(data, function (key, val) {
+        var sep = colors(val.enabled).trim().split("__");
+        res += "<tr>" +
+                "<td>" + val.Nombres + "</td>" +
+                "<td>" + val.Login + "</td> \n\
+                   <td>" + val.Correo + "</td> \n\
+                   <td> <a href='#' rel='edit' idUser='" + val.ID + "' class='badge badge-primary' data-toggle='modal' data-target='#modalUsersUpdate'>Editar</a></td> \n\
+                   <td> <a href='#' rel='status' class='" + sep[0] + " " + sep[1] + "' idtm='" + val.ID + "' sta='" + val.enabled + "'>" + sep[2] + "</a></td>\n\
+               </tr>";
+    });
+    return res;
+}
+function colors(val) {
+    var res = "";
+    if (val === "1") {
+        res = "badge__badge-danger__Inactivar";
+    } else {
+        res = "badge__badge-success__Activar";
+    }
+    return res;
+}
+function updateStatus(val) {
+    var res = "";
+    if (val === "1") {
+        res = "2";
+    } else {
+        res = "1";
+    }
+    return res;
+}
