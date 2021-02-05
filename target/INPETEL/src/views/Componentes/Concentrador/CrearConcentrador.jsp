@@ -82,6 +82,6 @@
             <input id="contraseñaMarcaCnc" type="text" class="form-control" />
         </div>   
     </div>
-    <button class="btn btn-primary" id="AddConcentrador" type="submit">Crear</button>
+    <input type="submit" id="AddConcentrador" class="btn btn-primary" value="Crear">
 </form>
 

@@ -49,6 +49,6 @@
                 <input type="text" class="form-control" id="cargaTran" value="0" required>      
             </div>
         </div>
-        <button class="btn btn-primary" id="AddTransformador" type="submit">Crear</button>
+        <input type="submit" id="AddTransformador" class="btn btn-primary" value="Crear">
     </form> 
 </div>

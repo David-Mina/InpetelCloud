@@ -9,7 +9,7 @@
         <link src="stylesheet" href="src/template/js/jquery-3.4.1.slim.js">
         <link rel="stylesheet" href="src/template/css/bootstrap.min.css">
         <link rel="stylesheet" href="src/template/js/bootstrap.bundle.min.js">
-        <link rel="stylesheet" href="src/template/css/login.css">
+        <link rel="stylesheet" href="src/template/css/login.css">        
     </head>
 
     <body>

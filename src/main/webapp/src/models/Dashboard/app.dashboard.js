@@ -63,3 +63,17 @@ $("#VerUsuarios").on('click', function (){
 $("#CrearUsuario").on('click', function (){
   $("#Contenido").load("../Usuarios/CrearUsuario.jsp");  
 });
+
+//Vistas Sistema Externo
+$("#VerSE").on('click', function (){
+  $("#Contenido").load("../SistemasExternos/VerSE.jsp");  
+});
+
+$("#CrearSE").on('click', function (){
+  $("#Contenido").load("../SistemasExternos/CrearSE.jsp");  
+});
+
+//Vista tareas programadas
+$("#tareas").on('click', function (){
+  $("#Contenido").load("../TareasProgramadas/TareaProgramada.jsp");  
+});

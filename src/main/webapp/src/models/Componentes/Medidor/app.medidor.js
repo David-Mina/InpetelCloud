@@ -15,7 +15,7 @@ function tipoMedidor(elemento) {
 function tipoMedidorEdit(elemento) {
     d = elemento.value;
 
-    if (d == "Trifasico Semidirecta") {  
+    if (d == "Trifasico Semidirecta") {
         inputMagnitudMedEdit.value = "0";
         inputMagnitudMedEdit.disabled = false;
     } else {
@@ -127,6 +127,7 @@ $.ajax({
 }).always(function (data) {
     //CARGA EN LA TABLA   
     $("#loadMed").html(tablePrincipal(tbodyTable(data)));
+    $("#loadMedGestion").html(tablePrincipalGestion(tbodyTableGestion(data)));
     //EDITAR MEDIDOR
     $("a[rel='edit']").on('click', function () {
         $.ajax({
@@ -135,7 +136,6 @@ $.ajax({
             dataType: "json"
         }).always(function (data) {
             $.each(data, function (key, val) {
-                console.log(val.NumCuadrantes);
                 $("#idMed").val(val.ID);
                 $("#tipoMedEdit").val(val.TipoMET);
                 $("#magnitudMedEdit").val(val.Magnitud);
@@ -147,21 +147,21 @@ $.ajax({
                 $("#relojsyncMedEdit").val(val.Sync_reloj);
                 $("#marcaMedEdit").val(val.Marca);
                 $("#estadoMedEdit").val(val.States_ID);
-                
+
                 //ACTUALIZAR MEDIDOR
                 $("#UpdMed").on('click', function () {
                     var id = $("#idMed").val().trim();
                     var tipoMed = $("#tipoMedEdit").val();
                     var magnitudMed = $("#magnitudMedEdit").val();
                     var numCuadrantesMed = $("#numCuadrantesMedEdit").val();
-                    var tipoPuertoMed = $("#tipoPuertoMedEdit").val();                    
+                    var tipoPuertoMed = $("#tipoPuertoMedEdit").val();
                     var modeloMed = $("#modeloMedEdit").val();
                     var serialMed = $("#serialMedEdit").val();
                     var prepagoMed = $("#prepagoMedEdit").val();
                     var relojsyncMed = $("#relojsyncMedEdit").val();
                     var marcaMed = $("#marcaMedEdit").val();
-                    var estadoMed = $("#estadoMedEdit").val();                   
-                                       
+                    var estadoMed = $("#estadoMedEdit").val();
+
                     switch (tipoPuertoMed) {
                         case "Fisico":
                             tipoPuertoMed = "1";
@@ -175,12 +175,12 @@ $.ajax({
                         default:
                             tipoPuertoMed = "-";
                     }
-                    
+
                     if (numCuadrantesMed.length == 0 || modeloMed.length == 0 || serialMed.length == 0
                             || tipoMed.length == 0 || tipoPuertoMed.length == 0 || prepagoMed.length == 0
                             || relojsyncMed.length == 0) {
                         toastr.error("Campos vacios");
-                    } else if(magnitudMed.length == 0){
+                    } else if (magnitudMed.length == 0) {
                         magnitudMed = "0";
                     } else {
                         $.ajax({
@@ -214,6 +214,42 @@ $.ajax({
             });
         });
     });
+
+    //CAMBIAR DE ESTADO MEDIDOR
+    $("a[rel='change']").on('click', function () {
+        $.ajax({
+            url: 'http://' + readConfig() + '/consulta/verMedidores/' + $(this).attr("idMed"),
+            type: 'GET',
+            dataType: "json"
+        }).always(function (data) {
+            $.each(data, function (key, val) {
+                $("#idMed").val(val.ID);
+                //ELIMINAR 
+                $("#ChangeMed").on('click', function () {
+                    var id = $("#idMed").val().trim();
+                    var observacionMed = $("#observacionMed").val();
+                    $.ajax({
+                        url: 'http://' + readConfig() + '/eliminar/eliminarMedidor/' + id,
+                        type: 'DELETE',
+                        dataType: "json",
+                        contentType: 'application/json',
+                        data: JSON.stringify({
+                            id:id,
+                            observacion: observacionMed
+                        })
+                    }).always(function (data) {
+                        console.log(observacionMed);
+                        if (data > 0) {
+                            toastr.success("Estado de medidor cambiado correctamente");
+                            $("#Contenido").load("../../views/Componentes/Medidor/GestionMedidor.jsp");                            
+                        } else {
+                            toastr.error("Error, intente nuevamente");
+                        }
+                    });
+                });
+            });
+        });
+    });
 });
 
 //FUNCIONES
@@ -237,7 +273,6 @@ function tablePrincipal(data) {
 function tbodyTable(data) {
     var res = "";
     $.each(data, function (key, val) {
-        var sep = colors(val.enabled).trim().split("__");
         res += "<tr>" +
                 "<td>" + val.TipoMET + "</td>" +
                 "<td>" + val.Prepago + "</td>" +
@@ -245,23 +280,52 @@ function tbodyTable(data) {
                 "<td>" + val.Serial + "</td> \n\
                    <td>" + val.Marca + "</td> \n\
                    <td> <a href='#' rel='edit' idMed='" + val.ID + "' class='badge badge-primary' data-toggle='modal' data-target='#modalMedUpdate'>Editar</a></td> \n\
-                   <td> <a href='#' rel='status' class='" + sep[0] + " " + sep[1] + "' idtm='" + val.ID + "' sta='" + val.enabled + "'>" + sep[2] + "</a></td>\n\
                </tr>";
     });
     return res;
 }
+
+//FUNCIONES TABLA GESTION
+function tablePrincipalGestion(data) {
+    return "<script src='../../models/Configs/app.configs.table.js'></script> \n\
+            <table class='table table-sm table-striped text-center' id='tableINPETEL'>" +
+            "<thead class='thead-dark'>" +
+            "<tr>" +
+            "<th>Serial</th>" +
+            "<th>Estado</th>" +
+            "<th>Acción</th>" +
+            "</tr>" +
+            " </thead>" +
+            "<tbody>" + data + "</tbody>" +
+            "</table>";
+}
+function tbodyTableGestion(data) {
+    var res = "";
+    $.each(data, function (key, val) {
+        var sep = colors(val.States_ID).trim().split("__");
+        res += "<tr>" +
+                "<td>" + val.Serial + "</td> \n\
+                   <td> <a href='#' rel='status' class='" + sep[0] + " " + sep[1] + "' idMed='" + val.ID + "' sta='" + val.States_ID + "'>" + sep[2] + "</a></td>\n\
+                   <td> <a href='#' rel='change' idMed='" + val.ID + "' class='badge badge-info' data-toggle='modal' data-target='#modalMedChange''>Cambiar</a></td>\n\
+               </tr>";
+    });
+    return res;
+}
+
 function colors(val) {
     var res = "";
-    if (val === "1") {
-        res = "badge__badge-danger__Inactivar";
-    } else {
-        res = "badge__badge-success__Activar";
+    if (val == "1") {
+        res = "badge__badge-success__Activo";
+    } else if(val == "2") {
+        res = "badge__badge-warning__Inactivo";
+    } else{
+        res = "badge__badge-danger__Bloqueado";
     }
     return res;
 }
 function updateStatus(val) {
     var res = "";
-    if (val === "1") {
+    if (val == "1") {
         res = "2";
     } else {
         res = "1";

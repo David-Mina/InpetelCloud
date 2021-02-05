@@ -1,3 +1,22 @@
+//SISTEMA EXTERNO PARA ASOCIAR CON USUARIO
+$.ajax({
+    url: 'http://' + readConfig() + '/consulta/verSistemasExternos/',
+    type: 'GET',
+    contentType: 'application/json',
+    dataType: "json"
+}).always(function (data) {
+    valueDevice(data, 'seUsuario');
+});
+//FUNCION SELECT PARA ASOCIAR SISTEMA EXTERNO
+function valueDevice(data, id) {
+    if (data.length == 0) {
+        toastr.error("No hay sistema externo para asociar");
+    } else {
+        $.each(data, function (key, val) {
+            $("#" + id).append("<option value='" + val.ID + "'>" + val.Nombre_SE + "</option>");
+        });
+    }
+}
 //EVENTO LOGIN USUARIO
 $("#usuario").on('blur', function () {
     $.ajax({
@@ -18,7 +37,6 @@ $("#usuario").on('blur', function () {
         }
     });
 });
-
 //EVENTO EMAIL USUARIO
 $("#emailUsuario").on('blur', function () {
     $.ajax({
@@ -48,11 +66,11 @@ $("#AddUsuario").on('click', function () {
     var seUsuario = $("#seUsuario").val();
     var contraseña = $("#contraseña").val();
     var valContraseña = $("#valContraseña").val();
-    if (nombre.length === 0 || usuario.length === 0 || email.length === 0) {
+    if (nombre.length == 0 || usuario.length == 0 || email.length == 0) {
         toastr.error("Campos Vacios");
-    } else if (contraseña.length === 0 || valContraseña.length === 0) {
+    } else if (contraseña.length == 0 || valContraseña.length == 0) {
         toastr.error("Contraseñas vacias");
-    } else if (contraseña !== valContraseña) {
+    } else if (contraseña != valContraseña) {
         toastr.error("Contraseñas Diferentes");
     } else {
         $.ajax({
@@ -111,9 +129,9 @@ $.ajax({
                     var email = $("#emailUsuarioEdit").val();
                     var estadoUsuario = $("#estadoUsuarioEdit").val();
 
-                    if (nombre.length === 0 || usuario.length === 0 || email.length === 0 || id.length === 0) {
+                    if (nombre.length == 0 || usuario.length == 0 || email.length == 0 || id.length== 0) {
                         toastr.error("Campos Vacios");
-                    } else if (contraseña.length === 0 || valContraseña.length === 0) {
+                    } else if (contraseña.length == 0 || valContraseña.length == 0) {
                         toastr.error("Contraseñas vacias");
                     } else if (contraseña !== valContraseña) {
                         toastr.error("Contraseñas Diferentes");
@@ -137,7 +155,7 @@ $.ajax({
                         }).always(function (data) {
                             if (data > 0) {
                                 toastr.success("Usuario modificado correctamente");
-                                $("#loading").load("../../views/Usuarios/verUsuario.jsp");
+                                $("#Contenido").load("../../views/Usuarios/verUsuario.jsp");
                             } else {
                                 toastr.error("Error, intente nuevamente");
                             }
@@ -152,14 +170,14 @@ $.ajax({
 //FUNCIONES
 function tablePrincipal(data) {
     return "<script src='../../models/Configs/app.configs.table.js'></script> \n\
-            <table class='table table-sm table-striped text-center' id='tableGeneral'>" +
+            <table class='table table-sm table-striped text-center' id='tableINPETEL'>" +
             "<thead class='thead-dark'>" +
             "<tr>" +
             "<th>Nombre</th>" +
             "<th>Usuario</th>" +
             "<th>E-mail</th>" +
-            "<th></th>" +
-            "<th></th>" +
+            "<th>Editar</th>" +
+            "<th>Estado</th>" +
             "</tr>" +
             " </thead>" +
             "<tbody>" + data + "</tbody>" +
@@ -168,23 +186,25 @@ function tablePrincipal(data) {
 function tbodyTable(data) {
     var res = "";
     $.each(data, function (key, val) {
-        var sep = colors(val.enabled).trim().split("__");
+        var sep = colors(val.States_ID).trim().split("__");
         res += "<tr>" +
                 "<td>" + val.Nombres + "</td>" +
                 "<td>" + val.Login + "</td> \n\
                    <td>" + val.Correo + "</td> \n\
                    <td> <a href='#' rel='edit' idUser='" + val.ID + "' class='badge badge-primary' data-toggle='modal' data-target='#modalUsersUpdate'>Editar</a></td> \n\
-                   <td> <a href='#' rel='status' class='" + sep[0] + " " + sep[1] + "' idtm='" + val.ID + "' sta='" + val.enabled + "'>" + sep[2] + "</a></td>\n\
+                   <td> <a href='#' rel='status' class='" + sep[0] + " " + sep[1] + "' idUser='" + val.ID + "' sta='" + val.States_ID + "'>" + sep[2] + "</a></td>\n\
                </tr>";
     });
     return res;
 }
 function colors(val) {
     var res = "";
-    if (val === "1") {
-        res = "badge__badge-danger__Inactivar";
-    } else {
-        res = "badge__badge-success__Activar";
+    if (val == "1") {
+        res = "badge__badge-success__Activo";
+    } else if(val == "2") {
+        res = "badge__badge-warning__Inactivo";
+    } else{
+        res = "badge__badge-danger__Bloqueado";
     }
     return res;
 }

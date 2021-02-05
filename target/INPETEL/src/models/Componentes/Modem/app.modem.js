@@ -180,7 +180,6 @@ function tablePrincipal(data) {
 function tbodyTable(data) {
     var res = "";
     $.each(data, function (key, val) {
-        var sep = colors(val.enabled).trim().split("__");
         res += "<tr>" +
                 "<td>" + val.Serial + "</td>" +
                 "<td>" + val.Nombre + "</td>" +
@@ -193,21 +192,3 @@ function tbodyTable(data) {
     return res;
 }
 
-function colors(val) {
-    var res = "";
-    if (val === "1") {
-        res = "badge__badge-danger__Inactivar";
-    } else {
-        res = "badge__badge-success__Activar";
-    }
-    return res;
-}
-function updateStatus(val) {
-    var res = "";
-    if (val === "1") {
-        res = "2";
-    } else {
-        res = "1";
-    }
-    return res;
-}

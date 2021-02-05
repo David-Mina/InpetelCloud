@@ -6,7 +6,6 @@
             <div class="form-group">
                 <h4 class="text-center">Crear usuario</h4>
             </div>
-            <hr>
         </div>
     </div>
     <form class="needs-validation" novalidate>
@@ -29,7 +28,9 @@
             </div>
             <div class="col-md-6 mb-3">
                 <label for="labelSE">Sistema Externo</label>
-                <input type="text" id="seUsuario" class="form-control" required />
+                <select class="custom-select" id="seUsuario" required>
+                    <option selected value="">Seleccione sistema asociado</option>
+                </select>
             </div>
         </div>
         <div class="form-row">

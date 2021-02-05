@@ -78,7 +78,7 @@
                 </select>
             </div>
         </div>
-        <button class="btn btn-primary" type="submit" id="AddMedidor">Crear</button> 
+        <input type="submit" id="AddMedidor" class="btn btn-primary" value="Crear">
     </form> 
 </div>
 

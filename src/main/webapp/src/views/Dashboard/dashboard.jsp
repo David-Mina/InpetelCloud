@@ -149,6 +149,12 @@
                                     <span data-feather="bar-chart-2"></span>
                                     Reportes
                                 </a>
+                            </li>                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" id="tareas">
+                                    <span data-feather="list"></span>
+                                    Tareas programadas
+                                </a>
                             </li>
                             <!-- Accordion Extern Systems -->
                             <div class="accordion" id="accordionExample">
@@ -158,9 +164,8 @@
                             </div>
                             <div id="collapseThree" class="collapse " aria-labelledby="headingOne" data-parent="#accordionExample">
                                 <div class="card-body">
-                                    <a class="nav-link dropdown-item" href="#" id="CrearSistemaExterno" >Crear sistema externo</a>
-                                    <a class="nav-link dropdown-item" href="#" id="EditarSistemaExterno" >Editar sistema externo</a>
-                                    <a class="nav-link dropdown-item" href="#" id="GestionSistemaExterno" >Gestionar sistema externo</a>
+                                    <a class="nav-link dropdown-item" href="#" id="VerSE" >Ver sistemas externos</a>
+                                    <a class="nav-link dropdown-item" href="#" id="CrearSE" >Crear sistema externo</a>
                                 </div>
                             </div>
                             <!-- Final Accordion Extern Systems -->

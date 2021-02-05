@@ -52,20 +52,6 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="labelContraseña">Contraseña</label>
-                            <input type="password" class="form-control" id="contraseñaEdit">
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="labelValContraseña">Validación Contraseña</label>
-                            <input type="password" class="form-control" id="valContraseñaEdit">
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="labelEmail">E-mail</label>
