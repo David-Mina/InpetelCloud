@@ -191,19 +191,22 @@
         </main>
     </body>
 
-    <script src="../../template/js/jquery-3.5.1.js"></script>
+    <script src="../../template/js/jquery-3.3.1.js"></script>
     <script src="../../template/js/jquery.dataTables.min.js"></script>
     <script src="../../template/js/dataTables.bootstrap4.min.js"></script>
     <script src="../../template/js/dataTables.buttons.min.js"></script>    
+    <script src="../../template/js/select2.min.js"></script>
     <script src="../../template/js/buttons.flash.min.js"></script>
     <script src="../../template/js/xlsx.full.min.js"></script>
     <script src="../../template/js/jszip.min.js"></script>
     <script src="../../template/js/pdfmake.min.js"></script>
+    <script src="../../template/js/vfs_fonts.js"></script>
     <script src="../../template/js/buttons.html5.min.js"></script>
     <script src="../../template/js/buttons.print.min.js"></script>
-    <script src="../../template/js/popper.min.js"></script>
-    <script src="../../template/js/bootstrap.min.js"></script> 
-    <script src="../../template/js/select2.min.js"></script>
+    <script src="../../template/js/bootbox.min.js"></script>
+    <script src="../../template/js/bootstrap.min.js"></script>
+    <script src="../../template/js/bootstrap.bundle.js"></script>
+    <script src="../../template/js/popper.min.js"></script>    
     <script src="../../template/js/toastr.min.js"></script>
     <script src="../../template/js/all.js"></script>
     <script src="../../template/js/Chart.min.js"></script>
@@ -211,14 +214,10 @@
     <script src="../../template/js/zoom.js"></script>
     <script src="../../template/js/moment.min.js"></script>
     <script src="../../template/js/jspdf.min.js"></script>
-    <script src="../../template/js/html2canvas.min.js"></script>
-    <script src="../../template/js/bootstrap.bundle.min.js"></script>
-    <script src="../../template/js/feather.min.js"></script>
+    <script src="../../template/js/html2canvas.min.js"></script>    
+    <script src="../../template/js/feather.min.js"></script>    
+    <script src="../../template/js/export.js"></script>
     <script src="../../template/js/jquery.gridster.min.js"></script>
     <script src="../../template/js/dashboard.js"></script>   
-    <script src="../../models/Dashboard/app.dashboard.js"></script>
-    
-    
-    
-
+    <script src="../../models/Dashboard/app.dashboard.js"></script> 
 </html>

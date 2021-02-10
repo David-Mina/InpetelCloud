@@ -33,7 +33,6 @@ $("#imeiMdm").on('blur', function () {
             imei: $(this).val()
         })
     }).always(function (data) {
-        console.log(data);
         if (data) {
             $("#AddModem").prop('disabled', true);
             toastr.error("Imei asignado a modem registrado, por favor cambie el valor");
@@ -191,4 +190,3 @@ function tbodyTable(data) {
     });
     return res;
 }
-

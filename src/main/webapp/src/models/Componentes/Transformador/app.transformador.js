@@ -14,7 +14,7 @@ function valueDevice(data, id) {
         toastr.error("No hay concentrador para asociar");
     } else {
         $.each(data, function (key, val) {
-            $("#" + id).select2().append("<option value='" + val.ID + "'>" + val.Serial + "</option>");
+            $("#" + id).select2({theme:'bootstrap4'}).append("<option value='" + val.ID + "'>" + val.Serial + "</option>");
         });
     }
 }
@@ -24,7 +24,7 @@ function valueDeviceEdit(data, id) {
         toastr.error("No hay concentrador para asociar");
     } else {
         $.each(data, function (key, val) {
-            $("#" + id).select2().append("<option value='" + val.ID + "'>" + val.Serial + "</option>");
+            $("#" + id).select2({theme:'bootstrap4', dropdownParent: $('#modalCncUpdate')}).append("<option value='" + val.ID + "'>" + val.Serial + "</option>");
         });
     }
 }

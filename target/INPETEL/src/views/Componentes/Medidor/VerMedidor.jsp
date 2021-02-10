@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-lg-12 col-sm-12">
             <div class="form-group">
-                <h4 class="text-center">Ver medidores</h4>
+                <h4 class="text-center">Medidores</h4>
             </div>
         </div>
     </div>

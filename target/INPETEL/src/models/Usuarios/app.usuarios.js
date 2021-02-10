@@ -13,7 +13,7 @@ function valueDevice(data, id) {
         toastr.error("No hay sistema externo para asociar");
     } else {
         $.each(data, function (key, val) {
-            $("#" + id).append("<option value='" + val.ID + "'>" + val.Nombre_SE + "</option>");
+            $("#" + id).select2({theme:'bootstrap4'}).append("<option value='" + val.ID + "'>" + val.Nombre_SE + "</option>");
         });
     }
 }

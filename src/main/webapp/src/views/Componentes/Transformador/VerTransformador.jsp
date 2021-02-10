@@ -4,11 +4,10 @@
     <div class="row">
         <div class="col-lg-12 col-sm-12">
             <div class="form-group">
-                <h4 class="text-center">Ver transformadores</h4>
+                <h4 class="text-center">Transformadores</h4>
             </div>
         </div>
     </div>
-
     <div class="form-group">
         <div class="card">
             <div class="card-body">

@@ -264,12 +264,12 @@ function tablePrincipal(data) {
             "<th>Serial</th>" +
             "<th>Marca</th>" +
             "<th>Editar</th>" +
-            "<th>Activar</th>" +
             "</tr>" +
             " </thead>" +
             "<tbody>" + data + "</tbody>" +
             "</table>";
 }
+
 function tbodyTable(data) {
     var res = "";
     $.each(data, function (key, val) {

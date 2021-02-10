@@ -80,7 +80,7 @@ function valueDevice(data, id) {
         toastr.error("No hay modem para asociar");
     } else {
         $.each(data, function (key, val) {
-            $("#" + id).select2().append("<option value='" + val.ID + "'>" + val.Imei + "</option>");
+            $("#" + id).select2({theme:'bootstrap4'}).append("<option value='" + val.ID + "'>" + val.Imei + "</option>");
         });
     }
 }
@@ -90,7 +90,7 @@ function valueDeviceEdit(data, id) {
         toastr.error("No hay modem para asociar");
     } else {
         $.each(data, function (key, val) {
-            $("#" + id).select2().append("<option value='" + val.ID + "'>" + val.Imei + "</option>");
+            $("#" + id).select2({theme:'bootstrap4', dropdownParent: $('#modalCncUpdate')}).append("<option value='" + val.ID + "'>" + val.Imei + "</option>");
         });
     }
 }
@@ -330,7 +330,6 @@ function tablePrincipal(data) {
             "<th>Marca</th>" +
             "<th>Modem</th>" +
             "<th>Editar</th>" +
-            "<th>Activar</th>" +
             "</tr>" +
             " </thead>" +
             "<tbody>" + data + "</tbody>" +
@@ -346,9 +345,7 @@ function tbodyTable(data) {
                 "<td>" + val.Comunicacion +
                 "</td> \n\ <td>" + val.Marca +
                 "</td> \n\ <td>" + val.ModemImei +
-                "</td> \n\ <td> <a href='#' rel='edit' idCnc='" + val.ID + "' class='badge badge-primary' data-toggle='modal' data-target='#modalCncUpdate'>Editar</a></td> \n\
-                           <td> <a href='#' rel='status' class='" + sep[0] + " " + sep[1] + "' idtm='" + val.ID + "' sta='" + val.enabled + "'>" + sep[2] + "</a></td>\n\
-               </tr>";
+                "</td> \n\ <td> <a href='#' rel='edit' idCnc='" + val.ID + "' class='badge badge-primary' data-toggle='modal' data-target='#modalCncUpdate'>Editar</a></td> \n\ </tr>";
     });
     return res;
 }
