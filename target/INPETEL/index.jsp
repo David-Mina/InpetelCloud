@@ -6,7 +6,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Inpetel Cloud</title>
-        <link src="stylesheet" href="src/template/js/jquery-3.4.1.slim.js">
+        <link src="stylesheet" href="public/template/js/jquery-3.4.1.slim.js">
         <link rel="stylesheet" href="public/template/css/bootstrap.min.css">
         <link rel="stylesheet" href="public/template/js/bootstrap.bundle.min.js">
         <link rel="stylesheet" href="public/template/css/login.css">        
@@ -35,6 +35,11 @@
                                             <label for="inputPassword">Contraseña</label>
                                         </div>
 
+                                        <div class="form-label-group">
+                                            <select class="form-control custom-select" id="sistemaExterno">                                               
+                                            </select>
+                                        </div>
+
                                         <a href="#" id="login" 
                                            class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" 
                                            role="button" aria-pressed="true">Ingresar</a>
@@ -50,7 +55,8 @@
     <script src="public/template/js/jquery-3.3.1.js"></script>
     <script src="public/template/js/bootstrap.min.js"></script>
     <script src="public/template/js/jquery.dataTables.min.js"></script>
-    <script src="public/template/js/toastr.min.js"></script>    
+    <script src="public/template/js/toastr.min.js"></script> 
+    <script src="public/models/Login/app.configs.login.read.js"></script>
     <script src="public/models/Login/app.login.js"></script>
-    
+
 </html>

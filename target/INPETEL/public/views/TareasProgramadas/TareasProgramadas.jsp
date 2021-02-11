@@ -1,7 +1,14 @@
 <script src="../../models/Configs/app.configs.read.js"></script>
 <script src="../../models/TareasProgramadas/app.tareasprogramadas.js"></script>
 
-<h5 class="text-center">Tareas</h5>
+<div class="row">
+    <div class="col-lg-12 col-sm-12">
+        <div class="form-group">
+            <h4 class="text-center">Tareas</h4>
+            <hr />
+        </div>
+    </div>
+</div>
 
 <div class="form-group" id="tablaTarea">
     <table class="table table-sm table-striped text-center " id="tableTarea">

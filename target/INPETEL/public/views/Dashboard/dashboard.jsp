@@ -8,16 +8,16 @@
         <meta name="generator" content="Jekyll v4.1.1">
         <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/dashboard/">
         <!-- Bootstrap core CSS -->
-        <link href="../../template/css/bootstrap.min.css" rel="stylesheet">
-        <link href="../../template/css/jquery.dataTables.min.css" rel="stylesheet">
-        <link href="../../template/css/bootstrapTwitter.css" rel="stylesheet">
-        <link href="../../template/css/dataTables.bootstrap4.min.css" rel="stylesheet">
-        <link href="../../template/css/toastr.min.css" rel="stylesheet">
-        <link href="../../template/css/buttons.dataTables.min.css" rel="stylesheet">
-        <link href="../../template/css/jquery.gridster.min.css" rel="stylesheet">
-        <link href="../../template/css/select2.css" rel="stylesheet">
-        <link href="../../template/css/select2.min.css" rel="stylesheet">
-        <link href="../../template/css/select2-bootstrap4.css" rel="stylesheet">
+        <link rel="stylesheet" href="../../template/css/bootstrap.min.css">
+        <link rel="stylesheet" href="../../template/css/jquery.dataTables.min.css">
+        <link rel="stylesheet" href="../../template/css/bootstrapTwitter.css">
+        <link rel="stylesheet" href="../../template/css/dataTables.bootstrap4.min.css">
+        <link rel="stylesheet" href="../../template/css/toastr.min.css">
+        <link rel="stylesheet" href="../../template/css/buttons.dataTables.min.css">
+        <link rel="stylesheet" href="../../template/css/jquery.gridster.min.css">
+        <link rel="stylesheet" href="../../template/css/select2.css">
+        <link rel="stylesheet" href="../../template/css/select2.min.css">
+        <link rel="stylesheet" href="../../template/css/select2-bootstrap4.css">
         
         
         
@@ -37,7 +37,7 @@
                 }
             }
         </style>
-        <link href="../../template/css/dashboard.css" rel="stylesheet">
+        <link rel="stylesheet" href="../../template/css/dashboard.css">
     </head>
     <body>
 
@@ -79,7 +79,7 @@
                                     <!-- Acordion Concentradores -->
                                     <a class="nav-link dropdown-item"  href="#" id="navbarDropdown" role="button" data-toggle="collapse" data-target="#collapseConcentrador" aria-expanded="true" aria-controls="collapseConcentrador">Concentradores</a>
                                     <div id="collapseConcentrador" class="collapse " aria-labelledby="headingOne" data-parent="#accordionExample">
-                                        <a class="dropdown-item" href="#" id="VerConcentrador"> Ver concentradores</a>
+                                        <a class="dropdown-item" href="#" id="VerConcentrador"> Concentradores</a>
                                         <a class="dropdown-item" href="#" id="CrearConcentrador"> Crear concentrador</a>
                                         <a class="dropdown-item" href="#" id="GestionConcentrador"> Habilitar / Deshabilitar</a>
                                         <div>
@@ -90,7 +90,7 @@
                                     <!-- Acordion Medidores -->
                                     <a class="nav-link dropdown-item"  href="#" id="navbarDropdown" role="button" data-toggle="collapse" data-target="#collapseMedidor" aria-expanded="true" aria-controls="collapseMedidor">Medidores</a>
                                     <div id="collapseMedidor" class="collapse" aria-labelledby="headingOne">
-                                        <a class="dropdown-item" href="#" id="VerMedidor"> Ver medidores</a>
+                                        <a class="dropdown-item" href="#" id="VerMedidor"> Medidores</a>
                                         <a class="dropdown-item" href="#" id="CrearMedidor"> Crear medidor</a>
                                         <a class="dropdown-item" href="#" id="GestionMedidor"> Habilitar / Deshabilitar</a>
                                         <div>
@@ -101,9 +101,8 @@
                                     <!-- Acordion Modem -->
                                     <a class="nav-link dropdown-item"  href="#" id="navbarDropdown" role="button" data-toggle="collapse" data-target="#collapseModem" aria-expanded="true" aria-controls="collapseModem">Modem</a>
                                     <div id="collapseModem" class="collapse " aria-labelledby="headingOne" data-parent="#accordionExample">
-                                        <a class="dropdown-item" href="#" id="VerModem"> Ver modem</a>
+                                        <a class="dropdown-item" href="#" id="VerModem"> Modem</a>
                                         <a class="dropdown-item" href="#" id="CrearModem"> Crear modem</a>
-                                        <!--<a class="dropdown-item" href="#" id="GestionModem"> Habilitar / Deshabilitar</a>-->
                                         <div>
                                             <hr>
                                         </div>
@@ -112,7 +111,7 @@
                                     <!-- Acordion Transformadores -->
                                     <a class="nav-link dropdown-item"  href="#" id="navbarDropdown" role="button" data-toggle="collapse" data-target="#collapseTransformador" aria-expanded="true" aria-controls="collapseTransformador">Transformadores</a>
                                     <div id="collapseTransformador" class="collapse " aria-labelledby="headingOne" data-parent="#accordionExample">
-                                        <a class="dropdown-item" href="#" id="VerTransformador"> Ver transformadores</a>
+                                        <a class="dropdown-item" href="#" id="VerTransformador"> Transformadores</a>
                                         <a class="dropdown-item" href="#" id="CrearTransformador"> Crear transformador</a>
                                         <a class="dropdown-item" href="#" id="GestionTransformador"> Habilitar / Deshabilitar</a>
                                         <div>
@@ -139,7 +138,7 @@
                             </div>
                             <div id="collapseTwo" class="collapse " aria-labelledby="headingOne" data-parent="#accordionExample">
                                 <div class="card-body">                                
-                                    <a class="nav-link dropdown-item" href="#" id="VerUsuarios" >Ver usuarios</a>
+                                    <a class="nav-link dropdown-item" href="#" id="VerUsuarios" >Usuarios</a>
                                     <a class="nav-link dropdown-item" href="#" id="CrearUsuario" >Crear usuario</a>                                  
                                 </div>
                             </div>
@@ -171,8 +170,8 @@
                             </div>
                             <div id="collapseThree" class="collapse " aria-labelledby="headingOne" data-parent="#accordionExample">
                                 <div class="card-body">
-                                    <a class="nav-link dropdown-item" href="#" id="VerSE" >Ver sistemas externos</a>
-                                    <a class="nav-link dropdown-item" href="#" id="CrearSE" >Crear sistema externo</a>
+                                    <a class="nav-link dropdown-item" href="#" id="VerSE" >Sistemas externos</a>
+                                    <a class="nav-link dropdown-item" href="#" id="CrearSE" >Crear sistema</a>
                                 </div>
                             </div>
                             <!-- Final Accordion Extern Systems -->

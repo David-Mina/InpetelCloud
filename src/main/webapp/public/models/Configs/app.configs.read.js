@@ -2,7 +2,7 @@ function readConfig() {
     if (window.XMLHttpRequest) {
         xhttp = new XMLHttpRequest();
     }
-    xhttp.open("GET", "../../../src/models/Configs/app.configs.variables.xml", false);
+    xhttp.open("GET", "../../../public/models/Configs/app.configs.variables.xml", false);
     xhttp.send();
     xmlDoc = xhttp.responseXML;
 
@@ -12,7 +12,7 @@ function readConfigInit() {
     if (window.XMLHttpRequest) {
         xhttp = new XMLHttpRequest();
     }
-    xhttp.open("GET", "src/models/Configs/app.configs.variables.xml", false);
+    xhttp.open("GET", "public/models/Configs/app.configs.variables.xml", false);
     xhttp.send();
     xmlDoc = xhttp.responseXML;
 

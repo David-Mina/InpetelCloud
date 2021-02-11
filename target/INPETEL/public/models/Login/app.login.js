@@ -2,6 +2,25 @@ $("#login").on('click', function (){
     location.href="public/views/Dashboard/dashboard.jsp";
 });
 
+//SISTEMA EXTERNO PARA ASOCIAR CON USUARIO
+$.ajax({
+    url: 'http://' + readConfig() + '/consulta/verSistemasExternos/',
+    type: 'GET',
+    contentType: 'application/json',
+    dataType: "json"
+}).always(function (data) {
+    valueDevice(data, 'sistemaExterno');
+});
+//FUNCION SELECT PARA ASOCIAR SISTEMA EXTERNO
+function valueDevice(data, id) {
+    if (data.length == 0) {
+        toastr.error("No hay sistema externo para asociar");
+    } else {
+        $.each(data, function (key, val) {
+            $("#" + id).append("<option value='" + val.ID + "'>" + val.Nombre_SE + "</option>");
+        });
+    }
+}
 /*
 $("#login").on('click', function () { 
     
