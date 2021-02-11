@@ -7,9 +7,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Inpetel Cloud</title>
         <link src="stylesheet" href="src/template/js/jquery-3.4.1.slim.js">
-        <link rel="stylesheet" href="src/template/css/bootstrap.min.css">
-        <link rel="stylesheet" href="src/template/js/bootstrap.bundle.min.js">
-        <link rel="stylesheet" href="src/template/css/login.css">        
+        <link rel="stylesheet" href="public/template/css/bootstrap.min.css">
+        <link rel="stylesheet" href="public/template/js/bootstrap.bundle.min.js">
+        <link rel="stylesheet" href="public/template/css/login.css">        
     </head>
 
     <body>
@@ -47,10 +47,10 @@
             </div>
         </div>
     </body>
-    <script src="src/template/js/jquery-3.3.1.js"></script>
-    <script src="src/template/js/bootstrap.min.js"></script>
-    <script src="src/template/js/jquery.dataTables.min.js"></script>
-    <script src="src/template/js/toastr.min.js"></script>    
-    <script src="src/models/Login/app.login.js"></script>
+    <script src="public/template/js/jquery-3.3.1.js"></script>
+    <script src="public/template/js/bootstrap.min.js"></script>
+    <script src="public/template/js/jquery.dataTables.min.js"></script>
+    <script src="public/template/js/toastr.min.js"></script>    
+    <script src="public/models/Login/app.login.js"></script>
     
 </html>
