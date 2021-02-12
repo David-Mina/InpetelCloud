@@ -99,6 +99,7 @@ $.ajax({
 }).always(function (data) {
     //CARGAS
     $("#loadTran").html(tablePrincipal(tbodyTable(data)));
+    $("#loadTranGestion").html(tablePrincipalGestion(tbodyTableGestion(data)));
     //EDITAR TRANSFORMADOR
     $("a[rel='edit']").on('click', function () {
         $.ajax({
@@ -179,6 +180,43 @@ $.ajax({
             });
         });
     });
+    //CAMBIAR DE ESTADO TRANSFORMADOR
+    $("a[rel='change']").on('click', function () {
+        $.ajax({
+            url: 'http://' + readConfig() + '/consulta/verTransformadores/' + $(this).attr("idTran"),
+            type: 'GET',
+            dataType: "json"
+        }).always(function (data) {
+            $.each(data, function (key, val) {
+                $("#idTran").val(val.ID);
+                $("#estadoChangeTran").val(val.States_ID);
+                //ELIMINAR 
+                $("#ChangeTran").on('click', function () {
+                    var id = $("#idTran").val().trim();
+                    var estadoId = $("#estadoChangeTran").val();
+                    var observacionTran = $("#observacionTran").val();
+                    $.ajax({
+                        url: 'http://' + readConfig() + '/eliminar/eliminarTransformador/' + id,
+                        type: 'DELETE',
+                        dataType: "json",
+                        contentType: 'application/json',
+                        data: JSON.stringify({
+                            id:id,
+                            estadoId: estadoId,
+                            observacion: observacionTran
+                        })
+                    }).always(function (data) {
+                        if (data > 0) {
+                            toastr.success("Estado de transformador cambiado correctamente");
+                            $("#Contenido").load("../../views/Componentes/Transformador/GestionTransformador.jsp");                            
+                        } else {
+                            toastr.error("Error, intente nuevamente");
+                        }
+                    });
+                });
+            });
+        });
+    });
 });
 
 //FUNCIONES TABLA PRINCIPAL
@@ -216,12 +254,39 @@ function tbodyTable(data) {
     });
     return res;
 }
+//FUNCIONES TABLA GESTION
+function tablePrincipalGestion(data) {
+    return "<script src='../../models/Configs/app.configs.table.js'></script> \n\
+            <table class='table table-sm table-striped text-center' id='tableINPETEL'>" +
+            "<thead class='thead-dark'>" +
+            "<tr>" +
+            "<th>Serial</th>" +
+            "<th>Estado</th>" +
+            "<th>Acción</th>" +
+            "</tr>" +
+            " </thead>" +
+            "<tbody>" + data + "</tbody>" +
+            "</table>";
+}
+function tbodyTableGestion(data) {
+    var res = "";
+    $.each(data, function (key, val) {
+        var sep = colors(val.States_ID).trim().split("__");
+        res += "<tr>" +
+                "<td>" + val.Codigo + "</td> \n\
+                   <td> <a href='#' rel='status' class='" + sep[0] + " " + sep[1] + "' idTran='" + val.ID + "' sta='" + val.States_ID + "'>" + sep[2] + "</a></td>\n\
+                   <td> <a href='#' rel='change' idTran='" + val.ID + "' class='badge badge-info' data-toggle='modal' data-target='#modalTranChange''>Cambiar</a></td>\n\
+               </tr>";
+    });
+    return res;
+}
+
 function colors(val) {
     var res = "";
-    if (val === "1") {
-        res = "badge__badge-danger__Inactivar";
+    if (val == "1") {
+        res = "badge__badge-success__Activo";
     } else {
-        res = "badge__badge-success__Activar";
+        res = "badge__badge-warning__Inactivo";
     }
     return res;
 }
@@ -232,81 +297,6 @@ function updateStatus(val) {
     } else {
         res = "1";
     }
-    return res;
-}
-
-//GESTION TRANSFORMADOR 
-$.ajax({
-    url: 'http://' + readConfig() + '/consulta/verTransformadores/',
-    type: 'GET',
-    dataType: "json"
-}).always(function (data) {
-    //CARGAS
-    $("#gestionTran").html(tableGestion(tbodyTableGestion(data)));
-    //EDITAR TRANSFORMADOR
-    $("a[rel='gestion']").on('click', function () {
-        $.ajax({
-            url: 'http://' + readConfig() + '/consulta/verTransformadores/' + $(this).attr("idTran"),
-            type: 'GET',
-            dataType: "json"
-        }).always(function (data) {
-            $.each(data, function (key, val) {
-                $("#idTran").val(val.ID);
-                $("#observacionTran").val(val.Observacion);
-                //ACTUALIZAR TRANSFORMADOR
-                $("#GestionTran").on('click', function () {
-                    var id = $("#idTran").val().trim();
-                    var observacionTran = $("#observacionTran").val();
-
-                    if (id.length == 0 || observacionTran.length == 0) {
-                        toastr.error("Campos vacios");
-                    } else {
-                        $.ajax({
-                            url: 'http://' + readConfig() + '/eliminar/eliminarTransformador/' + id,
-                            type: 'DELETE',
-                            dataType: "json",
-                            contentType: 'application/json',
-                            data: JSON.stringify({
-                                id: id,
-                                observacion: observacionTran
-                            })
-                        }).always(function (data) {
-                            if (data > 0) {
-                                toastr.error("Error, intente nuevamente");
-                            } else {
-                                toastr.success("Transformador eliminado correctamente");
-                                $("#Contenido").load("../../views/Componentes/Transformador/VerTransformador.jsp");
-                            }
-                        });
-                    }
-                });
-            });
-        });
-    });
-});
-//FUNCIONES TABLA GESTION
-function tableGestion(data) {
-    return "<script src='../../models/Configs/app.configs.table.js'></script> \n\
-            <table class='table table-sm table-striped text-center' id='tableINPETEL'>" +
-            "<thead class='thead-dark'>" +
-            "<tr>" +
-            "<th>Nombre</th>" +
-            "<th>Estado</th>" +
-            "<th>Gestionar</th>" +
-            "</tr>" +
-            " </thead>" +
-            "<tbody>" + data + "</tbody>" +
-            "</table>";
-}
-function tbodyTableGestion(data) {
-    var res = "";
-    $.each(data, function (key, val) {
-        var sep = colors(val.enabled).trim().split("__");
-        res += "<tr>" +
-                "<td>" + val.Nombre + "</td> \n\
-                   <td>" + val.States_ID + "</td> \n\
-                   <td> <a href='#' rel='gestion' idTran='" + val.ID + "' class='badge badge-primary' data-toggle='modal' data-target='#modalTranGestion'>Gestionar</a></td> \n\'</tr>";
-    });
     return res;
 }
 

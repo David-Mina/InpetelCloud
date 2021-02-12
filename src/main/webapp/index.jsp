@@ -23,18 +23,8 @@
                                 <div class="col-md-9 col-lg-8 mx-auto">
                                     <h3 class="login-heading mb-4">¡Bienvenido!</h3>
                                     <form>
-                                        <div class="form-label-group">
-                                            <input type="user" id="inputUser" class="form-control"
-                                                   placeholder="Usuario">
-                                            <label for="inputUser">Usuario</label>
-                                        </div>
-
-                                        <div class="form-label-group">
-                                            <input type="password" id="inputPassword" class="form-control"
-                                                   placeholder="Contraseña" >
-                                            <label for="inputPassword">Contraseña</label>
-                                        </div>
-
+                                        <h7>Por favor seleccione sistema externo al que pertenece</h7>
+                                        
                                         <div class="form-label-group">
                                             <select class="form-control custom-select" id="sistemaExterno">                                               
                                             </select>

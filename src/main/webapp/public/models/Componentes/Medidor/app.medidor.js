@@ -224,9 +224,11 @@ $.ajax({
         }).always(function (data) {
             $.each(data, function (key, val) {
                 $("#idMed").val(val.ID);
+                $("#estadoChangeMed").val(val.States_ID);
                 //ELIMINAR 
                 $("#ChangeMed").on('click', function () {
                     var id = $("#idMed").val().trim();
+                    var estadoId = $("#estadoChangeMed").val();
                     var observacionMed = $("#observacionMed").val();
                     $.ajax({
                         url: 'http://' + readConfig() + '/eliminar/eliminarMedidor/' + id,
@@ -235,10 +237,10 @@ $.ajax({
                         contentType: 'application/json',
                         data: JSON.stringify({
                             id:id,
+                            estadoId: estadoId,
                             observacion: observacionMed
                         })
                     }).always(function (data) {
-                        console.log(observacionMed);
                         if (data > 0) {
                             toastr.success("Estado de medidor cambiado correctamente");
                             $("#Contenido").load("../../views/Componentes/Medidor/GestionMedidor.jsp");                            
@@ -316,10 +318,8 @@ function colors(val) {
     var res = "";
     if (val == "1") {
         res = "badge__badge-success__Activo";
-    } else if(val == "2") {
-        res = "badge__badge-warning__Inactivo";
     } else{
-        res = "badge__badge-danger__Bloqueado";
+        res = "badge__badge-warning__Inactivo";
     }
     return res;
 }

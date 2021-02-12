@@ -207,6 +207,7 @@ $.ajax({
 }).always(function (data) {
     //CARGA
     $("#loadCnc").html(tablePrincipal(tbodyTable(data)));
+    $("#loadCncGestion").html(tablePrincipalGestion(tbodyTableGestion(data)));
     //EDITAR CONCENTRADOR
     $("a[rel='edit']").on('click', function () {
         $.ajax({
@@ -315,6 +316,44 @@ $.ajax({
             });
         });
     });
+    
+    //CAMBIAR DE ESTADO CONCENTRADOR
+    $("a[rel='change']").on('click', function () {
+        $.ajax({
+            url: 'http://' + readConfig() + '/consulta/verConcentradores/' + $(this).attr("idCnc"),
+            type: 'GET',
+            dataType: "json"
+        }).always(function (data) {
+            $.each(data, function (key, val) {
+                $("#idCnc").val(val.ID);
+                $("#estadoChangeCnc").val(val.States_ID);
+                //ELIMINAR 
+                $("#ChangeCnc").on('click', function () {
+                    var id = $("#idCnc").val().trim();
+                    var estadoId = $("#estadoChangeCnc").val();
+                    var observacionCnc = $("#observacionCnc").val();
+                    $.ajax({
+                        url: 'http://' + readConfig() + '/eliminar/eliminarConcentrador/' + id,
+                        type: 'DELETE',
+                        dataType: "json",
+                        contentType: 'application/json',
+                        data: JSON.stringify({
+                            id:id,
+                            estadoId: estadoId,
+                            observacion: observacionCnc
+                        })
+                    }).always(function (data) {
+                        if (data > 0) {
+                            toastr.success("Estado de concentrador cambiado correctamente");
+                            $("#Contenido").load("../../views/Componentes/Concentrador/GestionConcentrador.jsp");                            
+                        } else {
+                            toastr.error("Error, intente nuevamente");
+                        }
+                    });
+                });
+            });
+        });
+    });
 });
 
 
@@ -349,18 +388,46 @@ function tbodyTable(data) {
     });
     return res;
 }
+
+//FUNCIONES TABLA GESTION
+function tablePrincipalGestion(data) {
+    return "<script src='../../models/Configs/app.configs.table.js'></script> \n\
+            <table class='table table-sm table-striped text-center' id='tableINPETEL'>" +
+            "<thead class='thead-dark'>" +
+            "<tr>" +
+            "<th>Serial</th>" +
+            "<th>Estado</th>" +
+            "<th>Acción</th>" +
+            "</tr>" +
+            " </thead>" +
+            "<tbody>" + data + "</tbody>" +
+            "</table>";
+}
+function tbodyTableGestion(data) {
+    var res = "";
+    $.each(data, function (key, val) {
+        var sep = colors(val.States_ID).trim().split("__");
+        res += "<tr>" +
+                "<td>" + val.NombreConcentrador + "</td> \n\
+                   <td> <a href='#' rel='status' class='" + sep[0] + " " + sep[1] + "' idCnc='" + val.ID + "' sta='" + val.States_ID + "'>" + sep[2] + "</a></td>\n\
+                   <td> <a href='#' rel='change' idCnc='" + val.ID + "' class='badge badge-info' data-toggle='modal' data-target='#modalCncChange''>Cambiar</a></td>\n\
+               </tr>";
+    });
+    return res;
+}
+
 function colors(val) {
     var res = "";
-    if (val === "1") {
-        res = "badge__badge-danger__Inactivar";
+    if (val == "1") {
+        res = "badge__badge-success__Activo";
     } else {
-        res = "badge__badge-success__Activar";
+        res = "badge__badge-warning__Inactivo";
     }
     return res;
 }
 function updateStatus(val) {
     var res = "";
-    if (val === "1") {
+    if (val == "1") {
         res = "2";
     } else {
         res = "1";

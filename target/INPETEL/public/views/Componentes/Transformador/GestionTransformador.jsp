@@ -14,7 +14,7 @@
                 <div class="row">
                     <div class="col-lg-12 col-sm-12">
                         <div class="form-group">
-                            <div id="gestionTran">
+                            <div id="loadTranGestion">
                             </div>    
                         </div>
                     </div>
@@ -24,29 +24,38 @@
     </div> 
 </div>
 
-<!--MODAL MODIFICAR TRANSFORMADOR-->
-<div class="modal fade" id="modalTranGestion" tabindex="-1" role="dialog" aria-labelledby="modalLabelUC" aria-hidden="true">
+<!--MODAL CAMBIAR TRANSFORMADOR-->
+<div class="modal fade" id="modalTranChange" tabindex="-1" role="dialog" aria-labelledby="modalLabelTran" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="modalLabelUC">Gestionar transformador</h5>
+                <h5 class="modal-title" id="modalLabelUC">Cambio de estado transformador</h5>
                 <input type="hidden" id="idTran">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <div class="form-row">
-                    <label for="labelObservacionTran">Descripción de cambio</label>
-                    <textarea class="form-control" rows="3" id="observacionTran"></textarea>
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <label for="selectEstadoTranEdit">Estado transformador</label>
+                        <select class="custom-select" required id="estadoChangeTran">
+                            <option selected disabled value="">Seleccione estado</option>
+                            <option value="1">Activo</option>
+                            <option value="2">Inactivo</option>
+                        </select>
+                    </div>
+                    <div class="col-md-8">
+                        <label for="labelObservacionTran">Descripción de cambio</label>
+                        <textarea class="form-control" rows="2" id="observacionTran"></textarea>
+                    </div>
                 </div>
+                <hr>
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="form-group">
                             <div class="text-right">
-                                <button type="button" class="btn btn-sm btn-dark" id="GestionTran" data-dismiss="modal">
-                                    OK
-                                </button>
+                                <input type="submit" class="btn btn-sm btn-primary" id="ChangeTran" data-dismiss="modal" value="Modificar">                                
                             </div>
                         </div>
                     </div>

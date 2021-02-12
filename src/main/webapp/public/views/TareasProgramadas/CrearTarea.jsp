@@ -21,24 +21,24 @@
 
 <h6>Fecha de creación de tarea</h6>
 
-<div class="form-row">
-    <div class="form-group col-md-2">
-        <label for="año">Año</label>
-        <input type="number" class="form-control" id="año" />
+<div class="form-row justify-content-md-center">
+    <div class="form-group col-md-1 mr-5">
+        <label for="year">Año</label>
+        <input type="number" class="form-control" id="year" />
     </div>
-    <div class="form-group col-md-3">
+    <div class="form-group col-md-1 mr-5">
         <label for="mes">Mes</label>
         <input type="number" class="form-control" id="mes" />
     </div>
-    <div class="form-group col-md-3">
+    <div class="form-group col-md-1 mr-5">
         <label for="dia">Día</label>
         <input type="number" class="form-control" id="dia" />
     </div>
-    <div class="form-group col-md-2">
-        <label for="hora">Hora (24-Horas)</label>
+    <div class="form-group col-md-1 mr-5">
+        <label for="hora">Hora</label>
         <input type="number" class="form-control" id="hora" />
     </div>
-    <div class="form-group col-md-2">
+    <div class="form-group col-md-1">
         <label for="minutos">Minutos</label>
         <input type="number" class="form-control" id="minutos" />
     </div>
@@ -62,7 +62,7 @@
     <div class="form-group col-md-3">
         <label for="intervaloTarea">Intervalo</label>
         <select class="custom-select" id="intervaloTarea" required>
-            <option selected value="">Seleccion intervalo</option>
+            <option selected value="">Seleccione intervalo</option>
             <option value="1">Diario</option>
             <option value="2">Semanal</option>
             <option value="3">Mensual</option>
@@ -73,7 +73,7 @@
         <input type="number" class="form-control" id="tiempoTarea" />
     </div>
     <div class="col-md-2 d-flex align-items-md-center justify-content-center">
-        <a class="btn btn-outline-primary btn-md" role="button" type="submit">Crear</a>
+        <input class="btn btn-primary btn-md" role="button" type="submit" value="Crear">
     </div>
 </div>
 <h7 class="text-center">Si el intervalo de repetición está en blanco, se tratará como un trabajo de una sola vez</h7>

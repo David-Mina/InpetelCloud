@@ -115,25 +115,14 @@
                         <input id="contraseñaMarcaCncEdit" type="text" class="form-control" />
                     </div>   
                 </div>
-                <div class="row">
-                    <div class="col-md-4 mb-3">
-                        <label for="selectEstadoMedEdit">Estado concentrador</label>
-                        <select class="custom-select" required id="estadoCncEdit">
-                            <option selected disabled value="">Seleccione estado</option>
-                            <option value="1">Activo</option>
-                            <option value="2">Inactivo</option>
-                            <option value="3">Bloqueado</option>
-                        </select>
-                    </div>
-                    <div class="col-md-8">
-                        <div class="form-group">
-                            <div class="text-right">
-                                <button type="button" class="btn btn-sm btn-primary" id="UpdCnc" data-dismiss="modal">
-                                    Modificar
-                                </button>
-                            </div>
+                <div class="row">      
+                    <div class="form-group">
+                        <div class="text-right">
+                            <button type="button" class="btn btn-sm btn-primary" id="UpdCnc" data-dismiss="modal">
+                                Modificar
+                            </button>
                         </div>
-                    </div>
+                    </div>                    
                 </div>
             </div>
             <div class="modal-footer">

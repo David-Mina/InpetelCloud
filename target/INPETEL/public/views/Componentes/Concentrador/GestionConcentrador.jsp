@@ -1,85 +1,70 @@
-<div>
-    <div class="row">
-        <div class="col-lg-12 col-sm-12">
-            <div class="form-group">
-                <h4 class="text-center">Habilitar / Deshabilitar concentradores</h4>
+<script src="../../models/Configs/app.configs.read.js"></script>
+<script src="../../models/Componentes/Concentrador/app.concentrador.js"></script>
+
+<div class="row">
+    <div class="col-lg-12 col-sm-12">
+        <div class="form-group">
+            <h4 class="text-center">Habilitar / Deshabilitar concentradores</h4>
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-lg-12 col-sm-12">
+                    <div class="form-group">
+                        <div id="loadCncGestion">
+                        </div>    
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <form class="needs-validation" novalidate>
-        <div class="">
-            <label for="labelSelectCnc">Concentrador</label>
-            <select class="custom-select" id="selectCnc" required>
-                <option selected disabled value="Seleccione">Seleccione</option>
-                <option>Retirado</option>
-                <option>Habilitado</option>
-            </select>
-        </div>
-        <hr>
-        <div class="form-row">                  
-            <div class="btn-toolbar" role="toolbar">        
-                <div class="btn-group mr-2" role="group">
-                    <button type="button" class="btn btn-primary">Copy</button>
-                </div>
-                <div class="btn-group mr-2" role="group">
-                    <button type="button" class="btn btn-primary">Excel</button>
-                </div>
-                <div class="btn-group mr-2" role="group">
-                    <button type="button" class="btn btn-primary">PDF</button>
-                </div> 
-            </div>
-            <div class="input-group col-md">
-                <input type="text" class="form-control" id="buscar" placeholder="Buscar">
-                <div class="input-group-append">
-                    <button class="btn btn-outline-secondary" type="button" id="BuscarCnc"><span data-feather="search"></span></button>
-                </div>
-            </div>                
-        </div>
-        <hr>
+</div>
 
-        <div class="">
-            <div class="form-group" id="tabla">
-                <table class="table table-sm table-striped text-center" id="table">
-                    <thead class="thead-dark text-center">
-                        <tr>
-                            <th>Concentrador</th>
-                            <th>Dirección IP</th>
-                            <th>Longitud</th>
-                            <th>Latitud</th>
-                            <th>Dirección</th>
-                            <th>Observación</th>
-                            <th>Estado</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>CIR1231049283</td>
-                            <td>Habilitado</td>
-                        </tr>
-                        <tr>
-                            <td>CIR1231049283</td>
-                            <td>Retirado</td>
-                        </tr>
-                        <tr>
-                            <td>CIR1231049283</td>
-                            <td>Retirado</td>
-                        </tr>
-                        <tr>
-                            <td>CIR1231049283</td>
-                            <td>Habilitado</td>
-                        </tr>
-                    </tbody>
-                </table>
+
+
+<!--MODAL CAMBIAR CONCENTRADOR-->
+<div class="modal fade" id="modalCncChange" tabindex="-1" role="dialog" aria-labelledby="modalLabelCnc" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalLabelMdm">Cambio de estado concentrador</h5>
+                <input type="hidden" id="idCnc">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
-        </div> 
-        <hr>
-        <div class="">
-            <label for="">Descripción de cambio</label>
-            <textarea class="form-control" rows="3"></textarea>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <label for="selectEstadoCncEdit">Estado concentrador</label>
+                        <select class="custom-select" required id="estadoChangeCnc">
+                            <option selected disabled value="">Seleccione estado</option>
+                            <option value="1">Activo</option>
+                            <option value="2">Inactivo</option>
+                        </select>
+                    </div>
+                    <div class="col-md-8">
+                        <label for="labelObservacionCnc">Descripción de cambio</label>
+                        <textarea class="form-control" rows="2" id="observacionCnc"></textarea>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <div class="text-right">
+                                <input type="submit" class="btn btn-sm btn-primary" id="ChangeCnc" data-dismiss="modal" value="Modificar">                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
         </div>
-        <hr>
-        <div class="justify-content-end">
-            <button class="btn btn-primary float-right" type="submit">Ejecutar</button>
-        </div>
-    </form>
+    </div>
 </div>
