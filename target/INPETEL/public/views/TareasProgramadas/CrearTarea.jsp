@@ -61,7 +61,7 @@
     </div>
     <div class="form-group col-md-3">
         <label for="intervaloTarea">Intervalo</label>
-        <select class="custom-select" id="intervaloTarea" required>
+        <select class="custom-select" id="intervaloTarea">
             <option selected value="">Seleccione intervalo</option>
             <option value="1">Diario</option>
             <option value="2">Semanal</option>

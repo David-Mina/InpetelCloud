@@ -10,4 +10,3 @@ $("#mes").val(mes);
 $("#dia").val(dia);
 $("#hora").val(hora);
 $("#minutos").val(minutos);
-
