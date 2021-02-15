@@ -1,8 +1,3 @@
-//Vista Inicio
-$("#inicio").on('click', function (){
-    location.href="dashboard.jsp";
-});
-
 //Vistas Concentrador
 $("#VerConcentrador").on('click', function (){
   $("#Contenido").load("../Componentes/Concentrador/VerConcentrador.jsp");  
@@ -38,10 +33,6 @@ $("#CrearModem").on('click', function (){
   $("#Contenido").load("../Componentes/Modem/CrearModem.jsp");  
 });
 
-$("#GestionModem").on('click', function (){
-  $("#Contenido").load("../Componentes/Modem/GestionModem.jsp");  
-});
-
 //Vistas Transformador
 $("#VerTransformador").on('click', function (){
   $("#Contenido").load("../Componentes/Transformador/VerTransformador.jsp");  
@@ -75,7 +66,16 @@ $("#CrearSE").on('click', function (){
 
 //Vista Tareas programadas
 $("#VerTareas").on('click', function (){
-  $("#Contenido").load("../TareasProgramadas/TareasProgramadas.jsp");  
+  $("#Contenido").load("../TareasProgramadas/TareasProgramadas.jsp");
+    $.ajax({
+        url: 'http://ec2-3-140-147-138.us-east-2.compute.amazonaws.com:7080/scheduler/jobs',
+        type: 'GET',
+        dataType: "json"
+    }).always(function (data) {
+        if (data.data.length == 0) {            
+            toastr.warning("No hay tareas programadas, por favor crear una tarea");
+        }
+    });
 });
 
 $("#CrearTarea").on('click', function (){

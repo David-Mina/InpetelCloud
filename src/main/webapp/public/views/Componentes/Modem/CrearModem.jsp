@@ -30,6 +30,6 @@
                     <input type="text" class="form-control" id="marcaMdm" required>      
                 </div>
             </div>
-        <input type="submit" id="AddModem" class="btn btn-primary" value="Crear">
+        <input type="submit" id="AddModem" href="#" class="btn btn-primary" value="Crear">
         </form> 
 </div>

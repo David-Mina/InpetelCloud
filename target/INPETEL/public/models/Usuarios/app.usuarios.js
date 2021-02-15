@@ -167,7 +167,7 @@ $.ajax({
     });
 });
 
-//FUNCIONES
+//FUNCIONES TABLA
 function tablePrincipal(data) {
     return "<script src='../../models/Configs/app.configs.table.js'></script> \n\
             <table class='table table-sm table-striped text-center' id='tableINPETEL'>" +
@@ -191,8 +191,8 @@ function tbodyTable(data) {
                 "<td>" + val.Nombres + "</td>" +
                 "<td>" + val.Login + "</td> \n\
                    <td>" + val.Correo + "</td> \n\
-                   <td> <a href='#' rel='edit' idUser='" + val.ID + "' class='badge badge-primary' data-toggle='modal' data-target='#modalUsersUpdate'>Editar</a></td> \n\
                    <td> <a href='#' rel='status' class='" + sep[0] + " " + sep[1] + "' idUser='" + val.ID + "' sta='" + val.States_ID + "'>" + sep[2] + "</a></td>\n\
+                   <td> <a href='#' rel='edit' idUser='" + val.ID + "' class='badge badge-primary' data-toggle='modal' data-target='#modalUsersUpdate'>Editar</a></td> \n\
                </tr>";
     });
     return res;
@@ -205,15 +205,6 @@ function colors(val) {
         res = "badge__badge-warning__Inactivo";
     } else{
         res = "badge__badge-danger__Bloqueado";
-    }
-    return res;
-}
-function updateStatus(val) {
-    var res = "";
-    if (val === "1") {
-        res = "2";
-    } else {
-        res = "1";
     }
     return res;
 }

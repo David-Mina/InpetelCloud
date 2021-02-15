@@ -172,9 +172,9 @@ function tbodyTable(data) {
                 "<td>" + val.Telefono_SE +
                 "</td> \n\ <td>" + val.Direccion_SE +
                 "</td> \n\ <td>" + val.TipoSistemaExterno +
-                "</td> \n\ <td> <a href='#' rel='edit' idSE='" + val.ID + "' class='badge badge-primary' data-toggle='modal' data-target='#modalSEUpdate'>Editar</a></td> \n\
+                "</td> \n\ <td> <a href='#' rel='status' class='" + sep[0] + " " + sep[1] + "' idSE='" + val.ID + "' sta='" + val.States_ID + "'>" + sep[2] + "</a></td>\n\
+                           <td> <a href='#' rel='edit' idSE='" + val.ID + "' class='badge badge-primary' data-toggle='modal' data-target='#modalSEUpdate'>Editar</a></td> \n\
                            <td> <a href='#' rel='delete' idSE='" + val.ID + "' class='badge badge-danger' data-toggle='modal' data-target='#modalSEDelete'>Eliminar</a></td>\n\
-                           <td> <a href='#' rel='status' class='" + sep[0] + " " + sep[1] + "' idSE='" + val.ID + "' sta='" + val.States_ID + "'>" + sep[2] + "</a></td>\n\
                </tr>";
     });
     return res;
@@ -187,15 +187,6 @@ function colors(val) {
         res = "badge__badge-warning__Inactivo";
     } else{
         res = "badge__badge-danger__Bloqueado";
-    }
-    return res;
-}
-function updateStatus(val) {
-    var res = "";
-    if (val == "1") {
-        res = "2";
-    } else {
-        res = "1";
     }
     return res;
 }

@@ -12,15 +12,16 @@
         <link rel="stylesheet" href="../../template/css/jquery.dataTables.min.css">
         <link rel="stylesheet" href="../../template/css/bootstrapTwitter.css">
         <link rel="stylesheet" href="../../template/css/dataTables.bootstrap4.min.css">
+        <link rel="stylesheet" href="../../template/css/buttons.bootstrap4.min.css">
         <link rel="stylesheet" href="../../template/css/toastr.min.css">
         <link rel="stylesheet" href="../../template/css/buttons.dataTables.min.css">
         <link rel="stylesheet" href="../../template/css/jquery.gridster.min.css">
         <link rel="stylesheet" href="../../template/css/select2.css">
         <link rel="stylesheet" href="../../template/css/select2.min.css">
         <link rel="stylesheet" href="../../template/css/select2-bootstrap4.css">
-        
-        
-        
+
+
+
         <style>
             .bd-placeholder-img {
                 font-size: 1.125rem;
@@ -42,7 +43,7 @@
     <body>
 
         <nav class="navbar navbar-primary sticky-top bg-primary flex-md-nowrap p-0 shadow">
-            <a class="navbar-brand text-light col-md-3 col-lg-2 px-3" href="#" id="inicio">Inpetel Cloud</a>
+            <a class="navbar-brand text-light col-md-3 col-lg-2 px-3">Inpetel Cloud</a>
             <button class="navbar-toggler  position-absolute d-md-none collapsed" type="button" data-toggle="collapse"
                     data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -50,7 +51,7 @@
             <input class="form-control form-control text-dark  w-100" type="text" placeholder="Buscar">
             <ul class="navbar-nav px-3">    
                 <li class="nav-item text-nowrap">
-                    <a href="" class="nav-link text-light" id="Salir">Salir</a>
+                    <a class="nav-link text-light" id="Salir">Salir</a>
                 </li>
             </ul>
         </nav>
@@ -61,7 +62,7 @@
                     <div class="sidebar-sticky pt-3">
                         <ul class="nav flex-column">                           
                             <li class="nav-item">
-                                <a class="nav-link" href="#" id="inicio">
+                                <a class="nav-link">
                                     <span data-feather="home"></span>
                                     Inicio <span class="sr-only">(current)</span>
                                 </a>
@@ -191,7 +192,7 @@
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                 <div class="container">
-                    <div id="Contenido"></div>                    
+                    <div id="Contenido"></div>                   
                 </div>
             </div>
         </main>
@@ -218,7 +219,7 @@
     <script src="../../template/js/Chart.min.js"></script>
     <script src="../../template/js/hammer.js"></script>
     <script src="../../template/js/zoom.js"></script>
-    <script src="../../template/js/moment.min.js"></script>
+    <script src="../../template/js/moment.js"></script>
     <script src="../../template/js/jspdf.min.js"></script>
     <script src="../../template/js/html2canvas.min.js"></script>    
     <script src="../../template/js/feather.min.js"></script>    
