@@ -220,6 +220,7 @@
     <script src="../../template/js/hammer.js"></script>
     <script src="../../template/js/zoom.js"></script>
     <script src="../../template/js/moment.js"></script>
+    <script src="../../template/js/moment-timezone-with-data.js"></script>
     <script src="../../template/js/jspdf.min.js"></script>
     <script src="../../template/js/html2canvas.min.js"></script>    
     <script src="../../template/js/feather.min.js"></script>    

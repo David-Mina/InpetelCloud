@@ -61,7 +61,7 @@
     </div>
     <div class="form-group col-md-3">
         <label for="intervaloTarea">Intervalo</label>
-        <select class="custom-select" id="intervaloTarea">
+        <select class="custom-select" id="intervaloTarea" onchange="deshabilitarMinutos(this);">
             <option selected value="">Seleccione intervalo</option>
             <option value="diario">Diario</option>
             <option value="semanal">Semanal</option>
@@ -73,7 +73,7 @@
         <input type="number" class="form-control" id="tiempoTarea" />
     </div>
     <div class="col-md-2 d-flex align-items-md-center justify-content-center">
-        <button class="btn btn-primary btn-md" type="submit" id="AddJob">Crear</button>
+        <button class="btn btn-outline-primary btn-md" type="submit" id="AddJob">Crear</button>
     </div>
 </div>
 <h7 class="text-center">Si el intervalo de repetición está en blanco, se tratará como un trabajo de una sola vez</h7>

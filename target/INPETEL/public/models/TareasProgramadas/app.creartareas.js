@@ -12,9 +12,14 @@ $("#hora").val(hora);
 $("#minutos").val(minutos);
 
 //FUNCION FORMATO FECHA
-function formatoFecha() {
-    var str = $("#year").val() + "/" + $("#mes").val() + "/" + $("#dia").val() + " " + $("#hora").val() + ":" + $("#minutos").val();
-    return str;
+function formatoFechaMoment(){
+    fechaCreacion.setFullYear($("#year").val());
+    fechaCreacion.setMonth($("#mes").val());
+    fechaCreacion.setDate($("#dia").val());
+    fechaCreacion.setHours($("#hora").val());
+    fechaCreacion.setMinutes($("#minutos").val());
+    var fechaMoment = moment.utc(fechaCreacion.toUTCString()).format('yyyy/MM/DD HH:mm');
+    return fechaMoment;
 }
 
 //SELECT PARA TAREAS EXISTENTES
@@ -36,17 +41,29 @@ function valueDevice(data, id) {
     }
 }
 
+var cron = document.getElementById('tiempoTarea');
+
+function deshabilitarMinutos(elemento) {
+    d = elemento.value;
+    if (d.length > 0 ) {
+        cron.disabled = true;
+    } else {
+        cron.disabled = false;
+    }
+}
+
 //CREAR TAREA
 $("#AddJob").on('click', function () {
     var nombreTarea = $("#nombreTarea").val();
-    var fechaTarea = $("#fechaTarea").val();
+    var fechaTarea = moment($("#fechaTarea").val()).format('DD/MM/yyyy');
     var horaTarea = $("#horaTarea").val();
     var intervaloTarea = $("#intervaloTarea").val();
     var tiempoTarea = $("#tiempoTarea").val();
-    var fecha = formatoFecha();
+    var fecha = formatoFechaMoment();
     if (nombreTarea === 'initial_value') {
-        toastr.warning("Por favor seleccione la tarea a programar");
-    } else {
+        toastr.warning("Por favor seleccione la tarea a programar"); 
+    }else{
+        if(fechaTarea == "Invalid date"){fechaTarea = "";} 
         $.ajax({
             url: 'http://' + readConfig() + '/scheduler/schedule?' + 'jobName=' + nombreTarea + '&jobScheduleTime=' + fecha + '&cronExpression=' + fechaTarea + '&hora=' + horaTarea + '&gender=' + intervaloTarea + '&repeatTime=' + tiempoTarea,
             type: 'GET',
