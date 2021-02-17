@@ -1,22 +1,21 @@
 <script src="../../models/Configs/app.configs.read.js"></script>
 <script src="../../models/Componentes/Modem/app.modem.js"></script>
-<div>
-    <div class="row">
-        <div class="col-lg-12 col-sm-12">
-            <div class="form-group">
-                <h4 class="text-center">Modems</h4>
-            </div>
+
+<div class="row">
+    <div class="col-lg-12 col-sm-12">
+        <div class="form-group">
+            <h4 class="text-center">Modem</h4>
         </div>
     </div>
-    <div class="form-group">
-        <div class="card">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-lg-12 col-sm-12">
-                        <div class="form-group">
-                            <div id="loadMdm">
-                            </div>    
-                        </div>
+</div>
+<div class="form-group">
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-lg-12 col-sm-12">
+                    <div class="form-group">
+                        <div id="loadMdm">
+                        </div>    
                     </div>
                 </div>
             </div>

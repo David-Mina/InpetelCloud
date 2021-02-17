@@ -28,19 +28,19 @@
     </div>
     <div class="form-group col-md-1 mr-5">
         <label for="mes">Mes</label>
-        <input type="number" class="form-control" id="mes" />
+        <input type="number" class="form-control" max="12" id="mes" />
     </div>
     <div class="form-group col-md-1 mr-5">
         <label for="dia">Día</label>
-        <input type="number" class="form-control" id="dia" />
+        <input type="number" class="form-control" max="31" id="dia" />
     </div>
     <div class="form-group col-md-1 mr-5">
         <label for="hora">Hora</label>
-        <input type="number" class="form-control" id="hora" />
+        <input type="number" class="form-control" max="23" id="hora" />
     </div>
     <div class="form-group col-md-1">
         <label for="minutos">Minutos</label>
-        <input type="number" class="form-control" id="minutos" />
+        <input type="number" class="form-control" max="59" id="minutos" />
     </div>
 </div>
 
@@ -57,7 +57,7 @@
     </div>
     <div class="form-group col-md-2">
         <label for="horaTarea">Hora</label>
-        <input type="text" class="form-control" id="horaTarea" />
+        <input type="time" value="00:00:00" max="23:59:59" min="00:00:00" step="1" class="form-control" id="horaTarea" />
     </div>
     <div class="form-group col-md-3">
         <label for="intervaloTarea">Intervalo</label>
@@ -73,7 +73,7 @@
         <input type="number" class="form-control" id="tiempoTarea" />
     </div>
     <div class="col-md-2 d-flex align-items-md-center justify-content-center">
-        <button class="btn btn-outline-primary btn-md" type="submit" id="AddJob">Crear</button>
+        <button class="btn btn-primary btn-md btn-AddJob" type="submit">Crear</button>
     </div>
 </div>
 <h7 class="text-center">Si el intervalo de repetición está en blanco, se tratará como un trabajo de una sola vez</h7>

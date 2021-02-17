@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-lg-12 col-sm-12">
             <div class="form-group">
-                <h4 class="text-center">Ver usuarios</h4>
+                <h4 class="text-center">Usuarios</h4>
             </div>
         </div>
     </div>

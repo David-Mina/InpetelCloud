@@ -43,7 +43,7 @@ $("#imeiMdm").on('blur', function () {
 });
 
 //INSERTAR MODEM
-$("#AddModem").on('click', function () {
+$(".btn-AddModem").on('click', function () {
     var serialMdm = $("#serialMdm").val();
     var nombreMdm = $("#nombreMdm").val();
     var imeiMdm = $("#imeiMdm").val();
@@ -161,8 +161,8 @@ $.ajax({
 
 //FUNCIONES TABLA
 function tablePrincipal(data) {
-    return "<script src='../../models/Configs/app.configs.table.js'></script> \n\
-            <table class='table table-sm table-striped text-center' id='tableINPETEL'>" +
+    return "<script src='../../models/Configs/app.configs.table.js'></script>"+
+            "<table class='table table-sm table-striped text-center' id='tableINPETEL'>" +
             "<thead class='thead-dark'>" +
             "<tr>" +
             "<th>Serial</th>" +
@@ -182,11 +182,11 @@ function tbodyTable(data) {
         res += "<tr>" +
                 "<td>" + val.Serial + "</td>" +
                 "<td>" + val.Nombre + "</td>" +
-                "<td>" + val.Imei + "</td> \n\
-                <td>" + val.Marca + "</td> \n\
-                <td> <a href='#' rel='edit' idMdm='" + val.ID + "' class='badge badge-primary' data-toggle='modal' data-target='#modalMdmUpdate'>Editar</a></td> \n\
-                <td> <a href='#' rel='delete' idMdm='" + val.ID + "' class='badge badge-danger' data-toggle='modal' data-target='#modalMdmDelete'>Eliminar</a></td>\n\
-               </tr>";
+                "<td>" + val.Imei + "</td>" +
+                "<td>" + val.Marca + "</td>" +
+                "<td> <a href='#' rel='edit' idMdm='" + val.ID + "' class='badge badge-primary' data-toggle='modal' data-target='#modalMdmUpdate'>Editar</a></td>"+
+                "<td> <a href='#' rel='delete' idMdm='" + val.ID + "' class='badge badge-danger' data-toggle='modal' data-target='#modalMdmDelete'>Eliminar</a></td>"+
+               "</tr>";
     });
     return res;
 }

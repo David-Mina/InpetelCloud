@@ -64,8 +64,8 @@ $("#serialMed").on('blur', function () {
     });
 });
 
-//INSERTAR
-$("#AddMedidor").on('click', function () {
+//INSERTAR MEDIDOR
+$(".btn-AddMedidor").on('click', function () {
     var tipoMed = $("#tipoMed").val();
     var magnitudMed = $("#magnitudMed").val();
     var numCuadrantesMed = $("#numCuadrantesMed").val();
@@ -125,8 +125,9 @@ $.ajax({
     type: 'GET',
     dataType: "json"
 }).always(function (data) {
-    //CARGA EN LA TABLA   
+    //CARGA TABLA PRINCIPAL  
     $("#loadMed").html(tablePrincipal(tbodyTable(data)));
+    //CARGA TABLA GESTION
     $("#loadMedGestion").html(tablePrincipalGestion(tbodyTableGestion(data)));
     //EDITAR MEDIDOR
     $("a[rel='edit']").on('click', function () {
@@ -160,7 +161,6 @@ $.ajax({
                     var prepagoMed = $("#prepagoMedEdit").val();
                     var relojsyncMed = $("#relojsyncMedEdit").val();
                     var marcaMed = $("#marcaMedEdit").val();
-                    var estadoMed = $("#estadoMedEdit").val();
 
                     switch (tipoPuertoMed) {
                         case "Fisico":
@@ -199,7 +199,7 @@ $.ajax({
                                 model: modeloMed,
                                 meter: serialMed,
                                 brand: marcaMed,
-                                estadoId: estadoMed
+                                logicalname: "-"
                             })
                         }).always(function (data) {
                             if (data > 0) {
@@ -232,7 +232,7 @@ $.ajax({
                     var observacionMed = $("#observacionMed").val();
                     $.ajax({
                         url: 'http://' + readConfig() + '/eliminar/eliminarMedidor/' + id,
-                        type: 'DELETE',
+                        type: 'PUT',
                         dataType: "json",
                         contentType: 'application/json',
                         data: JSON.stringify({
@@ -254,10 +254,10 @@ $.ajax({
     });
 });
 
-//FUNCIONES
+//FUNCION TABLA PRINCIPAL
 function tablePrincipal(data) {
-    return "<script src='../../models/Configs/app.configs.table.js'></script> \n\
-            <table class='table table-sm table-striped text-center' id='tableINPETEL'>" +
+    return "<script src='../../models/Configs/app.configs.table.js'></script>"+
+            "<table class='table table-sm table-striped text-center' id='tableINPETEL'>" +
             "<thead class='thead-dark'>" +
             "<tr>" +
             "<th>Tipo medidor</th>" +
@@ -272,25 +272,35 @@ function tablePrincipal(data) {
             "</table>";
 }
 
+function prepago(data){
+    var prepago = "";
+    if(data == 1){
+        prepago = "Si";
+    }else{
+        prepago = "No";
+    }
+    return prepago;
+}
+
 function tbodyTable(data) {
     var res = "";
     $.each(data, function (key, val) {
         res += "<tr>" +
                 "<td>" + val.TipoMET + "</td>" +
-                "<td>" + val.Prepago + "</td>" +
+                "<td>" + prepago(val.Prepago) + "</td>" +
                 "<td>" + val.Modelo + "</td>" +
-                "<td>" + val.Serial + "</td> \n\
-                   <td>" + val.Marca + "</td> \n\
-                   <td> <a href='#' rel='edit' idMed='" + val.ID + "' class='badge badge-primary' data-toggle='modal' data-target='#modalMedUpdate'>Editar</a></td> \n\
-               </tr>";
+                "<td>" + val.Serial + "</td>" +
+                "<td>" + val.Marca + "</td>" +
+                "<td> <a href='#' rel='edit' idMed='" + val.ID + "' class='badge badge-primary' data-toggle='modal' data-target='#modalMedUpdate'>Editar</a></td>"+
+               "</tr>";
     });
     return res;
 }
 
 //FUNCIONES TABLA GESTION
 function tablePrincipalGestion(data) {
-    return "<script src='../../models/Configs/app.configs.table.js'></script> \n\
-            <table class='table table-sm table-striped text-center' id='tableINPETEL'>" +
+    return "<script src='../../models/Configs/app.configs.table.js'></script>"+
+            "<table class='table table-sm table-striped text-center' id='tableINPETEL'>" +
             "<thead class='thead-dark'>" +
             "<tr>" +
             "<th>Serial</th>" +
@@ -306,10 +316,10 @@ function tbodyTableGestion(data) {
     $.each(data, function (key, val) {
         var sep = colors(val.States_ID).trim().split("__");
         res += "<tr>" +
-                "<td>" + val.Serial + "</td> \n\
-                   <td> <a href='#' rel='status' class='" + sep[0] + " " + sep[1] + "' idMed='" + val.ID + "' sta='" + val.States_ID + "'>" + sep[2] + "</a></td>\n\
-                   <td> <a href='#' rel='change' idMed='" + val.ID + "' class='badge badge-info' data-toggle='modal' data-target='#modalMedChange''>Cambiar</a></td>\n\
-               </tr>";
+                "<td>" + val.Serial + "</td>"+
+                "<td> <a href='#' rel='status' class='" + sep[0] + " " + sep[1] + "' idMed='" + val.ID + "' sta='" + val.States_ID + "'>" + sep[2] + "</a></td>"+
+                "<td> <a href='#' rel='change' idMed='" + val.ID + "' class='badge badge-info' data-toggle='modal' data-target='#modalMedChange''>Cambiar</a></td>"+
+               "</tr>";
     });
     return res;
 }
@@ -320,15 +330,6 @@ function colors(val) {
         res = "badge__badge-success__Activo";
     } else{
         res = "badge__badge-warning__Inactivo";
-    }
-    return res;
-}
-function updateStatus(val) {
-    var res = "";
-    if (val == "1") {
-        res = "2";
-    } else {
-        res = "1";
     }
     return res;
 }

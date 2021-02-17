@@ -51,7 +51,7 @@ $("#codigoTran").on('blur', function () {
 });
 
 //INSERTAR TRANSFORMADOR
-$("#AddTransformador").on('click', function () {
+$(".btn-AddTransformador").on('click', function () {
     var direccionTran = $("#direccionTran").val();
     var codigoTran = $("#codigoTran").val();
     var tipoTran = $("#tipoTran").val();
@@ -97,8 +97,9 @@ $.ajax({
     type: 'GET',
     dataType: "json"
 }).always(function (data) {
-    //CARGAS
+    //CARGA TABLA PRINCIPAL
     $("#loadTran").html(tablePrincipal(tbodyTable(data)));
+    //CARGA TABLA GESTION
     $("#loadTranGestion").html(tablePrincipalGestion(tbodyTableGestion(data)));
     //EDITAR TRANSFORMADOR
     $("a[rel='edit']").on('click', function () {
@@ -130,7 +131,6 @@ $.ajax({
                     var capacidadTran = $("#capacidadTranEdit").val();
                     var nodoTran = $("#nodoTranEdit").val();
                     var cargaTran = $("#cargaTranEdit").val();
-                    var estadoTran = $("#estadoTranEdit").val();
 
                     switch (tipoTran) {
                         case "MonofasicoTrifilar":
@@ -163,8 +163,7 @@ $.ajax({
                                 nodo: nodoTran,
                                 cargaAforada: cargaTran,
                                 tipoTrafo: tipoTran,
-                                concentradorId: idConcentradorTran,
-                                estadoId: estadoTran
+                                concentradorId: idConcentradorTran
                             })
                         }).always(function (data) {
                             console.log(direccionTran, codigoTran, capacidadTran, nodoTran, cargaTran, tipoTran, idConcentradorTran, estadoTran);
@@ -197,7 +196,7 @@ $.ajax({
                     var observacionTran = $("#observacionTran").val();
                     $.ajax({
                         url: 'http://' + readConfig() + '/eliminar/eliminarTransformador/' + id,
-                        type: 'DELETE',
+                        type: 'PUT',
                         dataType: "json",
                         contentType: 'application/json',
                         data: JSON.stringify({
@@ -248,9 +247,10 @@ function tbodyTable(data) {
                 "<td>" + val.Capacidad + "</td>" +
                 "<td>" + val.Nodo + "</td>" +
                 "<td>" + val.CargaAforada + "</td>" +
-                "<td>" + val.TipoTrafo + "</td> \n\
-                   <td>" + val.cnc + "</td> \n\
-                   <td> <a href='#' rel='edit' idTran='" + val.ID + "' class='badge badge-primary' data-toggle='modal' data-target='#modalTranUpdate'>Editar</a></td> \n\'</tr>";
+                "<td>" + val.TipoTrafo + "</td>"+
+                "<td>" + val.cnc + "</td>"+
+                "<td> <a href='#' rel='edit' idTran='" + val.ID + "' class='badge badge-primary' data-toggle='modal' data-target='#modalTranUpdate'>Editar</a></td>"+
+                "</tr>";
     });
     return res;
 }
@@ -273,10 +273,10 @@ function tbodyTableGestion(data) {
     $.each(data, function (key, val) {
         var sep = colors(val.States_ID).trim().split("__");
         res += "<tr>" +
-                "<td>" + val.Codigo + "</td> \n\
-                   <td> <a href='#' rel='status' class='" + sep[0] + " " + sep[1] + "' idTran='" + val.ID + "' sta='" + val.States_ID + "'>" + sep[2] + "</a></td>\n\
-                   <td> <a href='#' rel='change' idTran='" + val.ID + "' class='badge badge-info' data-toggle='modal' data-target='#modalTranChange''>Cambiar</a></td>\n\
-               </tr>";
+                "<td>" + val.Codigo + "</td>"+
+                "<td> <a href='#' rel='status' class='" + sep[0] + " " + sep[1] + "' idTran='" + val.ID + "' sta='" + val.States_ID + "'>" + sep[2] + "</a></td>"+
+                "<td> <a href='#' rel='change' idTran='" + val.ID + "' class='badge badge-info' data-toggle='modal' data-target='#modalTranChange''>Cambiar</a></td>"+
+               "</tr>";
     });
     return res;
 }
@@ -287,15 +287,6 @@ function colors(val) {
         res = "badge__badge-success__Activo";
     } else {
         res = "badge__badge-warning__Inactivo";
-    }
-    return res;
-}
-function updateStatus(val) {
-    var res = "";
-    if (val === "1") {
-        res = "2";
-    } else {
-        res = "1";
     }
     return res;
 }

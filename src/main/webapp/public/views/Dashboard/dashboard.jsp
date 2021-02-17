@@ -83,9 +83,7 @@
                                         <a class="dropdown-item" href="#" id="VerConcentrador"> Concentradores</a>
                                         <a class="dropdown-item" href="#" id="CrearConcentrador"> Crear concentrador</a>
                                         <a class="dropdown-item" href="#" id="GestionConcentrador"> Habilitar / Deshabilitar</a>
-                                        <div>
-                                            <hr>
-                                        </div>
+                                        
                                     </div>
                                     <!-- Fin Acordion Concentradores -->
                                     <!-- Acordion Medidores -->
@@ -94,9 +92,8 @@
                                         <a class="dropdown-item" href="#" id="VerMedidor"> Medidores</a>
                                         <a class="dropdown-item" href="#" id="CrearMedidor"> Crear medidor</a>
                                         <a class="dropdown-item" href="#" id="GestionMedidor"> Habilitar / Deshabilitar</a>
-                                        <div>
-                                            <hr>
-                                        </div>
+                                        <a class="dropdown-item" href="#" id="CorteReconexion">Corte y reconexion</a>
+                                        
                                     </div>
                                     <!-- Fin Acordion Medidores -->                                    
                                     <!-- Acordion Modem -->
@@ -104,9 +101,7 @@
                                     <div id="collapseModem" class="collapse " aria-labelledby="headingOne" data-parent="#accordionExample">
                                         <a class="dropdown-item" href="#" id="VerModem"> Modem</a>
                                         <a class="dropdown-item" href="#" id="CrearModem"> Crear modem</a>
-                                        <div>
-                                            <hr>
-                                        </div>
+                                        
                                     </div>
                                     <!-- Fin Acordion Modem -->
                                     <!-- Acordion Transformadores -->
@@ -115,9 +110,7 @@
                                         <a class="dropdown-item" href="#" id="VerTransformador"> Transformadores</a>
                                         <a class="dropdown-item" href="#" id="CrearTransformador"> Crear transformador</a>
                                         <a class="dropdown-item" href="#" id="GestionTransformador"> Habilitar / Deshabilitar</a>
-                                        <div>
-                                            <hr>
-                                        </div>
+                                        
                                     </div>
                                     <!-- Fin Acordion Transformadores -->
                                 </div>
@@ -131,6 +124,7 @@
                                     Eventos / Alarmas
                                 </a>
                             </li>
+                            
                             <!-- Accordion Users -->
                             <div class="accordion" id="accordionExample">
                                 <a class="nav-link dropdown-item" href="#" id="navbarDropdown" role="button" data-toggle="collapse"
@@ -158,7 +152,7 @@
                             </div>
                             <div id="collapseTareas" class="collapse " aria-labelledby="headingOne" data-parent="#accordionExample">
                                 <div class="card-body">
-                                    <a class="nav-link dropdown-item" href="#" id="VerTareas" >Tareas</a>
+                                    <a class="nav-link dropdown-item" href="#" id="VerTareas" >Tareas programadas</a>
                                     <a class="nav-link dropdown-item" href="#" id="CrearTarea" >Crear tarea</a>
                                 </div>
                             </div>
@@ -220,7 +214,6 @@
     <script src="../../template/js/hammer.js"></script>
     <script src="../../template/js/zoom.js"></script>
     <script src="../../template/js/moment.js"></script>
-    <script src="../../template/js/moment-timezone-with-data.js"></script>
     <script src="../../template/js/jspdf.min.js"></script>
     <script src="../../template/js/html2canvas.min.js"></script>    
     <script src="../../template/js/feather.min.js"></script>    

@@ -143,8 +143,8 @@ $("#imeiCnc").on('blur', function () {
     });
 });
 
-//INSERTAR
-$("#AddConcentrador").on('click', function () {
+//INSERTAR CONCENTRADOR
+$(".btn-AddConcentrador").on('click', function () {
     var ipCnc = $("#ipCnc").val();
     var nombreCnc = $("#nombreCnc").val();
     var tipocomunicacionCnc = $("#tipocomunicacionCnc").val();
@@ -205,8 +205,9 @@ $.ajax({
     type: 'GET',
     dataType: "json"
 }).always(function (data) {
-    //CARGA
+    //CARGA TABLA PRINCIPAL
     $("#loadCnc").html(tablePrincipal(tbodyTable(data)));
+    //CARGA TABLA GESTION
     $("#loadCncGestion").html(tablePrincipalGestion(tbodyTableGestion(data)));
     //EDITAR CONCENTRADOR
     $("a[rel='edit']").on('click', function () {
@@ -244,8 +245,7 @@ $.ajax({
                     var marcaCnc = $("#marcaCncEdit").val();
                     var usuarioMarcaCnc = $("#usuarioMarcaCncEdit").val();
                     var contraseñaMarcaCnc = $("#contraseñaMarcaCncEdit").val();
-                    var estadoCnc = $("#estadoCncEdit").val();
-
+                    
                     switch (tipocomunicacionCnc) {
                         case "PLC":
                             tipocomunicacionCnc = "1";
@@ -300,8 +300,7 @@ $.ajax({
                                 modemId: idModemCnc,
                                 brand: marcaCnc,
                                 pass: contraseñaMarcaCnc,
-                                user: usuarioMarcaCnc,
-                                estadoId: estadoCnc
+                                user: usuarioMarcaCnc
                             })
                         }).always(function (data) {
                             if (data > 0) {
@@ -334,7 +333,7 @@ $.ajax({
                     var observacionCnc = $("#observacionCnc").val();
                     $.ajax({
                         url: 'http://' + readConfig() + '/eliminar/eliminarConcentrador/' + id,
-                        type: 'DELETE',
+                        type: 'PUT',
                         dataType: "json",
                         contentType: 'application/json',
                         data: JSON.stringify({
@@ -357,10 +356,10 @@ $.ajax({
 });
 
 
-//FUNCIONES TABLA
+//FUNCIONES TABLA PRINCIPAL
 function tablePrincipal(data) {
-    return "<script src='../../models/Configs/app.configs.table.js'></script> \n\
-            <table class='table table-sm table-striped text-center' id='tableINPETEL'>" +
+    return "<script src='../../models/Configs/app.configs.table.js'></script>"+
+            "<table class='table table-sm table-striped text-center' id='tableINPETEL'>" +
             "<thead class='thead-dark'>" +
             "<tr>" +
             "<th>Nombre</th>" +
@@ -377,22 +376,22 @@ function tablePrincipal(data) {
 function tbodyTable(data) {
     var res = "";
     $.each(data, function (key, val) {
-        var sep = colors(val.enabled).trim().split("__");
         res += "<tr>" +
                 "<td>" + val.NombreConcentrador + "</td>" +
                 "<td>" + val.Ip_real + "</td>" +
-                "<td>" + val.Comunicacion +
-                "</td> \n\ <td>" + val.Marca +
-                "</td> \n\ <td>" + val.ModemImei +
-                "</td> \n\ <td> <a href='#' rel='edit' idCnc='" + val.ID + "' class='badge badge-primary' data-toggle='modal' data-target='#modalCncUpdate'>Editar</a></td> \n\ </tr>";
+                "<td>" + val.Comunicacion + "</td>" +
+                "<td>" + val.Marca + "</td> " +
+                "<td>" + val.ModemImei + "</td> " +
+                "<td> <a href='#' rel='edit' idCnc='" + val.ID + "' class='badge badge-primary' data-toggle='modal' data-target='#modalCncUpdate'>Editar</a></td>"+
+                "</tr>";
     });
     return res;
 }
 
 //FUNCIONES TABLA GESTION
 function tablePrincipalGestion(data) {
-    return "<script src='../../models/Configs/app.configs.table.js'></script> \n\
-            <table class='table table-sm table-striped text-center' id='tableINPETEL'>" +
+    return "<script src='../../models/Configs/app.configs.table.js'></script>" +
+            "<table class='table table-sm table-striped text-center' id='tableINPETEL'>" +
             "<thead class='thead-dark'>" +
             "<tr>" +
             "<th>Serial</th>" +
@@ -408,10 +407,10 @@ function tbodyTableGestion(data) {
     $.each(data, function (key, val) {
         var sep = colors(val.States_ID).trim().split("__");
         res += "<tr>" +
-                "<td>" + val.NombreConcentrador + "</td> \n\
-                   <td> <a href='#' rel='status' class='" + sep[0] + " " + sep[1] + "' idCnc='" + val.ID + "' sta='" + val.States_ID + "'>" + sep[2] + "</a></td>\n\
-                   <td> <a href='#' rel='change' idCnc='" + val.ID + "' class='badge badge-info' data-toggle='modal' data-target='#modalCncChange''>Cambiar</a></td>\n\
-               </tr>";
+                "<td>" + val.NombreConcentrador + "</td>" +
+                "<td> <a href='#' rel='status' class='" + sep[0] + " " + sep[1] + "' idCnc='" + val.ID + "' sta='" + val.States_ID + "'>" + sep[2] + "</a></td>" +
+                "<td> <a href='#' rel='change' idCnc='" + val.ID + "' class='badge badge-info' data-toggle='modal' data-target='#modalCncChange''>Cambiar</a></td>" +
+               "</tr>";
     });
     return res;
 }
@@ -422,15 +421,6 @@ function colors(val) {
         res = "badge__badge-success__Activo";
     } else {
         res = "badge__badge-warning__Inactivo";
-    }
-    return res;
-}
-function updateStatus(val) {
-    var res = "";
-    if (val == "1") {
-        res = "2";
-    } else {
-        res = "1";
     }
     return res;
 }

@@ -21,7 +21,7 @@ $("#nitSE").on('blur', function () {
 });
 
 //INSERTAR SISTEMA EXTERNO
-$("#AddSE").on('click', function () {
+$(".btn-AddSE").on('click', function () {
     var nombreSE = $("#nombreSE").val();
     var telefonoSE = $("#telefonoSE").val();
     var nitSE = $("#nitSE").val();
@@ -74,19 +74,18 @@ $.ajax({
             $.each(data, function (key, val) {
                 $("#idSE").val(val.ID);
                 $("#nombreSEEdit").val(val.Nombre_SE).prop('disabled', true);
-                $("#nitSEEdit").val(val.Nit).prop('disabled', true);
+                $("#nitSEEdit").val(val.Nit);
                 $("#telefonoSEEdit").val(val.Telefono_SE);
                 $("#direccionSEEdit").val(val.Direccion_SE);
                 $("#tipoSEEdit").val(val.TipoSistemaExterno).prop('disabled', true);
                 //ACTUALIZAR SISTEMA EXTERNO
                 $("#UpdSE").on('click', function () {
                     var id = $("#idSE").val().trim();
-                    var nombreSE = $("#nombreSEEdit").val();
                     var nitSE = $("#nitSEEdit").val();
                     var telefonoSE = $("#telefonoSEEdit").val();
                     var direccionSE = $("#direccionSEEdit").val();
 
-                    if (nombreSE.length == 0 || telefonoSE.length == 0 || nitSE.length == 0 || direccionSE.length == 0) {
+                    if ( telefonoSE.length == 0 || nitSE.length == 0 || direccionSE.length == 0) {
                         toastr.error("Campos vacios");
                     } else {
                         $.ajax({
@@ -113,8 +112,8 @@ $.ajax({
             });
         });
     });
-    //BLOQUEAR SISTEMA EXTERNO
-    $("a[rel='delete']").on('click', function () {
+    //CAMBIAR ESTADO SISTEMA EXTERNO
+    $("a[rel='change']").on('click', function () {
         $.ajax({
             url: 'http://' + readConfig() + '/consulta/verSistemasExternos/' + $(this).attr("idSE"),
             type: 'GET',
@@ -122,18 +121,27 @@ $.ajax({
         }).always(function (data) {
             $.each(data, function (key, val) {
                 $("#idSE").val(val.ID);
-                $("#nitSEDel").val(val.Nit).prop('disabled', true);
-                //ELIMINAR 
-                $("#DelSE").on('click', function () {
+                $("#estadoChangeSE").val(val.States_ID);
+                //CAMBIAR 
+                $("#ChangeSE").on('click', function () {
                     var id = $("#idSE").val().trim();
+                    var estadoIdSE = $("#estadoChangeSE").val();
+                    var observacionSE = $("#observacionSE").val();
                     $.ajax({
                         url: 'http://' + readConfig() + '/eliminar/eliminarSistemaExterno/' + id,
-                        type: 'DELETE'
+                        type: 'PUT',
+                        dataType: "json",
+                        contentType: 'application/json',
+                        data: JSON.stringify({
+                            id:id,
+                            observacion: observacionSE,
+                            estadoId: estadoIdSE                            
+                        })                        
                     }).always(function (data) {
-                        if (data > 0) {
+                        if (data < 0) {
                             toastr.error("Error, intente nuevamente");
                         } else {
-                            toastr.success("Sistema externo eliminado correctamente");
+                            toastr.success("Estado cambiado correctamente");
                             $("#Contenido").load("../../views/SistemasExternos/VerSE.jsp");
                         }
                     });
@@ -145,8 +153,8 @@ $.ajax({
 
 //FUNCIONES TABLA
 function tablePrincipal(data) {
-    return "<script src='../../models/Configs/app.configs.table.js'></script> \n\
-            <table class='table table-sm table-striped text-center' id='tableINPETEL'>" +
+    return "<script src='../../models/Configs/app.configs.table.js'></script>"+
+            "<table class='table table-sm table-striped text-center' id='tableINPETEL'>" +
             "<thead class='thead-dark'>" +
             "<tr>" +
             "<th>Nombre</th>" +
@@ -154,9 +162,9 @@ function tablePrincipal(data) {
             "<th>Telefono</th>" +
             "<th>Dirección</th>" +
             "<th>Tipo</th>" +
-            "<th>Editar</th>" +
-            "<th>Bloquear</th>" +
             "<th>Estado</th>" +
+            "<th>Editar</th>" +
+            "<th>Acción</th>" +            
             "</tr>" +
             " </thead>" +
             "<tbody>" + data + "</tbody>" +
@@ -169,13 +177,13 @@ function tbodyTable(data) {
         res += "<tr>" +
                 "<td>" + val.Nombre_SE + "</td>" +
                 "<td>" + val.Nit + "</td>" +
-                "<td>" + val.Telefono_SE +
-                "</td> \n\ <td>" + val.Direccion_SE +
-                "</td> \n\ <td>" + val.TipoSistemaExterno +
-                "</td> \n\ <td> <a href='#' rel='status' class='" + sep[0] + " " + sep[1] + "' idSE='" + val.ID + "' sta='" + val.States_ID + "'>" + sep[2] + "</a></td>\n\
-                           <td> <a href='#' rel='edit' idSE='" + val.ID + "' class='badge badge-primary' data-toggle='modal' data-target='#modalSEUpdate'>Editar</a></td> \n\
-                           <td> <a href='#' rel='delete' idSE='" + val.ID + "' class='badge badge-danger' data-toggle='modal' data-target='#modalSEDelete'>Eliminar</a></td>\n\
-               </tr>";
+                "<td>" + val.Telefono_SE + "</td> "+
+                "<td>" + val.Direccion_SE + "</td> "+
+                "<td>" + val.TipoSistemaExterno + "</td> "+
+                "<td> <a href='#' rel='status' class='" + sep[0] + " " + sep[1] + "' idSE='" + val.ID + "' sta='" + val.States_ID + "'>" + sep[2] + "</a></td>"+
+                "<td> <a href='#' rel='edit' idSE='" + val.ID + "' class='badge badge-primary' data-toggle='modal' data-target='#modalSEUpdate'>Editar</a></td>"+
+                "<td> <a href='#' rel='change' idSE='" + val.ID + "' class='badge badge-info' data-toggle='modal' data-target='#modalSEChange'>Cambiar</a></td>"+
+               "</tr>";
     });
     return res;
 }
@@ -183,11 +191,9 @@ function colors(val) {
     var res = "";
     if (val == "1") {
         res = "badge__badge-success__Activo";
-    } else if(val == "2") {
+    } else {
         res = "badge__badge-warning__Inactivo";
-    } else{
-        res = "badge__badge-danger__Bloqueado";
-    }
+    } 
     return res;
 }
 

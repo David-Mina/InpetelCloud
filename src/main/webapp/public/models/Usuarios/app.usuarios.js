@@ -59,7 +59,7 @@ $("#emailUsuario").on('blur', function () {
 });
 
 //INSERTAR USUARIO
-$("#AddUsuario").on('click', function () {
+$(".btn-AddUsuario").on('click', function () {
     var nombre = $("#nombreUsuario").val();
     var usuario = $("#usuario").val();
     var email = $("#emailUsuario").val();
@@ -118,6 +118,7 @@ $.ajax({
                 $("#nombreUsuarioEdit").val(val.Nombres);
                 $("#usuarioEdit").val(val.Login).prop('disabled', true);
                 $("#emailUsuarioEdit").val(val.Correo).prop('disabled', true);
+                $("#seUsuarioEdit").val(val.NombreSistemaExterno);
                 $("#estadoUsuarioEdit").val(val.States_ID);
                 //ACTUALIZAR USUARIO
                 $("#UpdUsers").on('click', function () {
@@ -127,14 +128,11 @@ $.ajax({
                     var nombre = $("#nombreUsuarioEdit").val();
                     var usuario = $("#usuarioEdit").val();
                     var email = $("#emailUsuarioEdit").val();
+                    var seUsuario = val.SistemaExterno_ID;
                     var estadoUsuario = $("#estadoUsuarioEdit").val();
 
                     if (nombre.length == 0 || usuario.length == 0 || email.length == 0 || id.length== 0) {
                         toastr.error("Campos Vacios");
-                    } else if (contraseña.length == 0 || valContraseña.length == 0) {
-                        toastr.error("Contraseñas vacias");
-                    } else if (contraseña !== valContraseña) {
-                        toastr.error("Contraseñas Diferentes");
                     } else {
                         $.ajax({
                             url: 'http://' + readConfig() + '/modificacion/modificarUsuario/' + id,
@@ -148,7 +146,7 @@ $.ajax({
                                 password: contraseña,
                                 password_salt: valContraseña,
                                 correo: email,
-                                sistemaExternoId: "10",
+                                sistemaExternoId: seUsuario,
                                 estadoId: estadoUsuario,
                                 usuModifica: "56"
                             })
@@ -176,8 +174,8 @@ function tablePrincipal(data) {
             "<th>Nombre</th>" +
             "<th>Usuario</th>" +
             "<th>E-mail</th>" +
+            "<th>Sistema Externo</th>" +
             "<th>Editar</th>" +
-            "<th>Estado</th>" +
             "</tr>" +
             " </thead>" +
             "<tbody>" + data + "</tbody>" +
@@ -189,11 +187,11 @@ function tbodyTable(data) {
         var sep = colors(val.States_ID).trim().split("__");
         res += "<tr>" +
                 "<td>" + val.Nombres + "</td>" +
-                "<td>" + val.Login + "</td> \n\
-                   <td>" + val.Correo + "</td> \n\
-                   <td> <a href='#' rel='status' class='" + sep[0] + " " + sep[1] + "' idUser='" + val.ID + "' sta='" + val.States_ID + "'>" + sep[2] + "</a></td>\n\
-                   <td> <a href='#' rel='edit' idUser='" + val.ID + "' class='badge badge-primary' data-toggle='modal' data-target='#modalUsersUpdate'>Editar</a></td> \n\
-               </tr>";
+                "<td>" + val.Login + "</td>" +
+                "<td>" + val.Correo + "</td>" +
+                "<td>" + val.NombreSistemaExterno + "</td>" +
+                "<td> <a href='#' rel='edit' idUser='" + val.ID + "' class='badge badge-primary' data-toggle='modal' data-target='#modalUsersUpdate'>Editar</a></td>"+
+               "</tr>";
     });
     return res;
 }

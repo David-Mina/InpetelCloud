@@ -18,7 +18,7 @@ function formatoFechaMoment(){
     fechaCreacion.setDate($("#dia").val());
     fechaCreacion.setHours($("#hora").val());
     fechaCreacion.setMinutes($("#minutos").val());
-    var fechaMoment = moment.utc(fechaCreacion.toUTCString()).format('yyyy/MM/DD HH:mm');
+    var fechaMoment = moment.utc(fechaCreacion.toUTCString()).subtract(1, 'months').format('yyyy/MM/DD HH:mm');
     return fechaMoment;
 }
 
@@ -53,19 +53,21 @@ function deshabilitarMinutos(elemento) {
 }
 
 //CREAR TAREA
-$("#AddJob").on('click', function () {
+$(".btn-AddJob").on('click', function () {
     var nombreTarea = $("#nombreTarea").val();
-    var fechaTarea = moment($("#fechaTarea").val()).format('DD/MM/yyyy');
-    var horaTarea = $("#horaTarea").val();
+    var fechaTarea = $("#fechaTarea").val();    
+    var horaTarea = $("#horaTarea").val();     
+    var fechaUTCTarea = moment.utc(fechaTarea + " " + horaTarea + '-05:00').format('DD/MM/yyyy');  
+    var horaUTCTarea = moment.utc(fechaTarea + " " + horaTarea + '-05:00').format('HH:mm:ss');
     var intervaloTarea = $("#intervaloTarea").val();
     var tiempoTarea = $("#tiempoTarea").val();
     var fecha = formatoFechaMoment();
     if (nombreTarea === 'initial_value') {
         toastr.warning("Por favor seleccione la tarea a programar"); 
     }else{
-        if(fechaTarea == "Invalid date"){fechaTarea = "";} 
+        if(fechaUTCTarea == "Invalid date" && horaUTCTarea == "Invalid date"){fechaUTCTarea = ""; horaUTCTarea = " ";} 
         $.ajax({
-            url: 'http://' + readConfig() + '/scheduler/schedule?' + 'jobName=' + nombreTarea + '&jobScheduleTime=' + fecha + '&cronExpression=' + fechaTarea + '&hora=' + horaTarea + '&gender=' + intervaloTarea + '&repeatTime=' + tiempoTarea,
+            url: 'http://' + readConfig() + '/scheduler/schedule?' + 'jobName=' + nombreTarea + '&jobScheduleTime=' + fecha + '&cronExpression=' + fechaUTCTarea + '&hora=' + horaUTCTarea + '&gender=' + intervaloTarea + '&repeatTime=' + tiempoTarea,
             type: 'GET',
             dataType: "json",
             contentType: 'application/json'

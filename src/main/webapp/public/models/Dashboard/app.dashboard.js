@@ -24,6 +24,10 @@ $("#GestionMedidor").on('click', function (){
   $("#Contenido").load("../Componentes/Medidor/GestionMedidor.jsp");  
 });
 
+$("#CorteReconexion").on('click', function (){
+  $("#Contenido").load("../Componentes/Medidor/CorteYReconexion.jsp");  
+});
+
 //Vistas Modem
 $("#VerModem").on('click', function (){
   $("#Contenido").load("../Componentes/Modem/VerModem.jsp");  
