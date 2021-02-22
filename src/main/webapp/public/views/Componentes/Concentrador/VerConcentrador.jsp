@@ -12,7 +12,7 @@
 
 <div>
     <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#modalCncMed"role="button">Asociar</a>
-    <hr>
+    <br><br>
 </div>
 
 <!--MODAL ASOCIAR CONCENTRADOR CON MEDIDOR-->
@@ -20,7 +20,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="modalLabelMdm">Asociación concentrador-medidor</h5>
+                <h5 class="modal-title" id="modalCncMed">Asociación concentrador-medidor</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>

@@ -83,7 +83,7 @@
                                         <a class="dropdown-item" href="#" id="VerConcentrador"> Concentradores</a>
                                         <a class="dropdown-item" href="#" id="CrearConcentrador"> Crear concentrador</a>
                                         <a class="dropdown-item" href="#" id="GestionConcentrador"> Habilitar / Deshabilitar</a>
-                                        
+                                        <br>
                                     </div>
                                     <!-- Fin Acordion Concentradores -->
                                     <!-- Acordion Medidores -->
@@ -93,7 +93,7 @@
                                         <a class="dropdown-item" href="#" id="CrearMedidor"> Crear medidor</a>
                                         <a class="dropdown-item" href="#" id="GestionMedidor"> Habilitar / Deshabilitar</a>
                                         <a class="dropdown-item" href="#" id="CorteReconexion">Corte y reconexion</a>
-                                        
+                                        <br>
                                     </div>
                                     <!-- Fin Acordion Medidores -->                                    
                                     <!-- Acordion Modem -->
@@ -101,7 +101,7 @@
                                     <div id="collapseModem" class="collapse " aria-labelledby="headingOne" data-parent="#accordionExample">
                                         <a class="dropdown-item" href="#" id="VerModem"> Modem</a>
                                         <a class="dropdown-item" href="#" id="CrearModem"> Crear modem</a>
-                                        
+                                        <br>
                                     </div>
                                     <!-- Fin Acordion Modem -->
                                     <!-- Acordion Transformadores -->
@@ -110,7 +110,7 @@
                                         <a class="dropdown-item" href="#" id="VerTransformador"> Transformadores</a>
                                         <a class="dropdown-item" href="#" id="CrearTransformador"> Crear transformador</a>
                                         <a class="dropdown-item" href="#" id="GestionTransformador"> Habilitar / Deshabilitar</a>
-                                        
+                                        <br>
                                     </div>
                                     <!-- Fin Acordion Transformadores -->
                                 </div>
@@ -136,6 +136,7 @@
                                     <a class="nav-link dropdown-item" href="#" id="VerUsuarios" >Usuarios</a>
                                     <a class="nav-link dropdown-item" href="#" id="CrearUsuario" >Crear usuario</a>                                  
                                 </div>
+                                <br>
                             </div>
                             <!-- Final Accordion Users -->
                             <li class="nav-item">
@@ -155,6 +156,7 @@
                                     <a class="nav-link dropdown-item" href="#" id="VerTareas" >Tareas programadas</a>
                                     <a class="nav-link dropdown-item" href="#" id="CrearTarea" >Crear tarea</a>
                                 </div>
+                                <br>
                             </div>
                             <!-- Final Accordion Tareas Programadas -->
                             <!-- Accordion Extern Systems -->
@@ -168,12 +170,13 @@
                                     <a class="nav-link dropdown-item" href="#" id="VerSE" >Sistemas externos</a>
                                     <a class="nav-link dropdown-item" href="#" id="CrearSE" >Crear sistema</a>
                                 </div>
+                                <br>
                             </div>
                             <!-- Final Accordion Extern Systems -->
                             <li class="nav-item">
                                 <a class="nav-link" href="#">
-                                    <span data-feather="settings"></span>
-                                    Configuración
+                                    <span data-feather="zap"></span>
+                                    Valores instantaneos
                                 </a>
                             </li>
                         </ul>
@@ -181,7 +184,6 @@
                 </nav>
             </div>
         </div>
-
 
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
@@ -220,5 +222,6 @@
     <script src="../../template/js/export.js"></script>
     <script src="../../template/js/jquery.gridster.min.js"></script>
     <script src="../../template/js/dashboard.js"></script>   
+    <script src="../../template/js/filterInput.js"></script>
     <script src="../../models/Dashboard/app.dashboard.js"></script> 
 </html>
