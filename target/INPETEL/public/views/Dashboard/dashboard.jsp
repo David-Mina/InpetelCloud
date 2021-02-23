@@ -19,6 +19,7 @@
         <link rel="stylesheet" href="../../template/css/select2.css">
         <link rel="stylesheet" href="../../template/css/select2.min.css">
         <link rel="stylesheet" href="../../template/css/select2-bootstrap4.css">
+        <link rel="stylesheet" href="../../template/css/reloj.css">
 
 
 
@@ -43,12 +44,33 @@
     <body>
 
         <nav class="navbar navbar-primary sticky-top bg-primary flex-md-nowrap p-0 shadow">
-            <a class="navbar-brand text-light col-md-3 col-lg-2 px-3">Inpetel Cloud</a>
-            <button class="navbar-toggler  position-absolute d-md-none collapsed" type="button" data-toggle="collapse"
-                    data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <input class="form-control form-control text-dark  w-100" type="text" placeholder="Buscar">
+            <a class="navbar-brand d-flex justify-content-center col-md-3 col-lg-2" href="#">
+                <img src="../../template/img/img_inpetel_blacn.png" alt="Imagen Inpetel" width="100"></a>
+            <div class="watch">
+                <div class="wrap">
+                    <div class="widget">
+                        <div class="fechaReloj">
+                            <p id="diaSemanaReloj" class="diaSemanaReloj"></p>
+                            <p id="diaReloj" class="diaReloj"></p>
+                            <p>de</p>
+                            <p id="mesReloj" class="mesReloj"></p>
+                            <p>del</p>
+                            <p id="yearReloj" class="yearReloj"></p>
+                        </div>
+
+                        <div class="reloj">
+                            <p id="horasReloj" class="horasReloj"></p>
+                            <p>:</p>
+                            <p id="minutosReloj" class="minutosReloj"></p>
+                            <p>:</p>
+                            <div class="caja-segundosReloj">
+                                <p id="segundosReloj" class="segundosReloj"></p>
+                                <p id="ampmReloj" class="ampmReloj"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <ul class="navbar-nav px-3">    
                 <li class="nav-item text-nowrap">
                     <a class="nav-link text-light" id="Salir">Salir</a>
@@ -124,7 +146,7 @@
                                     Eventos / Alarmas
                                 </a>
                             </li>
-                            
+
                             <!-- Accordion Users -->
                             <div class="accordion" id="accordionExample">
                                 <a class="nav-link dropdown-item" href="#" id="navbarDropdown" role="button" data-toggle="collapse"
@@ -223,5 +245,6 @@
     <script src="../../template/js/jquery.gridster.min.js"></script>
     <script src="../../template/js/dashboard.js"></script>   
     <script src="../../template/js/filterInput.js"></script>
-    <script src="../../models/Dashboard/app.dashboard.js"></script> 
+    <script src="../../models/Dashboard/app.dashboard.js"></script>
+    <script src="../../template/js/reloj.js"></script>
 </html>

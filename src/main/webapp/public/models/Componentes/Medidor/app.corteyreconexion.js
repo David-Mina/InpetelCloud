@@ -24,7 +24,7 @@ $(".btn-enviarCyR").on('click', function () {
     } else {
         for (var i = 0;i< idMedidor.length; i++){
             $.ajax({
-            url: "http://" + readConfig() + "/client/crearCyR",
+            url: "http://" + readConfig() + "/client/crearCyR/",
             type: "POST",
             contentType: "application/json",
             dataType: "json",

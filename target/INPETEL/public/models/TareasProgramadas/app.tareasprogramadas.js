@@ -171,7 +171,7 @@ function tbodyTable(datos) {
                 " <button href='#' idJob='" + val.jobName + "' class='btn btn-reanudar btn-sm btn-primary' " + btn[2] + ">Reanudar</button> " +
                 " <button href='#' idJob='" + val.jobName + "' class='btn btn-eliminar btn-sm btn-danger' " + btn[3] + ">Eliminar</button> " +
                 " <button href='#' idJob='" + val.jobName + "' class='btn btn-detener btn-sm btn-danger' " + btn[4] + ">Detener</button> " +
-                " <button href='#' idJob='" + val.jobName + "' class='btn btn-editar btn-sm btn-warning' " + btn[5] + "data-toggle='modal' data-target='#modalJobEdit'>Editar</button></td>" +
+                " <button href='#' idJob='" + val.jobName + "' class='btn btn-editar btn-sm btn-warning' " + btn[5] + " data-toggle='modal' data-target='#modalJobEdit'>Editar</button></td>" +
                 "<td> <a rel='status' class='" + sep[0] + " " + sep[1] + "' sta='" + val.jobStatus + "'>" + sep[2] + "</a></td>" +
                 "</tr>";
     });

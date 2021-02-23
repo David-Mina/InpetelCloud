@@ -41,7 +41,6 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="modalLabelMdm">Reporte corte y reconexión</h5>
-                <input type="hidden" id="idMed">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -57,7 +56,7 @@
                         </select>
                     </div>
                     <div class="col-md-8">
-                        <label for="labelObservacionCyR">Descripción de cambio</label>
+                        <label for="labelObservacionCyR">Observación</label>
                         <textarea class="form-control" rows="2" id="observacionCyR"></textarea>
                     </div>
                 </div>
@@ -66,7 +65,7 @@
                     <div class="col-lg-12">
                         <div class="form-group">
                             <div class="text-right">
-                                <input type="submit" class="btn btn-sm btn-primary btn-enviarCyR" data-dismiss="modal" value="Enviar">                                
+                                <input type="submit" class="btn btn-primary btn-enviarCyR" data-dismiss="modal" value="Enviar">                                
                             </div>
                         </div>
                     </div>

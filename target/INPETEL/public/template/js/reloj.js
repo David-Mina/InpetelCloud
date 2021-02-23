@@ -1,4 +1,3 @@
-
 (function(){
 	var actualizarHora = function(){
 		// Obtenemos la fecha actual, incluyendo las horas, minutos, segundos, dia de la semana, dia del mes, mes y año;
@@ -13,14 +12,14 @@
 			year = fecha.getFullYear();
 
 		// Accedemos a los elementos del DOM para agregar mas adelante sus correspondientes valores
-		var pHoras = document.getElementById('horas'),
-			pAMPM = document.getElementById('ampm'),
-			pMinutos = document.getElementById('minutos'),
-			pSegundos = document.getElementById('segundos'),
-			pDiaSemana = document.getElementById('diaSemana'),
-			pDia = document.getElementById('dia'),
-			pMes = document.getElementById('mes'),
-			pYear = document.getElementById('year');
+		var pHoras = document.getElementById('horasReloj'),
+			pAMPM = document.getElementById('ampmReloj'),
+			pMinutos = document.getElementById('minutosReloj'),
+			pSegundos = document.getElementById('segundosReloj'),
+			pDiaSemana = document.getElementById('diaSemanaReloj'),
+			pDia = document.getElementById('diaReloj'),
+			pMes = document.getElementById('mesReloj'),
+			pYear = document.getElementById('yearReloj');
 
 		
 		// Obtenemos el dia se la semana y lo mostramos
