@@ -236,6 +236,17 @@ function tablePrincipal(data) {
             "<tbody>" + data + "</tbody>" +
             "</table>";
 }
+
+function TipoTrafo(data){
+    var tipoTrafo="";
+    if(data === "MonofasicoTrifilar"){
+        tipoTrafo = "Monofásico trifilar";
+    }else{
+        tipoTrafo = "Trifásico";
+    }
+    return tipoTrafo;
+}
+
 function tbodyTable(data) {
     var res = "";
     $.each(data, function (key, val) {
@@ -245,7 +256,7 @@ function tbodyTable(data) {
                 "<td>" + val.Capacidad + "</td>" +
                 "<td>" + val.Nodo + "</td>" +
                 "<td>" + val.CargaAforada + "</td>" +
-                "<td>" + val.TipoTrafo + "</td>" +
+                "<td>" + TipoTrafo(val.TipoTrafo) + "</td>" +
                 "<td>" + val.cnc + "</td>" +
                 "<td> <a href='#' rel='edit' idTran='" + val.ID + "' class='badge badge-primary' data-toggle='modal' data-target='#modalTranUpdate'>Editar</a></td>" +
                 "</tr>";
