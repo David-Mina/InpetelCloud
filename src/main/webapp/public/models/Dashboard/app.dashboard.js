@@ -1,3 +1,8 @@
+//Vista asociacion
+$("#Asociacion").on('click', function () {
+    $("#Contenido").load("../Componentes/Asociacion/AsociacionCncMed.jsp");
+});
+
 //Vistas Concentrador
 $("#VerConcentrador").on('click', function () {
     $("#Contenido").load("../Componentes/Concentrador/VerConcentrador.jsp");

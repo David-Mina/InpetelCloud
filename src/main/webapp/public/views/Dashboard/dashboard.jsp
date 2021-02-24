@@ -98,6 +98,8 @@
 
                             <div id="collapseOne" class="collapse " aria-labelledby="headingOne" data-parent="#accordionExample">
                                 <div class="card-body">
+                                    
+                                    <a class="nav-link dropdown-item"  href="#" id="Asociacion" role="button">Asociación</a>
 
                                     <!-- Acordion Concentradores -->
                                     <a class="nav-link dropdown-item"  href="#" id="navbarDropdown" role="button" data-toggle="collapse" data-target="#collapseConcentrador" aria-expanded="true" aria-controls="collapseConcentrador">Concentradores</a>
