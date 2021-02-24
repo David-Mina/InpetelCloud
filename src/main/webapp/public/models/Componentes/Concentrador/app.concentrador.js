@@ -111,10 +111,10 @@ $("#serialCnc").on('blur', function () {
         })
     }).always(function (data) {
         if (data) {
-            $("#AddConcentrador").prop('disabled', true);
+            $(".btn-AddConcentrador").prop('disabled', true);
             toastr.error("Serial asignado a un concentrador existente, por favor cambie el valor");
         } else {
-            $("#AddConcentrador").prop('disabled', false);
+            $(".btn-AddConcentrador").prop('disabled', false);
         }
     });
 });
@@ -135,10 +135,10 @@ $("#imeiCnc").on('blur', function () {
         })
     }).always(function (data) {
         if (data) {
-            $("#AddConcentrador").prop('disabled', true);
+            $(".btn-AddConcentrador").prop('disabled', true);
             toastr.error("Imei asignado a un concentrador existente, por favor cambie el valor");
         } else {
-            $("#AddConcentrador").prop('disabled', false);
+            $(".btn-AddConcentrador").prop('disabled', false);
         }
     });
 });

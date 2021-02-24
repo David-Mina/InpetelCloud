@@ -140,12 +140,12 @@
 
                             <!-- Fin Acordion Componentes -->
 
-                            <li class="nav-item">
+                            <!--<li class="nav-item">
                                 <a class="nav-link" href="#">
                                     <span data-feather="alert-triangle"></span>
                                     Eventos / Alarmas
                                 </a>
-                            </li>
+                            </li>-->
 
                             <!-- Accordion Users -->
                             <div class="accordion" id="accordionExample">
@@ -162,7 +162,7 @@
                             </div>
                             <!-- Final Accordion Users -->
                             <li class="nav-item">
-                                <a class="nav-link" href="#">
+                                <a class="nav-link" href="#" id="Reportes">
                                     <span data-feather="bar-chart-2"></span>
                                     Reportes
                                 </a>

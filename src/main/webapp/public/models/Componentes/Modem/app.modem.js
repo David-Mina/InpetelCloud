@@ -12,10 +12,10 @@ $("#serialMdm").on('blur', function () {
         })
     }).always(function (data) {
         if (data) {
-            $("#AddModem").prop('disabled', true);
+            $(".btn-AddModem").prop('disabled', true);
             toastr.error("Serial asignado a modem registrado, por favor cambie el valor");
         } else {
-            $("#AddModem").prop('disabled', false);
+            $(".btn-AddModem").prop('disabled', false);
         }
     });
 });
@@ -34,10 +34,10 @@ $("#imeiMdm").on('blur', function () {
         })
     }).always(function (data) {
         if (data) {
-            $("#AddModem").prop('disabled', true);
+            $(".btn-AddModem").prop('disabled', true);
             toastr.error("Imei asignado a modem registrado, por favor cambie el valor");
         } else {
-            $("#AddModem").prop('disabled', false);
+            $(".btn-AddModem").prop('disabled', false);
         }
     });
 });

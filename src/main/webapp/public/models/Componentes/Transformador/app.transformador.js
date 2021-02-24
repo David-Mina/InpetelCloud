@@ -14,7 +14,7 @@ function valueDevice(data, id) {
         toastr.error("No hay concentrador para asociar");
     } else {
         $.each(data, function (key, val) {
-            $("#" + id).select2({theme:'bootstrap4'}).append("<option value='" + val.ID + "'>" + val.Serial + "</option>");
+            $("#" + id).select2({theme: 'bootstrap4'}).append("<option value='" + val.ID + "'>" + val.Serial + "</option>");
         });
     }
 }
@@ -24,7 +24,7 @@ function valueDeviceEdit(data, id) {
         toastr.error("No hay concentrador para asociar");
     } else {
         $.each(data, function (key, val) {
-            $("#" + id).select2({theme:'bootstrap4', dropdownParent: $('#modalCncUpdate')}).append("<option value='" + val.ID + "'>" + val.Serial + "</option>");
+            $("#" + id).select2({theme: 'bootstrap4', dropdownParent: $('#modalTranUpdate')}).append("<option value='" + val.ID + "'>" + val.Serial + "</option>");
         });
     }
 }
@@ -42,10 +42,10 @@ $("#codigoTran").on('blur', function () {
         })
     }).always(function (data) {
         if (data) {
-            $("#AddTransformador").prop('disabled', true);
+            $(".btn-AddTransformador").prop('disabled', true);
             toastr.error("Codigo registrado en un transformador existente, por favor cambie el valor");
         } else {
-            $("#AddTransformador").prop('disabled', false);
+            $(".btn-AddTransformador").prop('disabled', false);
         }
     });
 });
@@ -118,7 +118,6 @@ $.ajax({
                 $("#capacidadTranEdit").val(val.Capacidad);
                 $("#nodoTranEdit").val(val.Nodo);
                 $("#cargaTranEdit").val(val.CargaAforada);
-                $("#estadoTranEdit").val(val.States_ID);
                 //ACTUALIZAR TRANSFORMADOR
                 $("#UpdTran").on('click', function () {
                     var id = $("#idTran").val().trim();
@@ -144,7 +143,7 @@ $.ajax({
                             break;
                     }
                     if (codigoTran.length == 0 || direccionTran.length == 0 || capacidadTran.length == 0
-                            || nodoTran.length == 0 || cargaTran.length == 0 || estadoTran.length == 0) {
+                            || nodoTran.length == 0 || cargaTran.length == 0) {
                         toastr.error("Campos vacios");
                     } else {
                         if (concentradorTranNew.length > 0) {
@@ -166,7 +165,7 @@ $.ajax({
                                 concentradorId: idConcentradorTran
                             })
                         }).always(function (data) {
-                            console.log(direccionTran, codigoTran, capacidadTran, nodoTran, cargaTran, tipoTran, idConcentradorTran, estadoTran);
+                            console.log(direccionTran, codigoTran, capacidadTran, nodoTran, cargaTran, tipoTran, idConcentradorTran);
                             if (data > 0) {
                                 toastr.error("Error, intente nuevamente");
                             } else {
@@ -200,14 +199,14 @@ $.ajax({
                         dataType: "json",
                         contentType: 'application/json',
                         data: JSON.stringify({
-                            id:id,
+                            id: id,
                             estadoId: estadoId,
                             observacion: observacionTran
                         })
                     }).always(function (data) {
                         if (data > 0) {
                             toastr.success("Estado de transformador cambiado correctamente");
-                            $("#Contenido").load("../../views/Componentes/Transformador/GestionTransformador.jsp");                            
+                            $("#Contenido").load("../../views/Componentes/Transformador/GestionTransformador.jsp");
                         } else {
                             toastr.error("Error, intente nuevamente");
                         }
@@ -220,8 +219,8 @@ $.ajax({
 
 //FUNCIONES TABLA PRINCIPAL
 function tablePrincipal(data) {
-    return "<script src='../../models/Configs/app.configs.table.js'></script> \n\
-            <table class='table table-sm table-striped text-center' id='tableINPETEL'>" +
+    return "<script src='../../models/Configs/app.configs.table.js'></script>" +
+            "<table class='table table-sm table-striped text-center' id='tableINPETEL'>" +
             "<thead class='thead-dark'>" +
             "<tr>" +
             "<th>Codigo</th>" +
@@ -240,24 +239,24 @@ function tablePrincipal(data) {
 function tbodyTable(data) {
     var res = "";
     $.each(data, function (key, val) {
-        var sep = colors(val.enabled).trim().split("__");
         res += "<tr>" +
                 "<td>" + val.Codigo + "</td>" +
                 "<td>" + val.Address + "</td>" +
                 "<td>" + val.Capacidad + "</td>" +
                 "<td>" + val.Nodo + "</td>" +
                 "<td>" + val.CargaAforada + "</td>" +
-                "<td>" + val.TipoTrafo + "</td>"+
-                "<td>" + val.cnc + "</td>"+
-                "<td> <a href='#' rel='edit' idTran='" + val.ID + "' class='badge badge-primary' data-toggle='modal' data-target='#modalTranUpdate'>Editar</a></td>"+
+                "<td>" + val.TipoTrafo + "</td>" +
+                "<td>" + val.cnc + "</td>" +
+                "<td> <a href='#' rel='edit' idTran='" + val.ID + "' class='badge badge-primary' data-toggle='modal' data-target='#modalTranUpdate'>Editar</a></td>" +
                 "</tr>";
     });
     return res;
 }
+
 //FUNCIONES TABLA GESTION
 function tablePrincipalGestion(data) {
-    return "<script src='../../models/Configs/app.configs.table.js'></script> \n\
-            <table class='table table-sm table-striped text-center' id='tableINPETEL'>" +
+    return "<script src='../../models/Configs/app.configs.table.js'></script>" +
+            "<table class='table table-sm table-striped text-center' id='tableINPETEL'>" +
             "<thead class='thead-dark'>" +
             "<tr>" +
             "<th>Serial</th>" +
@@ -273,14 +272,13 @@ function tbodyTableGestion(data) {
     $.each(data, function (key, val) {
         var sep = colors(val.States_ID).trim().split("__");
         res += "<tr>" +
-                "<td>" + val.Codigo + "</td>"+
-                "<td> <a href='#' rel='status' class='" + sep[0] + " " + sep[1] + "' idTran='" + val.ID + "' sta='" + val.States_ID + "'>" + sep[2] + "</a></td>"+
-                "<td> <a href='#' rel='change' idTran='" + val.ID + "' class='badge badge-info' data-toggle='modal' data-target='#modalTranChange''>Cambiar</a></td>"+
-               "</tr>";
+                "<td>" + val.Codigo + "</td>" +
+                "<td> <a href='#' rel='status' class='" + sep[0] + " " + sep[1] + "' idTran='" + val.ID + "' sta='" + val.States_ID + "'>" + sep[2] + "</a></td>" +
+                "<td> <a href='#' rel='change' idTran='" + val.ID + "' class='badge badge-info' data-toggle='modal' data-target='#modalTranChange''>Cambiar</a></td>" +
+                "</tr>";
     });
     return res;
 }
-
 function colors(val) {
     var res = "";
     if (val == "1") {

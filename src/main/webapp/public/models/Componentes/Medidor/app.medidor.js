@@ -19,7 +19,7 @@ function tipoMedidorEdit(elemento) {
         inputMagnitudMedEdit.value = "0";
         inputMagnitudMedEdit.disabled = false;
     } else {
-        inputMagnitudMedEdit.value = "";
+        inputMagnitudMedEdit.value = "0";
         inputMagnitudMedEdit.disabled = true;
     }
 }
@@ -56,10 +56,10 @@ $("#serialMed").on('blur', function () {
         })
     }).always(function (data) {
         if (data) {
-            $("#AddMedidor").prop('disabled', true);
+            $(".btn-AddMedidor").prop('disabled', true);
             toastr.error("Serial asignado a un medidor existente, por favor cambie el valor");
         } else {
-            $("#AddMedidor").prop('disabled', false);
+            $(".btn-AddMedidor").prop('disabled', false);
         }
     });
 });
@@ -202,6 +202,7 @@ $.ajax({
                                 logicalname: "-"
                             })
                         }).always(function (data) {
+                            console.log(tipoMed, magnitudMed, numCuadrantesMed, tipoPuertoMed, prepagoMed, relojsyncMed, modeloMed, serialMed, marcaMed);
                             if (data > 0) {
                                 toastr.error("Error, intente nuevamente");
                             } else {
@@ -236,14 +237,14 @@ $.ajax({
                         dataType: "json",
                         contentType: 'application/json',
                         data: JSON.stringify({
-                            id:id,
+                            id: id,
                             estadoId: estadoId,
                             observacion: observacionMed
                         })
                     }).always(function (data) {
                         if (data > 0) {
                             toastr.success("Estado de medidor cambiado correctamente");
-                            $("#Contenido").load("../../views/Componentes/Medidor/GestionMedidor.jsp");                            
+                            $("#Contenido").load("../../views/Componentes/Medidor/GestionMedidor.jsp");
                         } else {
                             toastr.error("Error, intente nuevamente");
                         }
@@ -256,7 +257,7 @@ $.ajax({
 
 //FUNCION TABLA PRINCIPAL
 function tablePrincipal(data) {
-    return "<script src='../../models/Configs/app.configs.table.js'></script>"+
+    return "<script src='../../models/Configs/app.configs.table.js'></script>" +
             "<table class='table table-sm table-striped text-center' id='tableINPETEL'>" +
             "<thead class='thead-dark'>" +
             "<tr>" +
@@ -272,11 +273,11 @@ function tablePrincipal(data) {
             "</table>";
 }
 
-function prepago(data){
+function prepago(data) {
     var prepago = "";
-    if(data == 1){
+    if (data == 1) {
         prepago = "Si";
-    }else{
+    } else {
         prepago = "No";
     }
     return prepago;
@@ -291,15 +292,15 @@ function tbodyTable(data) {
                 "<td>" + val.Modelo + "</td>" +
                 "<td>" + val.Serial + "</td>" +
                 "<td>" + val.Marca + "</td>" +
-                "<td> <a href='#' rel='edit' idMed='" + val.ID + "' class='badge badge-primary' data-toggle='modal' data-target='#modalMedUpdate'>Editar</a></td>"+
-               "</tr>";
+                "<td> <a href='#' rel='edit' idMed='" + val.ID + "' class='badge badge-primary' data-toggle='modal' data-target='#modalMedUpdate'>Editar</a></td>" +
+                "</tr>";
     });
     return res;
 }
 
 //FUNCIONES TABLA GESTION
 function tablePrincipalGestion(data) {
-    return "<script src='../../models/Configs/app.configs.table.js'></script>"+
+    return "<script src='../../models/Configs/app.configs.table.js'></script>" +
             "<table class='table table-sm table-striped text-center' id='tableINPETEL'>" +
             "<thead class='thead-dark'>" +
             "<tr>" +
@@ -316,10 +317,10 @@ function tbodyTableGestion(data) {
     $.each(data, function (key, val) {
         var sep = colors(val.States_ID).trim().split("__");
         res += "<tr>" +
-                "<td>" + val.Serial + "</td>"+
-                "<td> <a href='#' rel='status' class='" + sep[0] + " " + sep[1] + "' idMed='" + val.ID + "' sta='" + val.States_ID + "'>" + sep[2] + "</a></td>"+
-                "<td> <a href='#' rel='change' idMed='" + val.ID + "' class='badge badge-info' data-toggle='modal' data-target='#modalMedChange''>Cambiar</a></td>"+
-               "</tr>";
+                "<td>" + val.Serial + "</td>" +
+                "<td> <a href='#' rel='status' class='" + sep[0] + " " + sep[1] + "' idMed='" + val.ID + "' sta='" + val.States_ID + "'>" + sep[2] + "</a></td>" +
+                "<td> <a href='#' rel='change' idMed='" + val.ID + "' class='badge badge-info' data-toggle='modal' data-target='#modalMedChange''>Cambiar</a></td>" +
+                "</tr>";
     });
     return res;
 }
@@ -328,7 +329,7 @@ function colors(val) {
     var res = "";
     if (val == "1") {
         res = "badge__badge-success__Activo";
-    } else{
+    } else {
         res = "badge__badge-warning__Inactivo";
     }
     return res;
