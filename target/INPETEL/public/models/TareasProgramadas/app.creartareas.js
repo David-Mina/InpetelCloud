@@ -24,7 +24,7 @@ function formatoFechaMoment(){
 
 //SELECT PARA TAREAS EXISTENTES
 $.ajax({
-    url: 'http://' + readConfig() + '/scheduler/tareas',
+    url: 'http://' + readConfigTarea() + '/scheduler/tareas',
     type: 'GET',
     contentType: 'application/json',
     dataType: "json"
@@ -67,7 +67,7 @@ $(".btn-AddJob").on('click', function () {
     }else{
         if(fechaUTCTarea == "Invalid date" && horaUTCTarea == "Invalid date"){fechaUTCTarea = ""; horaUTCTarea = " ";} 
         $.ajax({
-            url: 'http://' + readConfig() + '/scheduler/schedule?' + 'jobName=' + nombreTarea + '&jobScheduleTime=' + fecha + '&cronExpression=' + fechaUTCTarea + '&hora=' + horaUTCTarea + '&gender=' + intervaloTarea + '&repeatTime=' + tiempoTarea,
+            url: 'http://' + readConfigTarea() + '/scheduler/schedule?' + 'jobName=' + nombreTarea + '&jobScheduleTime=' + fecha + '&cronExpression=' + fechaUTCTarea + '&hora=' + horaUTCTarea + '&gender=' + intervaloTarea + '&repeatTime=' + tiempoTarea,
             type: 'GET',
             dataType: "json",
             contentType: 'application/json'

@@ -5,9 +5,34 @@ $.ajax({
     contentType: 'application/json',
     dataType: "json"
 }).always(function (data) {
-    var dataTran = data;
-    $("#form-datos").html(list(dataTran));
+    $("#form-datos").html(list(data));
 });
+
+//MUESTRO TRANSFORMADORES - CONCENCTRADORES
+function list(data) {
+    $.each(data, function (key, val) {
+        var resp = "";
+        resp += "<ul class='list-group'><li class='list-group-item'><a data-toggle='collapse' class='btn-block text-decoration-none' href='#cnc" + val.Serial + "' role='button' aria-expanded='false' aria-controls='cnc" + val.Serial + "' > Transformador " + val.CodigoTF + "</a>" +
+                "<input type='checkbox' name='cnc[]' id='cnc_" + val.Serial + "' value='" + val.Serial + "'> <label class='labelcnc_"+val.Serial+"'>  Concentrador : "+ val.Serial +" </label>" ;
+        $.ajax({
+            url: 'http://' + readConfig() + '/consulta/verMedidoresDeUnCnc/' + val.Serial,
+            type: 'GET',
+            contentType: 'application/json',
+            dataType: "json"
+        }).always(function (data) {
+            $.each(data, function (key, val) {
+                resp += "<div class='collapse' id='cnc" + val.CNC_Serial + "'><ul class='list-group'><li class='list-group-item' style='height:40px;'><input type='checkbox' class='cnc_" + val.CNC_Serial + "' name='cnt[]' id='cnt_" + val.MET_Serial + "' value='" + val.MET_Serial + "'>   Medidor : " + val.MET_Serial + "</li></ul></div>";
+            });
+            resp += "</li></ul>";
+            $("#form-datos").append(resp);
+            //SELECCIONAR MEDIDORES
+            $("input[name='cnc[]']").change(function () {
+                var id = $(this).attr("id");
+                $("." + id + ":checkbox").prop('checked', $(this).prop("checked"));
+            });
+        });
+    });
+}
 
 //ENVIAR REPORTE
 $(".btn-enviarCyR").on('click', function () {
@@ -15,7 +40,6 @@ $(".btn-enviarCyR").on('click', function () {
     var idMedidor = $("input:checkbox[name='cnt[]']:checked").map(function () {
         return this.value;
     }).get();
-    console.log(idMedidor);
     var envio = $("#valorEnvioCyR").val();
     var descripcion = $("#observacionCyR").val();
 
@@ -23,6 +47,7 @@ $(".btn-enviarCyR").on('click', function () {
         toastr.error("Faltan campos por llenar");
     } else {
         for (var i = 0;i< idMedidor.length; i++){
+            console.log(i);
             $.ajax({
             url: "http://" + readConfig() + "/client/crearCyR/",
             type: "POST",
@@ -35,41 +60,12 @@ $(".btn-enviarCyR").on('click', function () {
                 descripcion: descripcion
             })
         }).always(function (data) {
-            console.log(idMedidor[i], envio, descripcion);
-            if (data > 0) {
+            if (i == idMedidor.length) {
+                i = idMedidor.length + 1;
                 toastr.success("Reporte creado correctamente");
                 $("#Contenido").load("../../views/Componentes/Medidor/CorteYReconexion.jsp");
-            } else {
-                toastr.error("Error, intente nuevamente");
             }
         });
         }        
     }
 });
-
-function list(dataTran) {
-    $.each(dataTran, function (key, val) {
-        var resp = "";
-        resp += "<ul class='list-group'><li class='list-group-item'><a data-toggle=collapse class='btn-block text-decoration-none' href='#cnc" + val.Serial + "' role='button' aria-expanded='false' aria-controls='cnc" + val.Serial + "' > Transformador " + val.CodigoTF + "<br></a>" +
-                "<input type='checkbox' name='cnc[]' id='cnc_" + val.Serial + "' value='" + val.Serial + "'>   Concentrador : " + val.Serial;
-        $.ajax({
-            url: 'http://' + readConfig() + '/consulta/verMedidoresDeUnCnc/' + val.Serial,
-            type: 'GET',
-            contentType: 'application/json',
-            dataType: "json"
-        }).always(function (data) {
-            $.each(data, function (key, val) {
-                resp += "<div class='collapse' id='cnc" + val.CNC_Serial + "' sytle='display: inline-block;'><ul class='list-group'><li class='list-group-item' style='height:40px;'><input type='checkbox' class='cnc_" + val.CNC_Serial + "' name='cnt[]' id='cnt_" + val.MET_Serial + "' value='" + val.MET_Serial + "'>   Medidor : " + val.MET_Serial + "</li></ul></div>";
-            });
-            resp += "</li></ul>";
-            $("#form-datos").append(resp);
-            //SELECCIONAR MEDIDORES
-            $("input[name='cnc[]']").change(function () {
-                var id = $(this).attr("id");
-                console.log(id);
-                console.log("." + id + ":checkbox");
-                $("." + id + ":checkbox").prop('checked', $(this).prop("checked"));
-            });
-        });
-    });
-}

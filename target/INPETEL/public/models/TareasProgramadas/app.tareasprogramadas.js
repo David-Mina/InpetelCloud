@@ -1,7 +1,7 @@
 function preguntarTrabajos() {
     //CARGAR TRABAJOS
     $.ajax({
-        url: 'http://' + readConfig() + '/scheduler/jobs',
+        url: 'http://' + readConfigTarea() + '/scheduler/jobs',
         type: 'GET',
         dataType: "json"
     }).always(function (data) {
@@ -15,7 +15,7 @@ function preguntarTrabajos() {
             //INICIAR TRABAJO
             $(".btn-iniciar").on('click', function () {
                 $.ajax({
-                    url: 'http://' + readConfig() + '/scheduler/start?jobName=' + $(this).attr("idJob"),
+                    url: 'http://' + readConfigTarea() + '/scheduler/start?jobName=' + $(this).attr("idJob"),
                     type: 'GET',
                     dataType: "json"
                 }).always(function (data) {
@@ -35,7 +35,7 @@ function preguntarTrabajos() {
             //PAUSAR TRABAJO
             $(".btn-pausar").on('click', function () {
                 $.ajax({
-                    url: 'http://' + readConfig() + '/scheduler/pause?jobName=' + $(this).attr("idJob"),
+                    url: 'http://' + readConfigTarea() + '/scheduler/pause?jobName=' + $(this).attr("idJob"),
                     type: 'GET',
                     dataType: "json"
                 }).always(function (data) {
@@ -55,7 +55,7 @@ function preguntarTrabajos() {
             //REANUDAR TRABAJO
             $(".btn-reanudar").on('click', function () {
                 $.ajax({
-                    url: 'http://' + readConfig() + '/scheduler/resume?jobName=' + $(this).attr("idJob"),
+                    url: 'http://' + readConfigTarea() + '/scheduler/resume?jobName=' + $(this).attr("idJob"),
                     type: 'GET',
                     dataType: "json"
                 }).always(function (data) {
@@ -75,7 +75,7 @@ function preguntarTrabajos() {
             //ELIMINAR TRABAJO
             $(".btn-eliminar").on('click', function () {
                 $.ajax({
-                    url: 'http://' + readConfig() + '/scheduler/delete?jobName=' + $(this).attr("idJob"),
+                    url: 'http://' + readConfigTarea() + '/scheduler/delete?jobName=' + $(this).attr("idJob"),
                     type: 'GET',
                     dataType: "json"
                 }).always(function (data) {
@@ -102,7 +102,7 @@ function preguntarTrabajos() {
             //DETENER TRABAJO
             $(".btn-detener").on('click', function () {
                 $.ajax({
-                    url: 'http://' + readConfig() + '/scheduler/stop?jobName=' + $(this).attr("idJob"),
+                    url: 'http://' + readConfigTarea() + '/scheduler/stop?jobName=' + $(this).attr("idJob"),
                     type: 'GET',
                     dataType: "json"
                 }).always(function (data) {
@@ -122,7 +122,7 @@ function preguntarTrabajos() {
             /*EDITAR TRABAJO SIMPLE
             $(".btn-editar").on('click', function(){
                 $.ajax({
-                    url: 'http://' + readConfig() + '/scheduler/update?jobName=' + $(this).attr("idJob"),
+                    url: 'http://' + readConfigTarea() + '/scheduler/update?jobName=' + $(this).attr("idJob"),
                     type: 'GET',
                     dataType: "json"
                 }).always()

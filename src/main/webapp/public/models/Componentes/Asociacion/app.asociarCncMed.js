@@ -58,7 +58,7 @@ $(".btn-AsocCncMed").on('click', function () {
         }).always(function (data) {
             if (data > 0) {
                 toastr.success("Asociacion creada correctamente");
-                $("#Contenido").load("../../views/Componentes/Concentrador/VerConcentrador.jsp");
+                $("#Contenido").load("../../views/Componentes/Asociacion/AsociacionCncMed.jsp");
             } else {
                 toastr.error("Error, intente nuevamente");
             }

@@ -1,4 +1,4 @@
-function readConfig() {
+function readConfigTarea() {
     if (window.XMLHttpRequest) {
         xhttp = new XMLHttpRequest();
     }
@@ -8,7 +8,7 @@ function readConfig() {
 
     return xmlDoc.getElementsByTagName("host")[0].childNodes[0].nodeValue;
 }
-function readConfigInit() {
+function readConfigInitTarea() {
     if (window.XMLHttpRequest) {
         xhttp = new XMLHttpRequest();
     }
