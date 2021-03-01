@@ -59,8 +59,13 @@ $("#GestionTransformador").on('click', function () {
 //Vistas Reportes
 $("#Reportes").on('click', function (){
     $("#Contenido").load("../Reportes/Reportes.jsp");
-})
+});
+
 //Vistas Usuarios
+$("#Paginas").on('click', function () {
+    $("#Contenido").load("../Usuarios/Paginas.jsp");
+});
+
 $("#VerUsuarios").on('click', function () {
     $("#Contenido").load("../Usuarios/VerUsuario.jsp");
 });
@@ -94,4 +99,9 @@ $("#VerTareas").on('click', function () {
 
 $("#CrearTarea").on('click', function () {
     $("#Contenido").load("../TareasProgramadas/CrearTarea.jsp");
+});
+
+//Vista valores instantaneos
+$("#Valores").on('click', function (){
+    $("#Contenido").load("../ValoresInstantaneos/ValoresInstantaneos.jsp");
 });

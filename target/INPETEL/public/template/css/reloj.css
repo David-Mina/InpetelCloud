@@ -1,5 +1,4 @@
 .watch {
-    height: 50px;
     margin: 0%;
     padding: 0%;
     -webkit-box-sizing: border-box;
@@ -8,12 +7,12 @@
 }
 
 .wrap {
-    height: 50px;
-    width: 90%;
+    height: auto;
+    width: 100%;
 }
 
 .widget {
-    width: 120%;
+    width: 100%;
 }
 
 .widget p {
@@ -27,14 +26,14 @@
     font-weight: 550;
     font-size: 1em;
     color: #fff;
+    text-align: center;
 }
 
 .reloj {
     font-family: Helvetica, sans-serif;
     font-weight: 550;
     font-size: 1.1em;
-    margin-left: 25%;
-    margin-right: 25%;
+    text-align: center;
     color:#fff;
 }
 

@@ -44,8 +44,8 @@
     <body>
 
         <nav class="navbar navbar-primary sticky-top bg-primary flex-md-nowrap p-0 shadow">
-            <a class="navbar-brand d-flex justify-content-center col-md-3 col-lg-2" href="#">
-                <img src="../../template/img/img_inpetel_blacn.png" alt="Imagen Inpetel" width="100"></a>
+            <a class="navbar-brand bg-light d-flex justify-content-center col-md-3 col-lg-2" href="#">
+                <img src="../../template/img/inpel.jpg" alt="Imagen Inpetel" style="max-width:100%; height:50px;"></a>
             <div class="watch">
                 <div class="wrap">
                     <div class="widget">
@@ -157,6 +157,7 @@
                             </div>
                             <div id="collapseTwo" class="collapse " aria-labelledby="headingOne" data-parent="#accordionExample">
                                 <div class="card-body">                                
+                                    <a class="nav-link dropdown-item" href="#" id="Paginas" >Páginas</a>
                                     <a class="nav-link dropdown-item" href="#" id="VerUsuarios" >Usuarios</a>
                                     <a class="nav-link dropdown-item" href="#" id="CrearUsuario" >Crear usuario</a>                                  
                                 </div>
@@ -198,7 +199,7 @@
                             </div>
                             <!-- Final Accordion Extern Systems -->
                             <li class="nav-item">
-                                <a class="nav-link" href="#">
+                                <a class="nav-link" href="#" id="Valores">
                                     <span data-feather="zap"></span>
                                     Valores instantaneos
                                 </a>
@@ -235,7 +236,6 @@
     <script src="../../template/js/bootstrap.bundle.js"></script>
     <script src="../../template/js/popper.min.js"></script>    
     <script src="../../template/js/toastr.min.js"></script>
-    <script src="../../template/js/all.js"></script>
     <script src="../../template/js/Chart.min.js"></script>
     <script src="../../template/js/hammer.js"></script>
     <script src="../../template/js/zoom.js"></script>
@@ -245,8 +245,7 @@
     <script src="../../template/js/feather.min.js"></script>    
     <script src="../../template/js/export.js"></script>
     <script src="../../template/js/jquery.gridster.min.js"></script>
-    <script src="../../template/js/dashboard.js"></script>   
-    <script src="../../template/js/filterInput.js"></script>
+    <script src="../../template/js/dashboard.js"></script>
     <script src="../../models/Dashboard/app.dashboard.js"></script>
     <script src="../../template/js/reloj.js"></script>
 </html>
