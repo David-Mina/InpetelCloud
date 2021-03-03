@@ -105,3 +105,9 @@ $("#CrearTarea").on('click', function () {
 $("#Valores").on('click', function (){
     $("#Contenido").load("../ValoresInstantaneos/ValoresInstantaneos.jsp");
 });
+
+/* globals Chart:false, feather:false */
+(function () {
+  'use strict';
+  feather.replace();
+})();

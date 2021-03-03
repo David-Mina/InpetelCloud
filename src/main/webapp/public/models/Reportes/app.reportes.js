@@ -72,8 +72,8 @@ $(".btn-Reportes").on('click', function () {
 
 //FUNCION CURVA HORARIA
 function tableCurvaHoraria(data) {
-    return "<script src='../../models/Configs/app.configs.table.js'></script>"+
-            "<table class='table table-sm table-striped text-center' id='tableINPETEL'>" +
+    return "<script src='../../models/Reportes/app.reportes.tables.js'></script>"+
+            "<table class='table table-sm table-striped text-center' id='tableCurvaHoraria'>" +
             "<thead class='thead-dark'>" +
             "<tr>" +
             "<th>Concentrador</th>" +
@@ -114,8 +114,8 @@ function tbodyTableHoraria(data) {
 
 //FUNCION CURVA DIARIA
 function tableCurvaDiaria(data) {
-    return "<script src='../../models/Configs/app.configs.table.js'></script>"+
-            "<table class='table table-sm table-striped text-center' id='tableINPETEL'>" +
+    return "<script src='../../models/Reportes/app.reportes.tables.js'></script>"+
+            "<table class='table table-sm table-striped text-center' id='tableCurvaDiaria'>" +
             "<thead class='thead-dark'>" +
             "<tr>" +
             "<th>Concentrador</th>" +
@@ -154,8 +154,8 @@ function tbodyTableDiaria(data) {
 
 //FUNCION EVENTOS MEDIDOR
 function tableEventosMedidor(data) {
-    return "<script src='../../models/Configs/app.configs.table.js'></script>"+
-            "<table class='table table-sm table-striped text-center' id='tableINPETEL'>" +
+    return "<script src='../../models/Reportes/app.reportes.tables.js'></script>"+
+            "<table class='table table-sm table-striped text-center' id='tableEventosMedidor'>" +
             "<thead class='thead-dark'>" +
             "<tr>" +
             "<th>Concentrador</th>" +

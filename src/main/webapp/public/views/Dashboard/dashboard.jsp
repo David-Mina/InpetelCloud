@@ -20,7 +20,8 @@
         <link rel="stylesheet" href="../../template/css/select2.min.css">
         <link rel="stylesheet" href="../../template/css/select2-bootstrap4.css">
         <link rel="stylesheet" href="../../template/css/reloj.css">
-
+        <!--<link rel="stylesheet" type="text/css" href="../../template/js/DataTable/DataTables-1.10.23/css/dataTables.bootstrap4.min.css"/>
+        <link rel="stylesheet" type="text/css" href="../../template/js/DataTable/Buttons-1.6.5/css/buttons.bootstrap4.min.css"/>-->
 
 
         <style>
@@ -98,7 +99,7 @@
 
                             <div id="collapseOne" class="collapse " aria-labelledby="headingOne" data-parent="#accordionExample">
                                 <div class="card-body">
-                                    
+
                                     <a class="nav-link dropdown-item"  href="#" id="Asociacion" role="button">Asociación</a>
 
                                     <!-- Acordion Concentradores -->
@@ -222,7 +223,7 @@
     <script src="../../template/js/jquery-3.3.1.js"></script>
     <script src="../../template/js/jquery.dataTables.min.js"></script>
     <script src="../../template/js/dataTables.bootstrap4.min.js"></script>
-    <script src="../../template/js/dataTables.buttons.min.js"></script>    
+    <script src="../../template/js/dataTables.buttons.min.js"></script>
     <script src="../../template/js/select2.min.js"></script>
     <script src="../../template/js/buttons.flash.min.js"></script>
     <script src="../../template/js/xlsx.full.min.js"></script>
@@ -231,7 +232,6 @@
     <script src="../../template/js/vfs_fonts.js"></script>
     <script src="../../template/js/buttons.html5.min.js"></script>
     <script src="../../template/js/buttons.print.min.js"></script>
-    <script src="../../template/js/bootbox.min.js"></script>
     <script src="../../template/js/bootstrap.min.js"></script>
     <script src="../../template/js/bootstrap.bundle.js"></script>
     <script src="../../template/js/popper.min.js"></script>    
@@ -242,11 +242,19 @@
     <script src="../../template/js/zoom.js"></script>
     <script src="../../template/js/moment.js"></script>
     <script src="../../template/js/jspdf.min.js"></script>
-    <script src="../../template/js/html2canvas.min.js"></script>    
-    <script src="../../template/js/feather.min.js"></script>    
-    <script src="../../template/js/export.js"></script>
+    <script src="../../template/js/html2canvas.min.js"></script>
+    <script src="../../template/js/feather.min.js"></script> 
     <script src="../../template/js/jquery.gridster.min.js"></script>
-    <script src="../../template/js/dashboard.js"></script>
     <script src="../../models/Dashboard/app.dashboard.js"></script>
     <script src="../../template/js/reloj.js"></script>
+
+    <!--<script type="text/javascript" src="../../template/js/DataTable/JSZip-2.5.0/jszip.min.js"></script>
+    <script type="text/javascript" src="../../template/js/DataTable/pdfmake-0.1.36/pdfmake.min.js"></script>
+    <script type="text/javascript" src="../../template/js/DataTable/pdfmake-0.1.36/vfs_fonts.js"></script>
+    <script type="text/javascript" src="../../template/js/DataTable/DataTables-1.10.23/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="../../template/js/DataTable/DataTables-1.10.23/js/dataTables.bootstrap4.min.js"></script>
+    <script type="text/javascript" src="../../template/js/DataTable/Buttons-1.6.5/js/dataTables.buttons.min.js"></script>
+    <script type="text/javascript" src="../../template/js/DataTable/Buttons-1.6.5/js/buttons.bootstrap4.min.js"></script>
+    <script type="text/javascript" src="../../template/js/DataTable/Buttons-1.6.5/js/buttons.html5.min.js"></script>
+    <script type="text/javascript" src="../../template/js/DataTable/Buttons-1.6.5/js/buttons.print.min.js"></script>-->
 </html>
