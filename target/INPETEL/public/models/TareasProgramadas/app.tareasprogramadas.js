@@ -1,3 +1,4 @@
+$("#jobs").html("<h3 class='text-center'><img src='../../template/img/cargando.gif' width='250' height='229'></h3>");
 function preguntarTrabajos() {
     //CARGAR TRABAJOS
     $.ajax({
