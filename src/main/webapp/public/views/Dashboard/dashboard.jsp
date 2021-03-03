@@ -45,7 +45,7 @@
 
         <nav class="navbar navbar-primary sticky-top bg-primary flex-md-nowrap p-0 shadow">
             <a class="navbar-brand bg-light d-flex justify-content-center col-md-3 col-lg-2" href="#">
-                <img src="../../template/img/inpel.jpg" alt="Imagen Inpetel" style="max-width:100%; height:50px;"></a>
+                <img src="../../template/img/inpel.png" alt="Imagen Inpetel" style="max-width:80%; height:auto;"></a>
             <div class="watch">
                 <div class="wrap">
                     <div class="widget">
@@ -236,6 +236,7 @@
     <script src="../../template/js/bootstrap.bundle.js"></script>
     <script src="../../template/js/popper.min.js"></script>    
     <script src="../../template/js/toastr.min.js"></script>
+    <script src="../../template/js/all.js"></script>
     <script src="../../template/js/Chart.min.js"></script>
     <script src="../../template/js/hammer.js"></script>
     <script src="../../template/js/zoom.js"></script>

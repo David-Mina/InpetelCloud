@@ -7,12 +7,12 @@ $.ajax({
     $("#form-valores").html(listaMedidores(data));
 });
 
-//MUESTRO TRANSFORMADORES - CONCENCTRADORES
+//MUESTRO CONCENTRADORES
 function listaMedidores(data) {
     $.each(data, function (key, val) {
         var resp = "";
-        resp += "<ul class='list-group'><li class='list-group-item'><a data-toggle='collapse' class='btn-block text-decoration-none' href='#cnc" + val.Serial + "' role='button' aria-expanded='false' aria-controls='cnc" + val.Serial + "'>  </a>" +
-                "<input type='checkbox' name='cnc[]' id='cnc_" + val.Serial + "' value='" + val.Serial + "'> <label class='labelcnc_"+val.Serial+"'>  Concentrador : "+ val.Serial +" </label>" ;
+        resp += "<ul class='list-group'><li class='list-group-item'><a data-toggle='collapse' href='#cnc" + val.Serial + "' role='button' aria-expanded='false' aria-controls='cnc" + val.Serial + "'><i class='fas fa-angle-right blue'></i>&nbsp;</a>" +
+                "<input type='checkbox' name='cnc[]' id='cnc_" + val.Serial + "' value='" + val.Serial + "'> <label class='labelcnc_" + val.Serial + "'>  Concentrador : " + val.Serial + " </label>";
         $.ajax({
             url: 'http://' + readConfig() + '/consulta/verMedidoresDeUnCnc/' + val.Serial,
             type: 'GET',

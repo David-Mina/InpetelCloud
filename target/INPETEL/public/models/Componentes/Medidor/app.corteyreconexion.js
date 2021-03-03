@@ -12,8 +12,8 @@ $.ajax({
 function list(data) {
     $.each(data, function (key, val) {
         var resp = "";
-        resp += "<ul class='list-group'><li class='list-group-item'><a data-toggle='collapse' class='btn-block text-decoration-none' href='#cnc" + val.Serial + "' role='button' aria-expanded='false' aria-controls='cnc" + val.Serial + "' > Transformador " + val.CodigoTF + "</a>" +
-                "<input type='checkbox' name='cnc[]' id='cnc_" + val.Serial + "' value='" + val.Serial + "'> <label class='labelcnc_"+val.Serial+"'>  Concentrador : "+ val.Serial +" </label>" ;
+        resp += "<ul class='list-group'><li class='list-group-item'><a data-toggle='collapse' class='text-decoration-none' href='#cnc" + val.Serial + "' role='button' aria-expanded='false' aria-controls='cnc" + val.Serial + "' > Transformador " + val.CodigoTF + "<br><i class='fas fa-angle-right blue' id='icon-lg'></i>&nbsp;</a>" +
+                "<input type='checkbox' name='cnc[]' id='cnc_" + val.Serial + "' value='" + val.Serial + "'> <label class='labelcnc_" + val.Serial + "'>  Concentrador : " + val.Serial + " </label>";
         $.ajax({
             url: 'http://' + readConfig() + '/consulta/verMedidoresDeUnCnc/' + val.Serial,
             type: 'GET',
@@ -33,8 +33,16 @@ function list(data) {
         });
     });
 }
+//MODAL REPORTE CyR
+$(".btn-CrearReporte").on('click', function (){
+    if($('input:checkbox[name="cnt[]"]:checked').length == 0){
+        toastr.warning("Debe seleccionar minimo un medidor");
+    }else{
+        $("#modalCyR").modal('show');
+    }
+});
 
-//ENVIAR REPORTE
+//ENVIAR REPORTE CyR
 $(".btn-enviarCyR").on('click', function () {
 
     var idMedidor = $("input:checkbox[name='cnt[]']:checked").map(function () {
@@ -46,26 +54,30 @@ $(".btn-enviarCyR").on('click', function () {
     if ($('input:checkbox[name="cnt[]"]:checked').length == 0 || envio.length == 0 || descripcion.length == 0) {
         toastr.error("Faltan campos por llenar");
     } else {
-        for (var i = 0;i< idMedidor.length; i++){
-            console.log(i);
+        for (var i = 0; i < idMedidor.length; i++) {
+            console.log(idMedidor);
             $.ajax({
-            url: "http://" + readConfig() + "/client/crearCyR/",
-            type: "POST",
-            contentType: "application/json",
-            dataType: "json",
-            data: JSON.stringify({
-                idMet: idMedidor[i],
-                valorEnvio: envio,
-                usuCrea: "60",
-                descripcion: descripcion
-            })
-        }).always(function (data) {
-            if (i == idMedidor.length) {
-                i = idMedidor.length + 1;
-                toastr.success("Reporte creado correctamente");
-                $("#Contenido").load("../../views/Componentes/Medidor/CorteYReconexion.jsp");
-            }
-        });
-        }        
+                url: "http://" + readConfig() + "/client/crearCyR/",
+                type: "POST",
+                contentType: "application/json",
+                dataType: "json",
+                data: JSON.stringify({
+                    idMet: idMedidor[i],
+                    valorEnvio: envio,
+                    usuCrea: "60",
+                    descripcion: descripcion
+                })
+            }).always(function (data) {
+                if (data > 0) {
+                    if (i == idMedidor.length) {
+                        i = idMedidor.length + 1;
+                        toastr.success("Reporte creado correctamente");
+                        $("#Contenido").load("../../views/Componentes/Medidor/CorteYReconexion.jsp");
+                    }
+                } else {
+                    toastr.error("Error, intente nuevamente");
+                }
+            });
+        }
     }
 });

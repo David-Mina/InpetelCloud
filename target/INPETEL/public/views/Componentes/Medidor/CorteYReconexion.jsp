@@ -15,7 +15,7 @@
         <div class="form-group">
             <input type="text" id="filterInp" class="form-control form-control-sm" placeholder="Buscar" style="margin-bottom: 10px;">
         </div>
-        <div class="form-group form-CyR">
+        <div class="form-group" style="width: 100%; height: 300px; overflow: scroll;">
             <ul class="list-group" id="ulFilter">
                 <div class="form-group" id="form-datos">
                 </div>
@@ -28,7 +28,7 @@
     <div class="col-lg-11">
         <div class="form-group">
             <div class="text-right">
-                <input type="submit" class="btn btn-md btn-primary btn-CrearReporte" data-toggle="modal" data-target="#modalCyR" value="Ejecutar">                                
+                <input type="submit" class="btn btn-md btn-primary btn-CrearReporte" data-toggle="modal" value="Ejecutar">                                
             </div>
         </div>
     </div>
