@@ -90,6 +90,14 @@
                                     Inicio <span class="sr-only">(current)</span>
                                 </a>
                             </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    <span data-feather="server"></span>
+                                    Balance
+                                </a>
+                            </li>
+
                             <!-- Acordion Componentes -->
                             <div class="accordion" id="accordionExample">
 
@@ -142,13 +150,6 @@
                             </div>
 
                             <!-- Fin Acordion Componentes -->
-
-                            <!--<li class="nav-item">
-                                <a class="nav-link" href="#">
-                                    <span data-feather="alert-triangle"></span>
-                                    Eventos / Alarmas
-                                </a>
-                            </li>-->
 
                             <!-- Accordion Users -->
                             <div class="accordion" id="accordionExample">
@@ -214,7 +215,56 @@
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                 <div class="container">
-                    <div id="Contenido"></div>                   
+                    <div id="Contenido">
+                        <div class="row">
+                            <div class="col-lg-12 col-sm-12">
+                                <div class="form-group">
+                                    <h4 class="text-center">Hola, Inpetel Cloud</h4>
+                                    <p class="text-center">Estos son tus componentes registrados hasta el momento</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <div class="card" style="box-shadow: 5px 5px 5px 5px #2222; border-radius: 10px;">
+                                    <img src="../../template/img/Concentrador.jpg" alt="Imagen Concentrador" width="auto" height="200">
+                                    <div class="card-body">                                        
+                                        <h5 class="card-title" id="cantidadCnc"></h5>
+                                        <p class="card-text" style="color:#339900;" id="cantidadCncActivos"></p>
+                                        <p class="card-text" style="color:#ffcc00;" id="cantidadCncInactivos"></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="card" style="box-shadow: 5px 5px 5px 5px #2222; border-radius: 10px;">
+                                    <img src="../../template/img/Medidor.jpg" alt="Imagen Medidor" width="auto" height="200">
+                                    <div class="card-body">                                        
+                                        <h5 class="card-title" id="cantidadMed"></h5>
+                                        <p class="card-text" style="color:#339900;" id="cantidadMedActivos"></p>
+                                        <p class="card-text" style="color:#ffcc00;" id="cantidadMedInactivos"></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="card" style="box-shadow: 5px 5px 5px 5px #2222; border-radius: 10px;">
+                                    <img src="../../template/img/Modem.jpg" alt="Imagen Modem>" width="auto" height="200">
+                                    <div class="card-body">                                        
+                                        <h5 class="card-title" id="cantidadMdm"></h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="card" style="box-shadow: 5px 5px 5px 5px #2222; border-radius: 10px;">
+                                    <img src="../../template/img/Transformador.jpg" alt="Imagen Transformador" width="auto" height="200">
+                                    <div class="card-body">                                        
+                                        <h5 class="card-title" id="cantidadTran"></h5>
+                                        <p class="card-text" style="color:#339900;" id="cantidadTranActivos"></p>
+                                        <p class="card-text" style="color:#ffcc00;" id="cantidadTranInactivos"></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>                   
                 </div>
             </div>
         </main>
@@ -245,8 +295,11 @@
     <script src="../../template/js/html2canvas.min.js"></script>
     <script src="../../template/js/feather.min.js"></script> 
     <script src="../../template/js/jquery.gridster.min.js"></script>
-    <script src="../../models/Dashboard/app.dashboard.js"></script>
-    <script src="../../template/js/reloj.js"></script>
+    <script src="../../template/js/reloj.js"></script>       
+    <script src="../../models/Configs/app.configs.read.js"></script>
+    <script src="../../models/Dashboard/app.dashboard.js"></script> 
+    <script src="../../models/Dashboard/app.home.js"></script>
+
 
     <!--<script type="text/javascript" src="../../template/js/DataTable/JSZip-2.5.0/jszip.min.js"></script>
     <script type="text/javascript" src="../../template/js/DataTable/pdfmake-0.1.36/pdfmake.min.js"></script>
