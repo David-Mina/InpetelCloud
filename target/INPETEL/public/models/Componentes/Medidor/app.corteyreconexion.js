@@ -34,10 +34,10 @@ function list(data) {
     });
 }
 //MODAL REPORTE CyR
-$(".btn-CrearReporte").on('click', function (){
-    if($('input:checkbox[name="cnt[]"]:checked').length == 0){
+$(".btn-CrearReporte").on('click', function () {
+    if ($('input:checkbox[name="cnt[]"]:checked').length == 0) {
         toastr.warning("Debe seleccionar minimo un medidor");
-    }else{
+    } else {
         $("#modalCyR").modal('show');
     }
 });

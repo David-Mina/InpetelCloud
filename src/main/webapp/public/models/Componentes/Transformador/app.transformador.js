@@ -92,8 +92,8 @@ $(".btn-AddTransformador").on('click', function () {
 });
 
 //CARGAR TRANSFORMADORES
-$("#loadTran").html("<h3 class='text-center'><img src='../../template/img/cargando.gif' width='120' height='80'></h3>");
-$("#loadTranGestion").html("<h3 class='text-center'><img src='../../template/img/cargando.gif' width='120' height='80'></h3>");
+$("#loadTran").html("<h3 class='text-center'><img src='../../template/img/cargando.gif' width='250' height='229'></h3>");
+$("#loadTranGestion").html("<h3 class='text-center'><img src='../../template/img/cargando.gif' width='250' height='229'></h3>");
 $.ajax({
     url: 'http://' + readConfig() + '/consulta/verTransformadores/',
     type: 'GET',

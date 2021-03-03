@@ -80,7 +80,7 @@ function valueDevice(data, id) {
         toastr.error("No hay modem para asociar");
     } else {
         $.each(data, function (key, val) {
-            $("#" + id).select2({theme:'bootstrap4'}).append("<option value='" + val.ID + "'>" + val.Imei + "</option>");
+            $("#" + id).select2({theme: 'bootstrap4'}).append("<option value='" + val.ID + "'>" + val.Imei + "</option>");
         });
     }
 }
@@ -90,7 +90,7 @@ function valueDeviceEdit(data, id) {
         toastr.error("No hay modem para asociar");
     } else {
         $.each(data, function (key, val) {
-            $("#" + id).select2({theme:'bootstrap4', dropdownParent: $('#modalCncUpdate')}).append("<option value='" + val.ID + "'>" + val.Imei + "</option>");
+            $("#" + id).select2({theme: 'bootstrap4', dropdownParent: $('#modalCncUpdate')}).append("<option value='" + val.ID + "'>" + val.Imei + "</option>");
         });
     }
 }
@@ -200,8 +200,8 @@ $(".btn-AddConcentrador").on('click', function () {
 });
 
 //CARGAR CONCENTRADORES
-$("#loadCnc").html("<h3 class='text-center'><img src='../../template/img/cargando.gif' width='120' height='80'></h3>");
-$("#loadCncGestion").html("<h3 class='text-center'><img src='../../template/img/cargando.gif' width='120' height='80'></h3>");
+$("#loadCnc").html("<h3 class='text-center'><img src='../../template/img/cargando.gif' width='250' height='229'></h3>");
+$("#loadCncGestion").html("<h3 class='text-center'><img src='../../template/img/cargando.gif' width='250' height='229'></h3>");
 $.ajax({
     url: 'http://' + readConfig() + '/consulta/verConcentradores/',
     type: 'GET',
@@ -247,7 +247,7 @@ $.ajax({
                     var marcaCnc = $("#marcaCncEdit").val();
                     var usuarioMarcaCnc = $("#usuarioMarcaCncEdit").val();
                     var contraseñaMarcaCnc = $("#contraseñaMarcaCncEdit").val();
-                    
+
                     switch (tipocomunicacionCnc) {
                         case "PLC":
                             tipocomunicacionCnc = "1";
@@ -317,7 +317,7 @@ $.ajax({
             });
         });
     });
-    
+
     //CAMBIAR DE ESTADO CONCENTRADOR
     $("a[rel='change']").on('click', function () {
         $.ajax({
@@ -339,14 +339,14 @@ $.ajax({
                         dataType: "json",
                         contentType: 'application/json',
                         data: JSON.stringify({
-                            id:id,
+                            id: id,
                             estadoId: estadoId,
                             observacion: observacionCnc
                         })
                     }).always(function (data) {
                         if (data > 0) {
                             toastr.success("Estado de concentrador cambiado correctamente");
-                            $("#Contenido").load("../../views/Componentes/Concentrador/GestionConcentrador.jsp");                            
+                            $("#Contenido").load("../../views/Componentes/Concentrador/GestionConcentrador.jsp");
                         } else {
                             toastr.error("Error, intente nuevamente");
                         }
@@ -360,7 +360,7 @@ $.ajax({
 
 //FUNCIONES TABLA PRINCIPAL
 function tablePrincipal(data) {
-    return "<script src='../../models/Configs/app.configs.table.js'></script>"+
+    return "<script src='../../models/Configs/app.configs.table.js'></script>" +
             "<table class='table table-sm table-striped text-center' id='tableINPETEL'>" +
             "<thead class='thead-dark'>" +
             "<tr>" +
@@ -384,7 +384,7 @@ function tbodyTable(data) {
                 "<td>" + val.Comunicacion + "</td>" +
                 "<td>" + val.Marca + "</td> " +
                 "<td>" + val.ModemImei + "</td> " +
-                "<td> <a href='#' rel='edit' idCnc='" + val.ID + "' class='badge badge-primary' data-toggle='modal' data-target='#modalCncUpdate'>Editar</a></td>"+
+                "<td> <a href='#' rel='edit' idCnc='" + val.ID + "' class='badge badge-primary' data-toggle='modal' data-target='#modalCncUpdate'>Editar</a></td>" +
                 "</tr>";
     });
     return res;
@@ -412,7 +412,7 @@ function tbodyTableGestion(data) {
                 "<td>" + val.NombreConcentrador + "</td>" +
                 "<td> <a href='#' rel='status' class='" + sep[0] + " " + sep[1] + "' idCnc='" + val.ID + "' sta='" + val.States_ID + "'>" + sep[2] + "</a></td>" +
                 "<td> <a href='#' rel='change' idCnc='" + val.ID + "' class='badge badge-info' data-toggle='modal' data-target='#modalCncChange''>Cambiar</a></td>" +
-               "</tr>";
+                "</tr>";
     });
     return res;
 }

@@ -1,4 +1,3 @@
-$("#form-reportes").html("<h3 class='text-center'><img src='../../template/img/cargando.gif' width='120' height='80'></h3>");
 $.ajax({
     url: 'http://' + readConfig() + '/consulta/verTrafoCnc/',
     type: 'GET',
@@ -41,31 +40,36 @@ $(".btn-Reportes").on('click', function () {
     var horaInicio = $("#horaInicial").val() + ":00";
     var fechaFin = $("#fechaFinal").val();
     var horaFin = $("#horaFinal").val() + ":00";
-    var serialCnc = $("input:checkbox[name='cnc[]']:checked").map(function () {return this.value;}).get();
-    var medidores = $("input:checkbox[name='cnt[]']:checked").map(function () {return this.value;}).get();
+    var serialCnc = $("input:checkbox[name='cnc[]']:checked").map(function () {
+        return this.value;
+    }).get();
+    var medidores = $("input:checkbox[name='cnt[]']:checked").map(function () {
+        return this.value;
+    }).get();
 
     if (reporte.length == 0) {
         toastr.warning("Debe seleccionar el tipo de reporte");
-    } else if(fechaInicio.length == 0 || horaInicio.length == 0 || fechaFin.length == 0 || horaFin.length == 0){
+    } else if (fechaInicio.length == 0 || horaInicio.length == 0 || fechaFin.length == 0 || horaFin.length == 0) {
         toastr.warning("Faltan campos por llenar");
-    } {
+    }
+    {
         $.ajax({
-            url: "http://" + readConfig() + "/reporte/reportes?reporte=" + reporte + "&fechaInicio=" + fechaInicio + "&horaInicio=" + horaInicio +"&fechaFin=" + fechaFin + "&horaFin=" + horaFin +"&serialCnc=" + serialCnc + "&medidores=" + medidores,
+            url: "http://" + readConfig() + "/reporte/reportes?reporte=" + reporte + "&fechaInicio=" + fechaInicio + "&horaInicio=" + horaInicio + "&fechaFin=" + fechaFin + "&horaFin=" + horaFin + "&serialCnc=" + serialCnc + "&medidores=" + medidores,
             type: "GET",
             contentType: "application/json",
             dataType: "json"
         }).always(function (data) {
-            if(reporte == 'CurvaHoraria'){
+            if (reporte == 'CurvaHoraria') {
                 $("#modalCurvaHoraria").modal('show');
                 $("#curvaHoraria").html(tableCurvaHoraria(tbodyTableHoraria(data)));
-            }else if(reporte == "CurvaDiaria"){
+            } else if (reporte == "CurvaDiaria") {
                 $("#modalCurvaDiaria").modal("show");
                 $("#curvaDiaria").html(tableCurvaDiaria(tbodyTableDiaria(data)));
-            }else if(reporte == "EventosMedidor"){
+            } else if (reporte == "EventosMedidor") {
                 $("#modalEventosMedidor").modal("show");
                 $("#eventosMedidor").html(tableEventosMedidor(tbodyTableMedidor(data)));
-            }else{
-                
+            } else {
+
             }
         });
     }
@@ -73,7 +77,7 @@ $(".btn-Reportes").on('click', function () {
 
 //FUNCION CURVA HORARIA
 function tableCurvaHoraria(data) {
-    return "<script src='../../models/Reportes/app.reportes.tables.js'></script>"+
+    return "<script src='../../models/Reportes/app.reportes.tables.js'></script>" +
             "<table class='table table-sm table-striped text-center' id='tableCurvaHoraria'>" +
             "<thead class='thead-dark'>" +
             "<tr>" +
@@ -115,7 +119,7 @@ function tbodyTableHoraria(data) {
 
 //FUNCION CURVA DIARIA
 function tableCurvaDiaria(data) {
-    return "<script src='../../models/Reportes/app.reportes.tables.js'></script>"+
+    return "<script src='../../models/Reportes/app.reportes.tables.js'></script>" +
             "<table class='table table-sm table-striped text-center' id='tableCurvaDiaria'>" +
             "<thead class='thead-dark'>" +
             "<tr>" +
@@ -155,14 +159,14 @@ function tbodyTableDiaria(data) {
 
 //FUNCION EVENTOS MEDIDOR
 function tableEventosMedidor(data) {
-    return "<script src='../../models/Reportes/app.reportes.tables.js'></script>"+
+    return "<script src='../../models/Reportes/app.reportes.tables.js'></script>" +
             "<table class='table table-sm table-striped text-center' id='tableEventosMedidor'>" +
             "<thead class='thead-dark'>" +
             "<tr>" +
             "<th>Concentrador</th>" +
             "<th>Medidor</th>" +
             "<th>Fecha</th>" +
-            "<th>Descripción Evento</th>" +            
+            "<th>Descripción Evento</th>" +
             "</tr>" +
             " </thead>" +
             "<tbody>" + data + "</tbody>" +
