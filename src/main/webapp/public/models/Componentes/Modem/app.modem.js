@@ -74,6 +74,7 @@ $(".btn-AddModem").on('click', function () {
     }
 });
 
+$("#loadMdm").html("<h3 class='text-center'><img src='../../template/img/cargando.gif' width='120' height='80'></h3>");
 //CARGAR MODEMS
 $.ajax({
     url: 'http://' + readConfig() + '/consulta/verModems/',

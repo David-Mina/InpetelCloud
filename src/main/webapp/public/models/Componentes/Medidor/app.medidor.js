@@ -120,6 +120,8 @@ $(".btn-AddMedidor").on('click', function () {
 });
 
 //CARGAR MEDIDORES
+$("#loadMed").html("<h3 class='text-center'><img src='../../template/img/cargando.gif' width='250' height='229'></h3>");
+$("#loadMedGestion").html("<h3 class='text-center'><img src='../../template/img/cargando.gif' width='250' height='229'></h3>");
 $.ajax({
     url: 'http://' + readConfig() + '/consulta/verMedidores/',
     type: 'GET',
@@ -127,7 +129,7 @@ $.ajax({
 }).always(function (data) {
     //CARGA TABLA PRINCIPAL  
     $("#loadMed").html(tablePrincipal(tbodyTable(data)));
-    //CARGA TABLA GESTION
+    //CARGA TABLA GESTION    
     $("#loadMedGestion").html(tablePrincipalGestion(tbodyTableGestion(data)));
     //EDITAR MEDIDOR
     $("a[rel='edit']").on('click', function () {
