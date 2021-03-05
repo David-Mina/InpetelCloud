@@ -93,7 +93,7 @@
 
                             <li class="nav-item">
                                 <a class="nav-link" href="#">
-                                    <span data-feather="server"></span>
+                                    <span data-feather="activity"></span>
                                     Balance
                                 </a>
                             </li>
@@ -169,7 +169,7 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="#" id="Reportes">
                                     <span data-feather="bar-chart-2"></span>
-                                    Reportes
+                                    Reportes / Eventos
                                 </a>
                             </li>       
                             <!-- Accordion Tareas Programadas -->
@@ -219,8 +219,7 @@
                         <div class="row">
                             <div class="col-lg-12 col-sm-12">
                                 <div class="form-group">
-                                    <h4 class="text-center">Hola, Inpetel Cloud</h4>
-                                    <p class="text-center">Estos son tus componentes registrados hasta el momento</p>
+                                    <h2 class="text-center">INPETEL CLOUD</h2>
                                 </div>
                             </div>
                         </div>
@@ -228,9 +227,14 @@
                             <div class="col-sm-3">
                                 <div class="card" style="box-shadow: 5px 5px 5px 5px #2222; border-radius: 10px;">
                                     <img src="../../template/img/Concentrador.jpg" alt="Imagen Concentrador" width="auto" height="200">
-                                    <div class="card-body">                                        
-                                        <h5 class="card-title" id="cantidadCnc"></h5>
-                                        <p class="card-text" style="color:#339900;" id="cantidadCncActivos"></p>
+                                    <div class="card-body"> 
+                                        <h5 class="card-title">Concentradores</h5>
+                                        <h6 class="card-subtitle text-muted" id="cantidadCnc"></h6><hr>
+                                        <h6 class="card-text">Marcas</h6>
+                                        <p class="card-text mb-1" id="cantidadCncCircutor"></p>
+                                        <p class="card-text mb-1" id="cantidadCncMyC"></p>
+                                        <p class="card-text" id="cantidadCncADD"></p><hr>
+                                        <p class="card-text mb-1" style="color:#339900;" id="cantidadCncActivos"></p>
                                         <p class="card-text" style="color:#ffcc00;" id="cantidadCncInactivos"></p>
                                     </div>
                                 </div>
@@ -238,9 +242,14 @@
                             <div class="col-sm-3">
                                 <div class="card" style="box-shadow: 5px 5px 5px 5px #2222; border-radius: 10px;">
                                     <img src="../../template/img/Medidor.jpg" alt="Imagen Medidor" width="auto" height="200">
-                                    <div class="card-body">                                        
-                                        <h5 class="card-title" id="cantidadMed"></h5>
-                                        <p class="card-text" style="color:#339900;" id="cantidadMedActivos"></p>
+                                    <div class="card-body"> 
+                                        <h5 class="card-title">Medidores</h5>
+                                        <h6 class="card-subtitle text-muted" id="cantidadMed"></h6><hr>
+                                        <h6 class="card-text">Marcas</h6>
+                                        <p class="card-text mb-1" id="cantidadMedCircutor"></p>
+                                        <p class="card-text mb-1" id="cantidadMedMyC"></p>
+                                        <p class="card-text" id="cantidadMedADD"></p><hr>
+                                        <p class="card-text mb-1" style="color:#339900;" id="cantidadMedActivos"></p>
                                         <p class="card-text" style="color:#ffcc00;" id="cantidadMedInactivos"></p>
                                     </div>
                                 </div>
@@ -248,17 +257,29 @@
                             <div class="col-sm-3">
                                 <div class="card" style="box-shadow: 5px 5px 5px 5px #2222; border-radius: 10px;">
                                     <img src="../../template/img/Modem.jpg" alt="Imagen Modem>" width="auto" height="200">
-                                    <div class="card-body">                                        
-                                        <h5 class="card-title" id="cantidadMdm"></h5>
+                                    <div class="card-body"> 
+                                        <h5 class="card-title">Modems</h5>
+                                        <h6 class="card-subtitle text-muted" id="cantidadMdm"></h6><hr>
+                                        <h6 class="card-text">Marcas</h6>
+                                        <p class="card-text mb-1" id="mdmHuawei"></p>
+                                        <p class="card-text mb-1" id="mdmQualcomm"></p>
+                                        <p class="card-text mb-1" id="mdmTelit"></p>
+                                        <p class="card-text mb-1" id="mdmSiemens"></p>
+                                        <p class="card-text mb-1" id="mdmMotorola"></p>
+                                        <p class="card-text" id="mdmWavecom"></p>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-sm-3">
                                 <div class="card" style="box-shadow: 5px 5px 5px 5px #2222; border-radius: 10px;">
                                     <img src="../../template/img/Transformador.jpg" alt="Imagen Transformador" width="auto" height="200">
-                                    <div class="card-body">                                        
-                                        <h5 class="card-title" id="cantidadTran"></h5>
-                                        <p class="card-text" style="color:#339900;" id="cantidadTranActivos"></p>
+                                    <div class="card-body"> 
+                                        <h5 class="card-title">Transformadores</h5>
+                                        <h6 class="card-subtitle text-muted" id="cantidadTran"></h6><hr>
+                                        <h6 class="card-text">Tipos de transformadores</h6>
+                                        <p class="card-text mb-1" id="tranMonofasico"></p>
+                                        <p class="card-text" id="tranTrifasico"></p><hr>
+                                        <p class="card-text mb-1" style="color:#339900;" id="cantidadTranActivos"></p>
                                         <p class="card-text" style="color:#ffcc00;" id="cantidadTranInactivos"></p>
                                     </div>
                                 </div>

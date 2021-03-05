@@ -72,7 +72,6 @@ $(".btn-AddJob").on('click', function () {
             dataType: "json",
             contentType: 'application/json'
         }).always(function (data) {
-            //console.log('http://' + readConfig() + '/scheduler/schedule?' + 'jobName=' + nombreTarea + '&jobScheduleTime=' + fecha + '&cronExpression=' + fechaUTCTarea + '&hora=' + horaUTCTarea + '&gender=' + intervaloTarea + '&repeatTime=' + tiempoTarea);
             if (data.statusCode == 200) {
                 toastr.success("Tarea creada");
                 $("#Contenido").load("../../views/TareasProgramadas/TareasProgramadas.jsp");

@@ -12,7 +12,7 @@ function preguntarTrabajos() {
             //TABLA TRABAJOS
             var datos = data.data;
             $("#jobs").html(tablePrincipal(tbodyTable(datos)));
-            
+
             //INICIAR TRABAJO
             $(".btn-iniciar").on('click', function () {
                 $.ajax({
@@ -99,7 +99,7 @@ function preguntarTrabajos() {
                     }
                 });
             });
-            
+
             //DETENER TRABAJO
             $(".btn-detener").on('click', function () {
                 $.ajax({
@@ -109,7 +109,7 @@ function preguntarTrabajos() {
                 }).always(function (data) {
                     if (data.statusCode == 200) {
                         toastr.success("Tarea detenida");
-                        $("#Contenido").load("../../views/TareasProgramadas/TareasProgramadas.jsp");                        
+                        $("#Contenido").load("../../views/TareasProgramadas/TareasProgramadas.jsp");
                     } else if (data.statusCode == 521) {
                         toastr.error("La tarea no se esta ejecutando");
                     } else if (data.statusCode == 500) {
@@ -119,15 +119,47 @@ function preguntarTrabajos() {
                     }
                 });
             });
-            
-            /*EDITAR TRABAJO SIMPLE
-            $(".btn-editar").on('click', function(){
+
+            //EDITAR TRABAJO 
+            $(".btn-editar").on('click', function () {
+                var jobName = $(this).attr("idJob");
+                var momentTime = $(this).attr("idSchedule");
+                var scheduleTime = moment(momentTime.toString()).format('yyyy/MM/DD HH:mm');
+                console.log(scheduleTime);
                 $.ajax({
-                    url: 'http://' + readConfigTarea() + '/scheduler/update?jobName=' + $(this).attr("idJob"),
+                    url: 'http://' + readConfigTarea() + '/scheduler/tipoTarea',
                     type: 'GET',
                     dataType: "json"
-                }).always()
-            })*/
+                }).always(function (data) {
+                    $.each(data, function (key, val) {
+                        if (val.JOB_NAME == jobName && val.TRIGGER_TYPE == "SIMPLE") {
+                            $("#modalJobEditSimple").modal("show");
+                            
+                            //ACTUALIZAR TRABAJO SIMPLE
+                            $(".btn-JobUpdate").on('click', function () {
+                                var minutos = $("#tiempoTareaEdit").val();
+                                console.log(minutos);
+                                $.ajax({
+                                    url: 'http://' + readConfigTarea() + '/scheduler/update?' + 'jobName=' + val.JOB_NAME + '&jobScheduleTime=' + scheduleTime + '&cronExpression=&hora=&gender=&repeatTime=' + minutos,
+                                    type: 'GET',
+                                    dataType: "json"
+                                }).always(function (data) {
+                                    console.log('http://' + readConfigTarea() + '/scheduler/update?' + 'jobName=' + val.JOB_NAME + '&jobScheduleTime=' + scheduleTime + '&cronExpression=&hora=&gender=&repeatTime=' + minutos);
+                                    if (data.statusCode == 200) {
+                                        toastr.success("Tarea editada");
+                                        $("#Contenido").load("../../views/TareasProgramadas/TareasProgramadas.jsp");
+                                    } else if (data.statusCode == 500) {
+                                        toastr.error("El nombre de la tarea no existe");
+                                    } else {
+                                        toastr.error("Error, intente nuevamente");
+                                    }
+                                });
+                            });
+                        }
+                    });
+
+                });
+            });
         }
     });
 }
@@ -155,13 +187,17 @@ function tbodyTable(datos) {
     var res = "";
     $.each(datos, function (key, val) {
         var sep = colors(val.jobStatus).trim().split("__");
-        var btn = button(val.jobStatus).split("_");        
-                
+        var btn = button(val.jobStatus).split("_");
+
         var fecha = moment(val.scheduleTime).format('DD/MM/yyyy HH:mm:ss');
         var fecha1 = moment(val.lastFiredTime).format('DD/MM/yyyy HH:mm:ss');
-        if(fecha1 == "Invalid date"){fecha1 = " ";}else{fecha1 = fecha1;}
+        if (fecha1 == "Invalid date") {
+            fecha1 = " ";
+        } else {
+            fecha1 = fecha1;
+        }
         var fecha2 = moment(val.nextFireTime).format('DD/MM/yyyy HH:mm:ss');
-        
+
         res += "<tr>" +
                 "<td>" + val.jobName + "</td>" +
                 "<td>" + fecha + "</td>" +
@@ -172,7 +208,7 @@ function tbodyTable(datos) {
                 " <button href='#' idJob='" + val.jobName + "' class='btn btn-reanudar btn-sm btn-primary' " + btn[2] + ">Reanudar</button> " +
                 " <button href='#' idJob='" + val.jobName + "' class='btn btn-eliminar btn-sm btn-danger' " + btn[3] + ">Eliminar</button> " +
                 " <button href='#' idJob='" + val.jobName + "' class='btn btn-detener btn-sm btn-danger' " + btn[4] + ">Detener</button> " +
-                " <button href='#' idJob='" + val.jobName + "' class='btn btn-editar btn-sm btn-warning' " + btn[5] + " data-toggle='modal' data-target='#modalJobEdit'>Editar</button></td>" +
+                " <button href='#' idJob='" + val.jobName + "' idSchedule='" + val.scheduleTime + "' class='btn btn-editar btn-sm btn-warning' " + btn[5] + ">Editar</button></td>" +
                 "<td> <a rel='status' class='" + sep[0] + " " + sep[1] + "' sta='" + val.jobStatus + "'>" + sep[2] + "</a></td>" +
                 "</tr>";
     });

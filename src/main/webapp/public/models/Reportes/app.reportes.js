@@ -51,8 +51,9 @@ $(".btn-Reportes").on('click', function () {
         toastr.warning("Debe seleccionar el tipo de reporte");
     } else if (fechaInicio.length == 0 || horaInicio.length == 0 || fechaFin.length == 0 || horaFin.length == 0) {
         toastr.warning("Faltan campos por llenar");
-    }
-    {
+    }else if(reporte == "EventosConcentrador" && serialCnc.length > 1){
+        toastr.warning("El tipo de reporte solo acepta un concentrador");
+    }else{
         $.ajax({
             url: "http://" + readConfig() + "/reporte/reportes?reporte=" + reporte + "&fechaInicio=" + fechaInicio + "&horaInicio=" + horaInicio + "&fechaFin=" + fechaFin + "&horaFin=" + horaFin + "&serialCnc=" + serialCnc + "&medidores=" + medidores,
             type: "GET",
@@ -69,7 +70,8 @@ $(".btn-Reportes").on('click', function () {
                 $("#modalEventosMedidor").modal("show");
                 $("#eventosMedidor").html(tableEventosMedidor(tbodyTableMedidor(data)));
             } else {
-
+                $("#modalEventosConcentrador").modal("show");
+                $("#eventosConcentrador").html(tableEventosConcentrador(tbodyTableConcentrador(data)));
             }
         });
     }
@@ -178,6 +180,32 @@ function tbodyTableMedidor(data) {
         res += "<tr>" +
                 "<td>" + val.Serial_Cnc + "</td>" +
                 "<td>" + val.Serial_Met + "</td>" +
+                "<td>" + val.Fecha + "</td>" +
+                "<td>" + val.Descripcion_Evento + "</td>" +
+                "</tr>";
+    });
+    return res;
+}
+
+//FUNCION EVENTOS CONCENTRADOR
+function tableEventosConcentrador(data) {
+    return "<script src='../../models/Reportes/app.reportes.tables.js'></script>" +
+            "<table class='table table-sm table-striped text-center' id='tableEventosConcentrador'>" +
+            "<thead class='thead-dark'>" +
+            "<tr>" +
+            "<th>Concentrador</th>" +
+            "<th>Fecha</th>" +
+            "<th>Descripción Evento</th>" +
+            "</tr>" +
+            " </thead>" +
+            "<tbody>" + data + "</tbody>" +
+            "</table>";
+}
+function tbodyTableConcentrador(data) {
+    var res = "";
+    $.each(data, function (key, val) {
+        res += "<tr>" +
+                "<td>" + val.Serial_Cnc + "</td>" +
                 "<td>" + val.Fecha + "</td>" +
                 "<td>" + val.Descripcion_Evento + "</td>" +
                 "</tr>";

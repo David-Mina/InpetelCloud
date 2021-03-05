@@ -7,8 +7,8 @@
     </div>
 </div>
 
-<div class="row row-cols-1 row-cols-md-4 justify-content-center">
-    <div class="col-mb-2 mr-1">
+<div class="row justify-content-center">
+    <div class="col-sm-3 mr-1">
         <div class="card border-light">
             <h6 class="card-title text-center">Tareas</h6>
             <div class="card-body">
@@ -21,7 +21,7 @@
             </div>
         </div>            
     </div>
-    <div class="col-mb-2 mr-1">
+    <div class="col-sm-3 mr-1">
         <div class="card border-light">
             <h6 class="card-title text-center">Usuarios</h6>
             <div class="card-body">
@@ -34,7 +34,7 @@
             </div>
         </div> 
     </div>
-    <div class="col-mb-2">
+    <div class="col-sm-4">
         <div class="card border-light">
             <h6 class="card-title text-center">Sistemas externos</h6>
             <div class="card-body">
@@ -47,7 +47,9 @@
             </div>
         </div>
     </div>
-    <div class="col-mb-2 mr-1">
+</div>
+<div class="row justify-content-center">
+    <div class="col-sm-3 mr-1">
         <div class="card border-light">
             <h6 class="card-title text-center">Componentes</h6>
             <div class="card-body">
@@ -72,7 +74,7 @@
             </div>
         </div>
     </div>
-    <div class="col-mb-2 mr-1">
+    <div class="col-sm-3 mr-1">
         <div class="card border-light">
             <h6 class="card-title text-center">Reportes</h6>
             <div class="card-body">
@@ -81,7 +83,7 @@
             </div>
         </div>
     </div>
-    <div class="col-mb-2">
+    <div class="col-sm-4">
         <div class="card border-light">
             <h6 class="card-title text-center">Valores instantaneos</h6>
             <div class="card-body">

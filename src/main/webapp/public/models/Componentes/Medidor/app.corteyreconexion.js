@@ -69,10 +69,10 @@ $(".btn-enviarCyR").on('click', function () {
                 })
             }).always(function (data) {
                 if (data > 0) {
+                    toastr.success("Reporte creado correctamente");
                     if (i == idMedidor.length) {
-                        i = idMedidor.length + 1;
-                        toastr.success("Reporte creado correctamente");
                         $("#Contenido").load("../../views/Componentes/Medidor/CorteYReconexion.jsp");
+                        i = idMedidor.length + 1; 
                     }
                 } else {
                     toastr.error("Error, intente nuevamente");
